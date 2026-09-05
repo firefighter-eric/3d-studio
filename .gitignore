@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+.playwright-mcp/
+.vercel/
+.env
+.env.*
+!.env.example
+*.log

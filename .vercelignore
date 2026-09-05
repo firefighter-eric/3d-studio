@@ -1,0 +1,7 @@
+node_modules/
+dist/
+docs/
+.playwright-mcp/
+*.tsbuildinfo
+*.log
+.env*

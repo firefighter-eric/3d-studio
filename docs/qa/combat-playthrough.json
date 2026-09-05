@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-05",
+  "mode": "rookie",
+  "method": "Real browser UI, ordinary keyboard and pointer input; no simulation state injection",
+  "status": "won",
+  "score": 35665,
+  "kills": 83,
+  "maxCombo": 13,
+  "rank": "A",
+  "displayedMissionTime": "01:43",
+  "bossPhasesObserved": [1,2,3],
+  "highScoreAfterReload": 35665,
+  "manualFireCheck": {"autoOffBefore":329,"autoOffAfterWait":329,"afterHoldingSpace":331},
+  "mobileDrag": {"viewport":[390,844],"from":[0,-5.9],"to":[1.7,-4.2]},
+  "desktopSmall": {"viewport":[1280,720],"fieldWidth":393.61,"fieldHeight":544.99,"fieldBottom":673.99,"horizontalOverflow":false},
+  "narrowVictory": {"viewport":[320,740],"fieldTop":115,"fieldBottom":524.84,"dialogTop":122.63,"dialogBottom":517.22},
+  "unitTests": {"passed":10,"failed":0},
+  "typescriptCheck": "passed",
+  "productionBuild": "passed",
+  "consoleErrors": 0,
+  "knownWarning": "THREE.Clock deprecation from the current R3F/Three combination"
+}
