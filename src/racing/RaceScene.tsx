@@ -68,7 +68,7 @@ function makeWorld(){
   for(const side of [-1,1]){const p=trackAt(0,side*(BARRIER_OFFSET+1));box(p.x,3.25,p.z,.6,6.5,.65,0,yaw);box(p.x,.95,p.z,1,1.9,1,2,yaw)}
   box(start.x,6.25,start.z,(BARRIER_OFFSET+1)*2+.6,1.15,.75,1,yaw)
   for(let i=-2;i<=2;i++){box(start.x+start.nx*i*.75,5.29,start.z+start.nz*i*.75,.48,.56,.3,1,yaw);add(new THREE.SphereGeometry(.12,8,8),2,start.x+start.nx*i*.75,5.3,start.z+start.nz*i*.75-.2)}
-  const sign=new THREE.Mesh(new THREE.PlaneGeometry(17.8,1.02),new THREE.MeshBasicMaterial({map:makeSign('AZURE CIRCUIT','FORM / SPACE GRAND PRIX'),side:THREE.DoubleSide}));sign.position.set(start.x-start.tx*.39,6.26,start.z-start.tz*.39);sign.rotation.y=yaw+Math.PI;root.add(sign)
+  const sign=new THREE.Mesh(new THREE.PlaneGeometry(17.8,1.02),new THREE.MeshBasicMaterial({map:makeSign('AZURE CIRCUIT','3D Studio GRAND PRIX'),side:THREE.DoubleSide}));sign.position.set(start.x-start.tx*.39,6.26,start.z-start.tz*.39);sign.rotation.y=yaw+Math.PI;root.add(sign)
   // Start-line grandstand with stepped seating and a lightweight canopy.
   for(let row=0;row<4;row++){box(19+row*1.7,.5+row*.5,33,1.65,.8,35,0);for(let i=0;i<25;i++){box(19+row*1.7,1.05+row*.5,17+i*1.32,.65,.2,.73,(i+row)%3?3:2);if((i*3+row)%4!==0){add(new THREE.SphereGeometry(.18,6,6),5,19+row*1.7,1.64+row*.5,17+i*1.32);box(19+row*1.7,1.33+row*.5,17+i*1.32,.34,.37,.35,(i+row)%2?1:13)}}}
   box(22,5.1,33,11,.16,39,0);box(21.7,5.23,33,11.5,.12,39.3,3)

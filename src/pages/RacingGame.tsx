@@ -63,7 +63,7 @@ export function RacingGame({back,viewModel,initialCar}:{back:()=>void;viewModel:
       {!ready&&<div className="race-loading" role="status"><span/>正在准备赛车与赛道…</div>}
       {fullscreen&&<button className="race-exit-fullscreen" aria-label="退出全屏" onClick={toggleFullscreen}><Minimize size={17}/></button>}
       {status==='ready'&&<div className="race-setup">
-        <div className="race-setup-copy"><span className="race-eyebrow"><span/> FORM / SPACE RACING CLUB</span><h1>湛蓝大奖赛<span>AZURE CIRCUIT</span></h1><p className="race-intro">把风，甩在身后。<br/>驾驶你的方程式赛车，向海岸线尽头冲刺。</p>
+        <div className="race-setup-copy"><span className="race-eyebrow"><span/> 3D Studio · RACING CLUB</span><h1>湛蓝大奖赛<span>AZURE CIRCUIT</span></h1><p className="race-intro">把风，甩在身后。<br/>驾驶你的方程式赛车，向海岸线尽头冲刺。</p>
           <div className="race-garage-heading"><span>01 / 选择赛车</span><button onClick={()=>viewModel(race.car)}>查看完整模型<ArrowRight size={13}/></button></div>
           <div className="race-car-choices" role="group" aria-label="选择赛车">{CAR_SPECS.map(car=><button key={car.id} style={{'--car-color':car.color} as React.CSSProperties} aria-pressed={race.car===car.id} onClick={()=>resetRun(car.id)}><span className="race-car-number">{car.number}</span><strong>{car.name}</strong><small>{car.role}型</small></button>)}</div>
           <div className="race-specs">{['极速','加速','操控'].map((name,i)=><div key={name}><span>{name}</span><div><i style={{width:`${spec.bars[i]}%`}}/></div></div>)}</div>
