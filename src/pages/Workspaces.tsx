@@ -6,16 +6,49 @@ import { ModelCanvas, WorldCanvas } from '../components/StudioCanvas'
 import type { ViewActions } from '../components/StudioCanvas'
 import { BackButton, InteractionHint, SelectionButton, ViewToolbar } from '../components/Interface'
 import { isCarId,carSpec } from '../racing/cars'
+import { isSpacecraftId, spacecraftSpec } from '../spacecraft/specs'
+import type { SpacecraftView } from '../spacecraft/specs'
+import spacecraftManifest from '../spacecraft/manifest.json'
 
 export function ModelWorkspace({ id, selected, toggleSelection, back, play, add }: { id: AssetId; selected: boolean; toggleSelection: () => void; back: () => void; play: () => void; add: () => void }) {
   const asset = assetById[id], actions = useRef<ViewActions>(null)
   const car=isCarId(id)?carSpec(id):null
+  const spacecraft = isSpacecraftId(id) ? spacecraftSpec(id) : null
+  const modelInfo = isSpacecraftId(id) ? spacecraftManifest[id] : null
   const [autoRotate, setAutoRotate] = useState(false)
+  const [separated, setSeparated] = useState(false)
+  const [view, setView] = useState<SpacecraftView>('full')
   return <>
     <div className="workspace-heading"><BackButton onClick={back}>返回模型</BackButton><span>{asset.english}</span></div>
-    <section className="workspace-layout">
-      <div className="workspace-canvas"><ModelCanvas key={id} id={id} ref={actions} autoRotate={autoRotate} /><div className="canvas-label"><Box size={15} />{asset.name}</div><ViewToolbar actions={actions} autoRotate={autoRotate} setAutoRotate={setAutoRotate} /><div className="workspace-hint"><InteractionHint /></div></div>
-      <aside className="workspace-sidebar"><div className="sidebar-title"><span className="catalog-id">{asset.category}</span><h1>{asset.name}</h1><p>{asset.description}</p></div><p className="detail-description">{asset.detail}</p><dl className="model-details"><div><dt>创作方式</dt><dd>{car?'程序化建模 · GLB':'原创设计'}</dd></div><div><dt>使用方式</dt><dd>查看 · 场景组合{id === 'rocket' || id === 'basalt' || car ? ' · 游戏' : ''}</dd></div><div><dt>收藏位置</dt><dd>模型 / {asset.category}</dd></div></dl><SelectionButton selected={selected} onClick={toggleSelection} label={asset.name} /><button className="button primary full-width" onClick={add}><Plus size={18} />加入发射基地</button>{car&&<><div className="formula-spec-list">{['极速','加速','操控'].map((name,i)=><div key={name}><span>{name}</span><div><i style={{width:`${car.bars[i]}%`}}/></div></div>)}</div><a className="button secondary full-width formula-download" href={`/models/${id}.glb`} download><Download size={17}/>下载赛车 GLB</a></>}{(id === 'rocket' || id === 'basalt' || car) && <button className="button secondary full-width" onClick={play}>{car?'驾驶赛车':'玩游戏'}<ArrowRight size={18} /></button>}<p className="sidebar-footnote">拖动查看各个角度，双指捏合可缩放。工具栏也支持键盘操作。</p></aside>
+    <section className={`workspace-layout ${spacecraft ? 'spacecraft-workspace' : ''}`}>
+      <div className="workspace-canvas">
+        <ModelCanvas key={id} id={id} ref={actions} autoRotate={autoRotate} separated={separated} view={view} />
+        <div className="canvas-label"><Box size={15} />{asset.name}{spacecraft && <span className="detail-badge">高精度</span>}</div>
+        {spacecraft && <div className="spacecraft-view-switch" role="group" aria-label="航天模型观察位置">{([['full', '全貌'], ['upper', '上面级'], ['engines', '发动机']] as const).map(([value, label]) => <button key={value} aria-pressed={view === value} onClick={() => { setAutoRotate(false); setView(value) }}>{label}</button>)}</div>}
+        <ViewToolbar actions={actions} autoRotate={autoRotate} setAutoRotate={setAutoRotate} />
+        <div className="workspace-hint"><InteractionHint scene={!!spacecraft} /></div>
+        {modelInfo && <div className="spacecraft-mesh-note">{(modelInfo.triangles / 10000).toFixed(1)} 万三角面 <span>·</span> PBR 材质</div>}
+      </div>
+      <aside className="workspace-sidebar">
+        <div className="sidebar-title"><span className="catalog-id">{spacecraft ? 'SPACEX · 航天收藏' : asset.category}</span><h1>{asset.name}</h1><p>{asset.description}</p></div>
+        <p className="detail-description">{asset.detail}</p>
+        {spacecraft ? <>
+          <div className="spacecraft-features">{spacecraft.features.map(feature => <span key={feature}>{feature}</span>)}</div>
+          <dl className="model-details spacecraft-details">
+            <div><dt>构型</dt><dd>{spacecraft.configuration}</dd></div>
+            <div><dt>高度 / 直径</dt><dd>{spacecraft.height} m / {spacecraft.diameter} m</dd></div>
+            <div><dt>发动机</dt><dd>{spacecraft.engines}</dd></div>
+            <div><dt>模型文件</dt><dd>GLB · {(modelInfo!.bytes / 1024 / 1024).toFixed(1)} MB · 米制</dd></div>
+          </dl>
+          <button className="button secondary full-width separation-button" aria-pressed={separated} onClick={() => { setSeparated(!separated); setView('full'); setAutoRotate(false) }}><Layers size={17} />{separated ? '合拢级段' : '分级展开'}<span>{separated ? 'ON' : 'OFF'}</span></button>
+        </> : <dl className="model-details"><div><dt>创作方式</dt><dd>{car ? '程序化建模 · GLB' : '原创设计'}</dd></div><div><dt>使用方式</dt><dd>查看 · 场景组合{id === 'rocket' || id === 'basalt' || car ? ' · 游戏' : ''}</dd></div><div><dt>收藏位置</dt><dd>模型 / {asset.category}</dd></div></dl>}
+        <SelectionButton selected={selected} onClick={toggleSelection} label={asset.name} />
+        <button className="button primary full-width" onClick={add}><Plus size={18} />加入发射基地</button>
+        {spacecraft && <a className="button secondary full-width" href={`/models/${id}.glb`} download><Download size={17} />下载模型 GLB</a>}
+        {car && <><div className="formula-spec-list">{['极速','加速','操控'].map((name,i)=><div key={name}><span>{name}</span><div><i style={{width:`${car.bars[i]}%`}}/></div></div>)}</div><a className="button secondary full-width formula-download" href={`/models/${id}.glb`} download><Download size={17}/>下载赛车 GLB</a></>}
+        {(id === 'rocket' || id === 'basalt' || car) && <button className="button secondary full-width" onClick={play}>{car?'驾驶赛车':'玩游戏'}<ArrowRight size={18} /></button>}
+        {spacecraft ? <p className="sidebar-footnote">依公开资料制作的外观展示模型，局部细节为近似复原。<a href={spacecraft.source} target="_blank" rel="noreferrer">{spacecraft.sourceLabel}<ArrowUpRight size={11} /></a></p> : <p className="sidebar-footnote">拖动查看各个角度，双指捏合可缩放。工具栏也支持键盘操作。</p>}
+      </aside>
     </section>
   </>
 }

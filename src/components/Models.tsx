@@ -4,6 +4,8 @@ import * as THREE from 'three'
 import type { AssetId, Vec3 } from '../data/catalog'
 import { isCarId } from '../racing/cars'
 import { FormulaCar } from '../racing/FormulaCar'
+import { isSpacecraftId } from '../spacecraft/specs'
+import { SpacecraftModel } from '../spacecraft/SpacecraftModel'
 
 const ivory = '#e8e4d6'
 const orange = '#cf592c'
@@ -129,7 +131,8 @@ export function Antenna() {
   </group>
 }
 
-export function AssetModel({ id }: { id: AssetId }) {
+export function AssetModel({ id, separated = false }: { id: AssetId; separated?: boolean }) {
+  if (isSpacecraftId(id)) return <SpacecraftModel id={id} separated={separated} />
   if (isCarId(id)) return <FormulaCar id={id} />
   if (id === 'rocket') return <Rocket />
   if (id === 'basalt') return <Basalt />

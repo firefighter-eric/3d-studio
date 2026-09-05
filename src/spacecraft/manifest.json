@@ -1,0 +1,26 @@
+{
+  "falcon-9": {
+    "bytes": 2341648,
+    "triangles": 211144,
+    "meshes": 92,
+    "hullTiles": 0,
+    "dimensions": [
+      5.23429536819458,
+      69.99498413085938,
+      5.230000019073486
+    ],
+    "units": "metres"
+  },
+  "starship": {
+    "bytes": 10310536,
+    "triangles": 929456,
+    "meshes": 239,
+    "hullTiles": 9642,
+    "dimensions": [
+      15.752193816791166,
+      123.98,
+      14.521144935322791
+    ],
+    "units": "metres"
+  }
+}

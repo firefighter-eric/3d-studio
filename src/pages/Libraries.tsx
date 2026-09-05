@@ -5,21 +5,22 @@ import { ModelCanvas, WorldCanvas } from '../components/StudioCanvas'
 import { InteractionHint, ModelLink, PageHeading, PrimaryViewButton, SelectionButton } from '../components/Interface'
 import { FlightPreview } from '../game/FlightScene'
 import { isCarId } from '../racing/cars'
+import { isSpacecraftId } from '../spacecraft/specs'
 
-interface ModelLibraryProps { selected: AssetId[]; toggleSelection: (id: AssetId) => void; viewModel: (id: AssetId) => void; playGame: () => void; addSelected: () => void }
-export function ModelLibrary({ selected, toggleSelection, viewModel, playGame, addSelected }: ModelLibraryProps) {
+interface ModelLibraryProps { selected: AssetId[]; toggleSelection: (id: AssetId) => void; viewModel: (id: AssetId) => void; addSelected: () => void }
+export function ModelLibrary({ selected, toggleSelection, viewModel, addSelected }: ModelLibraryProps) {
   return <>
     <PageHeading title="模型" subtitle="从每一个角度，发现想象。" count={`${String(assets.length).padStart(2, '0')} 件作品`} />
-    <section className="hero-showcase model-hero race-model-hero" aria-label="赤焰 R1">
-      <div className="hero-visual"><ModelCanvas id="formula-r1" hero /></div>
-      <div className="hero-copy"><span className="catalog-id">IGNIS / R1 · NEW COLLECTION</span><h2>赤焰 <span>R1</span></h2><p>把每一个弯，连成一条火线。<br />从三维车库，开往海岸赛道。</p><div className="category-line">原创设计<span>·</span>方程式赛车<span>·</span>GLB</div><div className="hero-actions"><PrimaryViewButton onClick={() => viewModel('formula-r1')} /><button className="button secondary" onClick={playGame}>驾驶赛车<ArrowRight size={21} /></button></div></div>
-      <div className="hero-bottom"><SelectionButton selected={selected.includes('formula-r1')} onClick={() => toggleSelection('formula-r1')} label="赤焰 R1" /><InteractionHint /></div>
+    <section className="hero-showcase model-hero spacecraft-hero" aria-label="星舰高精度模型">
+      <div className="hero-visual"><ModelCanvas id="starship" hero /></div>
+      <div className="hero-copy"><span className="catalog-id">SPACEX / NEW COLLECTION</span><h2>星舰 <span>Starship</span></h2><p>让更远的世界，成为下一站。<br />从九机轰鸣，到三十九束火焰。</p><div className="category-line">高精度模型<span>·</span>可分级查看<span>·</span>GLB</div><div className="hero-actions"><PrimaryViewButton onClick={() => viewModel('starship')} /><button className="button secondary" onClick={() => viewModel('falcon-9')}>探索猎鹰 9 号<ArrowUpRight size={19} /></button></div></div>
+      <div className="hero-bottom"><SelectionButton selected={selected.includes('starship')} onClick={() => toggleSelection('starship')} label="星舰" /><InteractionHint /></div>
     </section>
     <div className="section-heading"><h2>更多创作素材</h2><span>选择模型，组合你的世界</span></div>
-    <div className="asset-grid">{[...assets.filter(a=>isCarId(a.id)&&a.id!=='formula-r1'),...assets.filter(a=>!isCarId(a.id))].map(asset => <article className={`asset-card ${selected.includes(asset.id) ? 'is-selected' : ''}`} key={asset.id}>
+    <div className="asset-grid">{[...assets.filter(a=>a.id==='falcon-9'),...assets.filter(a=>isCarId(a.id)),...assets.filter(a=>!isCarId(a.id)&&!isSpacecraftId(a.id))].map(asset => <article className={`asset-card ${selected.includes(asset.id) ? 'is-selected' : ''}`} key={asset.id}>
       <div className="card-selection"><SelectionButton compact selected={selected.includes(asset.id)} onClick={() => toggleSelection(asset.id)} label={asset.name} /></div>
       <button className="asset-preview" aria-label={`查看${asset.name}`} onClick={() => viewModel(asset.id)}><ModelCanvas id={asset.id} compact /></button>
-      <div className="asset-card-copy"><span className="small-id">{asset.english}</span><div className="asset-title-row"><h3>{asset.name}</h3><span>{asset.category}</span></div><ModelLink onClick={() => viewModel(asset.id)} /></div>
+      <div className="asset-card-copy"><span className="small-id">{asset.english}</span><div className="asset-title-row"><h3>{asset.name}</h3><span>{isSpacecraftId(asset.id) ? '高精度 · GLB' : asset.category}</span></div><ModelLink onClick={() => viewModel(asset.id)} /></div>
     </article>)}</div>
     {selected.length > 0 && <div className="selection-tray"><div><Boxes size={20} /><span>已选择 <strong>{selected.length}</strong> 个模型</span><span className="selected-names">{selected.map(id => assetById[id].name).join('、')}</span></div><button className="button primary" onClick={addSelected}>加入发射基地<ArrowRight size={17} /></button></div>}
   </>
