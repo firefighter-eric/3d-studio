@@ -2,6 +2,8 @@ import { useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import type { AssetId, Vec3 } from '../data/catalog'
+import { isCarId } from '../racing/cars'
+import { FormulaCar } from '../racing/FormulaCar'
 
 const ivory = '#e8e4d6'
 const orange = '#cf592c'
@@ -128,6 +130,7 @@ export function Antenna() {
 }
 
 export function AssetModel({ id }: { id: AssetId }) {
+  if (isCarId(id)) return <FormulaCar id={id} />
   if (id === 'rocket') return <Rocket />
   if (id === 'basalt') return <Basalt />
   if (id === 'launchpad') return <Launchpad />

@@ -1,0 +1,187 @@
+.racing-route { --race-orange:#f47551; --race-cream:#f5f1df; --race-teal:#7ce7df; }
+.racing-route .site-header {height:64px}
+.racing-route .main-content {max-width:1680px;padding:12px 24px 20px;width:100%}
+.racing-route .site-footer {display:none}
+.race-toolbar {display:flex;align-items:center;justify-content:space-between;min-height:34px;gap:16px;margin:0 4px 12px}
+.race-toolbar>span {font-size:11px;letter-spacing:2px;color:#b1c5bd}
+.race-toolbar i {font-style:normal;margin:0 16px;color:#4f7068}
+.race-model-link {display:flex;align-items:center;gap:9px;font-size:10px;color:#a3bbb2}
+.race-field {position:relative;isolation:isolate;overflow:hidden;width:100%;height:calc(100svh - 143px);min-height:535px;max-height:1050px;border:1px solid #7498914d;border-radius:16px;background:#bddbe4;outline:none;color:var(--race-cream,#f5f1df)}
+.race-field>div:first-child {position:absolute!important;inset:0;width:100%;height:100%}
+.race-field:focus-visible {outline:2px solid #8ae9dc;outline-offset:3px}
+.race-field:fullscreen {width:100vw;height:100svh;min-height:0;max-height:none;border:0;border-radius:0}
+.race-loading {position:absolute;z-index:20;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;background:#193c49;color:#e9f0e7;font-size:13px}
+.race-loading>span {width:7px;height:7px;border-radius:50%;background:#ffad7c;animation:race-pulse 1s ease-in-out infinite}
+.race-setup {position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:35px 4.3%;background:linear-gradient(90deg,#112a36f2 0%,#173846e8 29%,#23444c8f 43%,#142d3410 68%);pointer-events:none}
+.race-setup-copy {width:370px;max-width:42%;pointer-events:auto}
+.race-eyebrow {display:flex;align-items:center;gap:8px;color:#c3d3c9;font-size:8px;letter-spacing:2px;font-weight:550}
+.race-eyebrow>span {width:5px;height:5px;border-radius:50%;background:#f6a77c;box-shadow:0 0 12px #f98d5680}
+.race-setup h1 {font-size:48px;line-height:1.18;letter-spacing:-2px;margin:21px 0 0;color:#fff7e6;font-weight:650}
+.race-setup h1>span {display:block;font-size:12px;font-weight:450;letter-spacing:6px;margin-top:11px;color:#a7c6c8}
+.race-intro {font-size:12px;line-height:1.9;color:#c0d5d3;margin:18px 0 26px}
+.race-garage-heading {display:flex;justify-content:space-between;align-items:center;margin:0 0 10px;gap:12px;font-size:10px;letter-spacing:.7px;color:#c6d6ce}
+.race-garage-heading>button {display:flex;align-items:center;gap:5px;font-size:9px;color:#eaa57c}
+.race-car-choices {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.race-car-choices>button {text-align:left;padding:9px 10px 11px;border:1px solid #b7d2c934;border-radius:8px;position:relative;background:#15364280;transition:background .2s,border-color .2s}
+.race-car-choices>button:before {content:'';position:absolute;width:24px;height:3px;background:var(--car-color);right:10px;top:14px;transform:skewX(-25deg)}
+.race-car-choices>button[aria-pressed=true] {border-color:var(--car-color);background:#375361;box-shadow:inset 0 -3px var(--car-color)}
+.race-car-choices>button:hover {background:#3b5867}
+.race-car-number {display:block;font-size:22px;font-weight:650;font-style:italic;line-height:1.15;color:var(--car-color);letter-spacing:-1px}
+.race-car-choices strong {font-size:11px;font-weight:550;display:block;margin-top:8px}
+.race-car-choices small {display:block;font-size:8px;margin-top:5px;color:#adc9c9}
+.race-specs {display:flex;gap:15px;margin:13px 0 22px}
+.race-specs>div {display:flex;align-items:center;gap:7px;flex:1;font-size:8px;color:#a8c6c4}
+.race-specs>div>div {height:3px;background:#63848950;flex:1;border-radius:2px;overflow:hidden}
+.race-specs i {display:block;background:#bed4c9;height:100%}
+.race-mode-heading {font-size:10px;letter-spacing:.7px;color:#c6d6ce;margin-bottom:10px}
+.race-modes {display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.race-modes>button {border:1px solid #b7d2c92b;padding:11px 12px;border-radius:7px;text-align:left;background:#17374799}
+.race-modes>button[aria-pressed=true] {border-color:#c1dacf99;background:#accbbb20}
+.race-modes strong {font-size:11px;font-weight:550;display:block}
+.race-modes small {display:block;margin-top:5px;font-size:8px;color:#b1cdc9}
+.race-auto {display:flex;align-items:center;gap:9px;color:#ceddd4;font-size:10px;margin:14px 0 19px}
+.race-auto small {color:#92b7b5;font-size:9px}
+.race-switch {width:26px;height:15px;background:#527477;border-radius:9px;padding:3px;display:inline-flex}
+.race-switch i {width:9px;height:9px;border-radius:50%;background:#ecf3da;transition:transform .15s}
+.race-auto[aria-pressed=true] .race-switch {background:#43948e}
+.race-auto[aria-pressed=true] .race-switch i {transform:translateX(11px)}
+.race-start {display:flex;align-items:center;justify-content:center;gap:12px;background:#f47b55;color:#162b32;width:100%;min-height:48px;border-radius:7px;padding:0 18px;font-size:13px;font-weight:600;border:1px solid #ffb78c80;box-shadow:0 7px 24px #152b3033;transition:background .15s,transform .15s}
+.race-start>svg:last-child {margin-left:auto}
+.race-start:hover {background:#ff9e72;transform:translateY(-1px)}
+.race-start:disabled {opacity:.6;transform:none}
+.race-setup-keys {display:flex;gap:11px;justify-content:space-between;font-size:8px;color:#b0cac6;margin-top:14px;white-space:nowrap}
+.race-setup-keys>span {display:flex;align-items:center;gap:4px}
+.race-field kbd {height:18px;min-width:21px;background:#31515c7a;color:#d4e0d3;border-color:#87a5a262;box-shadow:none;font-size:7px;padding:0 4px;border-radius:3px}
+.race-track-preview {align-self:flex-end;width:170px;padding:18px;border:1px solid #edf8dd77;border-radius:9px;background:#1e475caf;backdrop-filter:blur(10px);margin:0 0 0 20px;pointer-events:auto}
+.race-track-preview .race-eyebrow {font-size:6px;letter-spacing:1.3px;white-space:nowrap}
+.race-map {width:141px;height:144px;color:#e6f1dd;filter:drop-shadow(0 2px 2px #142e3e66)}
+.race-map.preview {width:135px;height:132px;color:#adc8bd;margin:8px 0 5px}
+.race-track-preview h2 {font-size:17px;font-weight:500;margin:0 0 9px;letter-spacing:1px}
+.race-track-preview p {display:flex;gap:12px;font-size:9px;color:#d3e0cd;margin:0 0 10px}
+.race-track-preview>small {font-size:8px;color:#a3c2c2}
+.race-personal-best {display:flex;gap:7px;align-items:center;margin-top:13px;font-size:8px;color:#ffd197}
+.race-hud {position:absolute;z-index:3;inset:0;pointer-events:none;background:linear-gradient(180deg,#1936473b 0%,transparent 20%,transparent 71%,#1f3c4859)}
+.race-hud button {pointer-events:auto}
+.race-position {position:absolute;left:30px;top:25px;text-shadow:0 2px 8px #254456b3}
+.race-position>small,.race-lap>small {font-size:8px;letter-spacing:2.2px;font-weight:600}
+.race-position>div:first-of-type {display:flex;align-items:baseline;gap:9px}
+.race-position strong {font-size:67px;font-weight:650;line-height:1.15;font-style:italic;letter-spacing:-3px;font-variant-numeric:tabular-nums}
+.race-position>div>span {font-size:15px;color:#e5ebdc}
+.race-rivals {display:flex;flex-direction:column;gap:7px;margin-top:10px;width:98px}
+.race-rivals>span {display:flex;gap:9px;align-items:center;font-size:10px!important;color:#e0e8dd!important}
+.race-rivals i {font-style:normal;font-size:8px;opacity:.65;width:9px}
+.race-rivals b {height:4px;width:15px;transform:skewX(-25deg);margin-left:auto}
+.race-rivals .is-player {color:#ffd9ae!important;font-weight:650}
+.race-lap {position:absolute;left:50%;top:28px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;text-shadow:0 2px 10px #23475d}
+.race-lap strong {font-size:24px;font-style:italic;font-weight:550;letter-spacing:1px}
+.race-lap strong>span {font-size:14px;font-style:normal;opacity:.65}
+.race-lap time {position:absolute;left:50%;top:42px;transform:translateX(-50%);font-size:13px;font-weight:500;letter-spacing:1px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.race-top-right {position:absolute;right:26px;top:23px;display:flex;flex-direction:column;align-items:flex-end;gap:13px}
+.race-action-row {display:flex;gap:7px;align-items:center}
+.race-action-row>button {height:33px;width:33px;border:1px solid #dcefd646;background:#254c6177;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#f1f4e4;backdrop-filter:blur(3px)}
+.race-action-row>button:hover {background:#254c61d9}
+.race-action-row>button:disabled {opacity:.35}
+.race-speed {position:absolute;left:26px;bottom:44px;width:142px;height:94px;text-align:center;filter:drop-shadow(0 2px 8px #1d3e5277)}
+.race-speed>svg {position:absolute;inset:0;width:100%;height:100%}
+.race-speed>strong {position:absolute;left:0;right:0;top:32px;line-height:1;font-size:39px;font-weight:550;font-style:italic;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.race-speed>small {position:absolute;top:76px;left:0;right:0;font-size:7px;letter-spacing:2px}
+.race-speed>small>span {margin-left:9px;color:#ffe0af;letter-spacing:.5px}
+.race-drift-meter {position:absolute;width:260px;left:50%;bottom:47px;transform:translateX(-50%);filter:drop-shadow(0 2px 8px #1e3b5277)}
+.race-drift-meter>div:first-child {display:flex;align-items:center;justify-content:space-between;font-size:8px;letter-spacing:1px;margin:0 2px 6px}
+.race-drift-meter>div>strong {font-size:9px;font-weight:450}
+.race-charge-track {height:3px;background:#d6f0e359;margin-bottom:9px;overflow:hidden;border-radius:2px}
+.race-charge-track i {display:block;height:100%;background:#ffd483;transition:width .08s linear}
+.race-drift-meter.charged .race-charge-track i {background:#81f6ff;box-shadow:0 0 16px #81f6ff}
+.race-drift-meter.charged>div:first-child {color:#a5faff}
+.race-drift-meter>button {width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px;border:1px solid #d8eada80;border-radius:7px;background:#183d52a6;backdrop-filter:blur(5px);font-size:11px}
+.race-drift-meter>button:hover:enabled {background:#32758ccb}
+.race-drift-meter>button:disabled {opacity:.55}
+.race-nitro-slots {display:flex;gap:4px;margin-left:auto}
+.race-nitro-slots>i {width:8px;height:17px;transform:skewX(-14deg);background:#edf3db22}
+.race-nitro-slots>.filled {background:#8de4e6;box-shadow:0 0 10px #86f3ef33}
+.race-item {position:absolute;right:28px;bottom:44px;display:flex;align-items:center;gap:11px;text-align:left;max-width:250px;background:#1e435692;border:1px solid #d4e7de44;border-radius:9px;padding:11px 13px;color:var(--item-color);backdrop-filter:blur(5px)}
+.race-item.has-item {border-color:var(--item-color)}
+.race-item-symbol {display:flex;align-items:center;justify-content:center;font-size:31px;font-weight:400;width:37px;height:42px;flex-shrink:0}
+.race-item strong {display:block;font-size:10px;font-weight:550;line-height:1.5}
+.race-item small {display:block;font-size:8px;line-height:1.65;max-width:137px;margin-top:4px;color:#d1e0da}
+.race-item>kbd {align-self:flex-start;flex-shrink:0}
+.race-item:disabled {opacity:.75}
+.race-wrong-way {position:absolute;top:22%;left:50%;transform:translateX(-50%);font-size:22px;color:#fff4d9;background:#bd503edf;padding:11px 22px;border-radius:6px;font-weight:600;white-space:nowrap}
+.race-wrong-way small {display:block;font-size:10px;font-weight:400;text-align:center;margin-top:6px}
+.race-event {position:absolute;top:24%;left:50%;transform:translateX(-50%);padding:10px 19px;color:#f3f5df;background:#1c4859c4;border:1px solid #d3e9d84d;border-radius:24px;backdrop-filter:blur(5px);font-size:12px;letter-spacing:.6px;white-space:nowrap;animation:race-event .25s ease-out}
+.race-event.event-drift,.race-event.event-boost {color:#d1ffff;border-color:#8beae690}
+.race-event.event-hit {color:#ffdec3;border-color:#f9b68180}
+.race-bottom-help {position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font-size:8px;white-space:nowrap;letter-spacing:.5px;text-shadow:0 1px 7px #123043}
+.race-bottom-help>span {opacity:.45}
+.race-countdown {position:absolute;z-index:5;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-shadow:0 5px 25px #183e4e99}
+.race-countdown>div {display:flex;gap:9px;background:#153647cc;border:1px solid #c4d7ce3b;padding:12px 17px;border-radius:9px}
+.race-countdown i {height:17px;width:17px;border-radius:50%;background:#653f40;border:1px solid #d2856655}
+.race-countdown i.lit {background:#ff8a61;box-shadow:0 0 20px #ff8a61}
+.race-countdown>strong {font-size:128px;line-height:1.1;font-style:italic;font-weight:700;letter-spacing:-7px;margin:12px 0 13px}
+.race-countdown>span {font-size:12px;letter-spacing:3px}
+.race-modal {position:absolute;inset:0;z-index:8;background:#112d40a6;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto}
+.race-dialog {width:404px;max-width:100%;border:1px solid #dce8cd66;border-radius:13px;background:linear-gradient(145deg,#294c5cf5,#193648fa);padding:33px;text-align:center;box-shadow:0 25px 80px #13293655;flex-shrink:0}
+.race-dialog .race-eyebrow {justify-content:center;font-size:8px;letter-spacing:2.4px}
+.race-dialog h2 {font-size:31px;font-weight:550;letter-spacing:-1px;line-height:1.3;margin:20px 0 13px}
+.race-dialog>p {font-size:11px;line-height:1.8;color:#b9d1ca;margin:0 0 25px}
+.race-dialog .race-start {font-size:12px;margin:0 auto}
+.race-dialog-actions {display:flex;gap:12px;margin:15px 0 0;justify-content:center}
+.race-dialog-actions>button {display:flex;gap:6px;justify-content:center;align-items:center;flex:1;border:1px solid #b5d0c838;border-radius:5px;padding:11px 5px;font-size:10px;color:#d2e1d3}
+.race-dialog-actions>button:hover {background:#92c0bb20}
+.race-pause-settings {display:flex;gap:26px;justify-content:center;margin:25px 0 0}
+.race-pause-settings>button {display:flex;align-items:center;gap:8px;color:#c3d8ce;font-size:10px}
+.race-control-guide {display:flex;flex-direction:column;gap:8px;border-top:1px solid #a4c5b931;margin-top:25px;padding-top:18px;font-size:10px;color:#aecbc3;line-height:1.6}
+.race-control-guide>small {font-size:9px;line-height:1.8;margin-top:4px;color:#88b4b0}
+.race-result {width:472px;padding:28px 32px}
+.race-result-medal {margin:21px auto 0;color:#ffc58e;display:flex;align-items:center;justify-content:center;gap:13px}
+.race-result-medal>strong {font-size:64px;font-style:italic;font-weight:600;line-height:1;letter-spacing:-3px}
+.race-result-medal>span {font-size:11px;color:#dce6cc;align-self:flex-end;padding-bottom:8px}
+.race-result h2 {font-size:26px;margin:16px 0 9px}
+.race-result>p {font-size:10px;margin-bottom:18px}
+.race-result-stats {display:grid;grid-template-columns:1.25fr 1.15fr .8fr;gap:10px;padding:17px 0;border-top:1px solid #bcd6c333;border-bottom:1px solid #bcd6c333}
+.race-result-stats>div {display:flex;flex-direction:column;gap:9px}
+.race-result-stats small {font-size:9px;color:#a0c5bd}
+.race-result-stats strong {font-size:19px;font-weight:500;letter-spacing:-.3px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.race-result-stats strong>span {font-size:12px;color:#7faba3}
+.race-lap-results {display:flex;flex-direction:column;gap:8px;margin:17px 4px}
+.race-lap-results>span {display:flex;justify-content:space-between;color:#9dbfb6;font-size:9px;letter-spacing:1px}
+.race-lap-results strong {font-size:11px;letter-spacing:.5px;color:#dce8d6;font-weight:400;font-variant-numeric:tabular-nums}
+.race-saved {display:block;color:#8abfb1;font-size:8px;margin-bottom:19px}
+.race-exit-fullscreen {position:absolute;z-index:12;top:24px;right:186px;padding:7px;border:1px solid #dfefdc6b;background:#21495bd9;border-radius:6px;display:flex}
+.race-touch-controls {display:none;position:absolute;left:17px;right:17px;bottom:20px;justify-content:space-between;gap:8px;pointer-events:none}
+.race-touch-controls>div {display:flex;gap:7px}
+.race-touch-controls button {pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;display:flex;align-items:center;justify-content:center;width:50px;height:50px;border:1px solid #d3e6d286;background:#214a5cb5;border-radius:11px;backdrop-filter:blur(5px);font-size:11px;box-shadow:0 3px 14px #18384721;color:#f2f0dc}
+.race-touch-controls button:active {background:#73cdd1b5;border-color:#e3ffe4}
+.race-touch-controls .race-touch-drift {background:#da7749d4;border-color:#f9c295b0}
+.race-touch-controls button:disabled {opacity:.25}
+.race-field.is-boosting:after {content:'';position:absolute;inset:0;pointer-events:none;z-index:2;box-shadow:inset 0 0 65px #75effd70;background:linear-gradient(100deg,#bbfdff33,transparent 14%,transparent 86%,#bbfdff33)}
+.race-library-hero {background:radial-gradient(ellipse at 75% 45%,#547c7d55,transparent 60%),linear-gradient(135deg,#172d35,#122128);border-color:#547778}
+.race-library-hero .hero-copy {padding-top:55px}
+.race-library-hero .hero-copy h2 {font-size:48px}
+.race-library-hero .hero-visual {inset:0 -4% 0 36%}
+.race-library-hero .hero-bottom .quiet-status {color:#b5d7cb}
+.race-library-hero .button.primary {background:#f47b55;color:#19323a}
+.race-library-hero .canvas-shell {background:transparent}
+.race-model-hero .hero-copy h2 {font-size:52px}
+.race-model-hero .hero-copy .catalog-id {color:#eea982}
+.race-model-hero .hero-copy .button.primary {background:#f3946a;color:#142b31}
+.race-model-hero .hero-visual {inset:0 -4% 0 35%}
+.game-secondary-title {margin-top:37px}
+.formula-download {text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px}
+.formula-spec-list {display:flex;flex-direction:column;gap:12px}
+.formula-spec-list>div {display:flex;align-items:center;gap:12px;font-size:10px;color:#a9c1b5}
+.formula-spec-list>div>div {height:3px;background:#314941;flex:1}
+.formula-spec-list i {display:block;height:100%;background:#f4a475}
+@keyframes race-pulse {50%{opacity:.35}}
+@keyframes race-event {from{opacity:0;translate:0 6px}to{opacity:1;translate:0 0}}
+@media(min-width:1600px){.race-setup-copy{width:410px}.race-setup h1{font-size:58px}.race-intro{font-size:14px;margin-bottom:30px}.race-car-choices>button{padding:13px}.race-start{min-height:53px}.race-setup{padding-left:5.5%}}
+@media(max-height:800px) and (min-width:851px){.race-setup{padding-top:19px;padding-bottom:19px}.race-setup-copy{width:350px}.race-setup h1{font-size:36px;margin-top:14px}.race-setup h1>span{font-size:10px;margin-top:8px}.race-intro{margin:12px 0 17px;font-size:11px}.race-specs{margin:10px 0 15px}.race-car-choices>button{padding:7px 9px 9px}.race-car-number{font-size:19px}.race-car-choices strong{margin-top:5px}.race-modes>button{padding:8px 10px}.race-auto{margin:11px 0 14px}.race-start{min-height:43px}.race-setup-keys{margin-top:10px;font-size:7px}.race-position strong{font-size:54px}.race-rivals{gap:5px}.race-map{width:119px;height:123px}.race-track-preview{padding:13px;width:152px}.race-map.preview{width:122px;height:110px}}
+@media(max-width:1100px){.race-item{max-width:200px;padding:9px;right:18px}.race-item small{max-width:110px}.race-item>kbd{display:none}.race-drift-meter{width:218px}.race-position{left:21px}.race-track-preview{width:146px;padding:12px}.race-map.preview{width:119px;height:115px}.race-track-preview .race-eyebrow{font-size:5px}.race-setup-copy{max-width:46%;width:345px}.race-setup h1{font-size:40px}.race-library-hero .hero-copy h2{font-size:40px}}
+@media(max-width:850px){.racing-route .main-content{padding:10px 16px 16px}.race-field{height:calc(100svh - 132px);min-height:565px}.race-setup{padding:25px;background:linear-gradient(90deg,#133444ed 0%,#204756bf 40%,#28424b15 100%)}.race-setup-copy{max-width:57%;width:330px}.race-setup h1{font-size:37px}.race-intro{font-size:11px}.race-track-preview{width:124px;padding:11px}.race-map.preview{width:100px;height:110px}.race-track-preview .race-eyebrow{display:none}.race-track-preview p{gap:7px;font-size:7px}.race-track-preview>small{font-size:6px}.race-track-preview h2{font-size:15px}.race-model-link{font-size:9px}.race-toolbar>span{font-size:9px;letter-spacing:1px}.race-toolbar i{margin:0 8px}.race-top-right{top:18px;right:17px}.race-action-row{gap:5px}.race-action-row>button{height:29px;width:29px}.race-action-row>button:nth-child(2){display:none}.race-map{width:107px;height:113px}.race-position{top:19px}.race-position strong{font-size:49px}.race-rivals{display:none}.race-lap{top:22px}.race-lap strong{font-size:20px}.race-speed{left:10px;bottom:95px;width:122px;height:85px}.race-speed>strong{font-size:33px;top:31px}.race-speed>small{top:67px}.race-drift-meter{bottom:28px;width:208px}.race-drift-meter>button{padding:12px 10px}.race-item{bottom:98px;right:17px;max-width:174px}.race-item-symbol{width:29px;font-size:28px}.race-item small{font-size:7px;max-width:105px}.race-touch-controls{display:flex}.race-bottom-help{display:none}.race-modal{padding:20px}.race-event{font-size:10px}.race-library-hero .hero-copy h2{font-size:35px}}
+@media(max-width:600px){.racing-route .site-header{height:58px}.racing-route .main-content{padding:8px 10px 10px}.race-toolbar{min-height:31px;margin:0 2px 8px;gap:7px}.race-toolbar .back-button{font-size:10px;gap:4px}.race-toolbar>span{font-size:8px;letter-spacing:.3px;white-space:nowrap}.race-toolbar i{margin:0 5px}.race-model-link{display:none}.race-field{border-radius:11px;height:calc(100svh - 116px);min-height:530px;max-height:none}.race-setup{padding:21px 20px;align-items:flex-end;background:linear-gradient(0deg,#133444fc 0%,#163949ed 48%,#214b5c38 76%,#214b5c08)}.race-setup-copy{width:100%;max-width:100%;position:relative}.race-setup .race-eyebrow{font-size:6px;letter-spacing:1.3px}.race-setup h1{font-size:32px;margin:10px 0 0;letter-spacing:-1px}.race-setup h1>span{font-size:8px;letter-spacing:4px;margin-top:6px}.race-intro{font-size:10px;margin:10px 0 16px;line-height:1.8}.race-intro>br{display:none}.race-garage-heading{font-size:8px;letter-spacing:.3px;margin-bottom:8px}.race-garage-heading>button{font-size:8px}.race-car-choices{gap:7px}.race-car-choices>button{padding:7px 8px 9px}.race-car-number{font-size:20px}.race-car-choices>button:before{right:8px;top:13px;width:17px;height:2px}.race-car-choices strong{font-size:10px;margin-top:6px}.race-car-choices small{font-size:7px;margin-top:4px}.race-specs{margin:11px 0 15px;gap:11px}.race-specs>div{font-size:7px;gap:5px}.race-mode-heading{font-size:8px;margin-bottom:8px}.race-modes>button{padding:9px 10px}.race-modes strong{font-size:10px}.race-modes small{font-size:7px}.race-auto{margin:12px 0 15px;font-size:9px}.race-auto small{font-size:8px}.race-start{min-height:43px;font-size:12px}.race-setup-keys{font-size:7px;gap:6px;margin-top:11px}.race-setup-keys kbd{font-size:6px;padding:0 3px;min-width:18px;height:16px}.race-track-preview{position:absolute;top:14px;right:14px;width:auto;padding:7px 10px;margin:0;background:#1c425cad;border-color:#e5eadb4d}.race-track-preview .race-map,.race-track-preview>small,.race-track-preview .race-personal-best{display:none}.race-track-preview h2{font-size:10px;letter-spacing:.5px;margin:0 0 5px}.race-track-preview p{margin:0;font-size:7px;gap:9px}.race-position{left:16px;top:17px}.race-position>small,.race-lap>small{font-size:6px;letter-spacing:1.6px}.race-position strong{font-size:41px;letter-spacing:-2px}.race-position>div:first-of-type{gap:6px}.race-position>div>span{font-size:10px}.race-lap{top:20px;left:49%;gap:6px}.race-lap strong{font-size:18px}.race-lap strong>span{font-size:11px}.race-lap time{font-size:10px;top:29px;letter-spacing:.3px}.race-top-right{right:13px;top:15px;gap:10px}.race-action-row>button{width:26px;height:27px;background:#214b61a8}.race-action-row>button:nth-child(-n+3){display:none}.race-action-row>button>svg{width:18px}.race-map{width:85px;height:92px}.race-speed{left:12px;bottom:85px;width:101px;height:78px}.race-speed>strong{font-size:29px;top:29px}.race-speed>small{font-size:6px;top:59px;letter-spacing:1px}.race-speed>small>span{font-size:6px;margin-left:5px}.race-drift-meter{width:138px;bottom:22px}.race-drift-meter>div:first-child{font-size:6px;letter-spacing:.3px;margin-bottom:5px}.race-drift-meter>div>strong{font-size:7px}.race-charge-track{margin-bottom:7px;height:2px}.race-drift-meter>button{padding:9px 8px;gap:6px;font-size:9px;border-radius:7px;min-height:43px}.race-drift-meter>button>svg{width:15px}.race-drift-meter>button>span{font-size:9px}.race-drift-meter kbd{display:none}.race-nitro-slots{gap:3px}.race-nitro-slots>i{width:5px;height:13px}.race-item{right:13px;bottom:88px;padding:6px 8px;gap:5px;max-width:150px;min-height:48px}.race-item-symbol{width:28px;height:35px;font-size:26px}.race-item strong{font-size:8px}.race-item small{font-size:6px;max-width:96px;line-height:1.5;margin-top:2px}.race-touch-controls{left:12px;right:12px;bottom:20px}.race-touch-controls>div{gap:5px}.race-touch-controls button{width:43px;height:45px;border-radius:9px;font-size:10px}.race-touch-controls button>svg{width:25px}.race-touch-controls .race-touch-gas{position:absolute;bottom:105px;right:0;width:38px;height:34px}.race-event{font-size:9px;top:24%;max-width:calc(100% - 32px);white-space:normal;text-align:center;padding:8px 13px;line-height:1.7}.race-countdown>strong{font-size:99px}.race-countdown>span{font-size:10px;letter-spacing:1.3px}.race-countdown i{width:13px;height:13px}.race-countdown>div{gap:7px;padding:10px 13px}.race-modal{padding:16px}.race-dialog{padding:25px 23px;border-radius:11px}.race-dialog h2{font-size:27px;margin:16px 0 12px}.race-dialog>p{font-size:10px;margin-bottom:20px}.race-dialog-actions>button{font-size:9px;padding:10px 3px}.race-pause-settings{gap:22px;margin-top:20px}.race-pause-settings>button{font-size:9px;gap:6px}.race-control-guide{font-size:9px;margin-top:20px;padding-top:16px;gap:6px}.race-control-guide>small{font-size:8px}.race-result{padding:23px 20px}.race-result-medal{margin-top:17px;gap:9px}.race-result-medal strong{font-size:54px}.race-result-medal>span{font-size:9px}.race-result h2{font-size:21px;margin:15px 0 8px}.race-result>p{font-size:8px}.race-result-stats{gap:6px;padding:14px 0}.race-result-stats small{font-size:7px}.race-result-stats strong{font-size:15px}.race-lap-results>span{font-size:8px}.race-lap-results strong{font-size:10px}.race-saved{font-size:7px}.race-wrong-way{font-size:17px;padding:9px 16px}.race-wrong-way small{font-size:9px}.race-library-hero .hero-copy{padding-top:0;margin-top:325px}.race-library-hero .hero-copy h2{font-size:34px}.race-library-hero .hero-visual{inset:0 -9% auto -9%;height:355px}.race-library-hero{min-height:625px}.race-model-hero .hero-copy h2{font-size:35px}.race-model-hero .hero-visual{inset:0 -7% auto -7%;height:360px}}
+@media(max-width:370px){.race-setup{padding:17px 16px}.race-setup h1{font-size:29px}.race-intro{font-size:9px;margin-bottom:12px}.race-specs{margin:10px 0 12px}.race-auto{margin:10px 0 12px}.race-setup-keys{font-size:6px;gap:4px}.race-touch-controls button{width:36px;height:43px}.race-touch-controls{left:10px;right:10px}.race-drift-meter{width:126px}.race-drift-meter>button{font-size:8px;padding:9px 7px;gap:5px}.race-position strong{font-size:35px}.race-dialog{padding:23px 17px}.race-result h2{font-size:19px}.race-result-stats strong{font-size:14px}.race-toolbar>span{font-size:7px}.race-toolbar .back-button{font-size:9px}}
+@media(max-height:710px) and (max-width:600px){.race-field{min-height:570px}.race-setup .race-eyebrow{display:none}.race-setup h1{font-size:26px;margin-top:0}.race-setup h1>span{font-size:7px}.race-intro{font-size:9px;margin:8px 0 13px}.race-car-choices strong{margin-top:4px}.race-auto{margin:10px 0 12px}.race-result{padding:18px}.race-result-medal{margin-top:12px}.race-result-medal strong{font-size:44px}.race-result h2{font-size:19px}.race-result-stats{padding:11px 0}.race-lap-results{margin:13px 3px}.race-dialog>.race-eyebrow{font-size:7px}}
+@media(pointer:coarse) and (min-width:851px){.race-touch-controls{display:flex}.race-speed{bottom:106px}.race-item{bottom:106px}.race-drift-meter{bottom:26px}.race-bottom-help{display:none}}
+@media(prefers-reduced-motion:reduce){.race-field *{animation:none!important;transition:none!important}}
+@media(max-width:850px){.race-exit-fullscreen{top:18px;right:124px}}
+@media(max-width:600px){.race-exit-fullscreen{top:15px;right:46px}.race-touch-controls .race-touch-gas{bottom:165px}}

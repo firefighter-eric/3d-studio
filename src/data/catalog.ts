@@ -1,4 +1,6 @@
-export type AssetId = 'rocket' | 'basalt' | 'launchpad' | 'antenna'
+import { CAR_SPECS } from '../racing/cars'
+import type { CarId } from '../racing/cars'
+export type AssetId = 'rocket' | 'basalt' | 'launchpad' | 'antenna' | CarId
 export type Vec3 = [number, number, number]
 
 export interface ModelAsset {
@@ -17,6 +19,7 @@ export const assets: ModelAsset[] = [
   { id: 'basalt', name: '玄武岩', english: 'BASALT / 002', category: '自然', description: '来自寂静星球的一块风景。', detail: '不规则的切面与深灰色岩层，为地表、星球和陨石带增加一点真实的粗粝感。', viewScale: 1.8, sceneScale: 1 },
   { id: 'launchpad', name: '发射平台', english: 'LAUNCH PAD / 003', category: '建筑', description: '每一次远行，都有一个起点。', detail: '八边形基座、环形导向线与周边信标，为火箭提供一处安静而可靠的出发地。', viewScale: 0.85, sceneScale: 0.65 },
   { id: 'antenna', name: '信号天线', english: 'RELAY / 004', category: '设施', description: '让遥远的世界，保持联系。', detail: '抛物面接收器与稳固支架组成的小型地面设施。指向星空，也连接每一次探索。', viewScale: 1.25, sceneScale: 1 },
+  ...CAR_SPECS.map(car => ({ id: car.id, name: car.name, english: car.english, category: '方程式赛车', description: car.tagline, detail: `${car.role}型开放轮式赛车。独立前后翼、双叉臂悬挂、光头胎、Halo 与驾驶舱；${car.number} 号原创车队涂装。模型与湛蓝大奖赛共用，可下载标准 GLB。`, viewScale: 1, sceneScale: .85 })),
 ]
 
 export const assetById = Object.fromEntries(assets.map(asset => [asset.id, asset])) as Record<AssetId, ModelAsset>
@@ -42,7 +45,10 @@ export const baseInstances: SceneInstance[] = [
 ]
 
 export const scenes = [{ id: 'moonbase', name: '静海发射基地', english: 'TRANQUILITY BASE', description: '在月色与群山之间，为下一次出发做好准备。', assetIds: ['rocket', 'basalt', 'launchpad', 'antenna'] as AssetId[], instances: baseInstances }]
-export const games = [{ id: 'starflight', name: '星际穿行', english: 'STARFLIGHT', description: '穿越三重敌军防线，拾取武装补给，击败暗面母舰。', assetIds: ['rocket', 'basalt'] as AssetId[], sceneId: 'moonbase', duration: 150 }]
+export const games = [
+  { id: 'starflight', name: '星际穿行', english: 'STARFLIGHT', description: '穿越三重敌军防线，拾取武装补给，击败暗面母舰。', assetIds: ['rocket', 'basalt'] as AssetId[], sceneId: 'moonbase', duration: 150 },
+  { id: 'azure-circuit', name: '湛蓝大奖赛', english: 'AZURE CIRCUIT', description: '驾驶方程式赛车，与五位对手角逐海岸线上的方格旗。', assetIds: CAR_SPECS.map(car => car.id) as AssetId[], trackId: 'azure-coast', laps: 3, duration: 240 },
+]
 
 const ADDITIONS_KEY = 'form-space.scene-additions.v1'
 export const MAX_ADDITIONS = 12

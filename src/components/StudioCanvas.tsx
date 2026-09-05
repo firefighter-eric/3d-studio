@@ -7,6 +7,7 @@ import * as THREE from 'three'
 import { AssetModel } from './Models'
 import { assetById } from '../data/catalog'
 import type { AssetId, SceneInstance } from '../data/catalog'
+import { isCarId } from '../racing/cars'
 
 export interface ViewActions { reset: () => void; zoom: (direction: number) => void; rotate: (direction: number) => void }
 
@@ -44,17 +45,17 @@ export function StudioLights({ shadows = false }: { shadows?: boolean }) {
   </>
 }
 
-const Controls = forwardRef<ViewActions, { autoRotate?: boolean; scene?: boolean; interactive?: boolean }>(function Controls({ autoRotate = false, scene = false, interactive = true }, ref) {
+const Controls = forwardRef<ViewActions, { autoRotate?: boolean; scene?: boolean; interactive?: boolean; car?: boolean }>(function Controls({ autoRotate = false, scene = false, interactive = true, car = false }, ref) {
   const controls = useRef<OrbitControlsImpl>(null)
   const { camera, invalidate, size } = useThree()
   useEffect(() => {
     if (!scene && !interactive) return
     const fit = Math.max(1, (scene ? 1.08 : 0.9) / (size.width / size.height))
     if (scene) camera.position.set(25, 23, 31).multiplyScalar(fit)
-    else camera.position.set(4.8, 1.9, 10).multiplyScalar(fit)
+    else camera.position.set(...(car ? [6.5, 3.7, 9] : [4.8, 1.9, 10]) as [number,number,number]).multiplyScalar(fit)
     controls.current?.target.set(0, scene ? 0.7 : 0, 0)
     controls.current?.update(); controls.current?.saveState(); invalidate()
-  }, [camera, invalidate, interactive, scene, size.width, size.height])
+  }, [camera, invalidate, interactive, scene, car, size.width, size.height])
   useImperativeHandle(ref, () => ({
     reset() { controls.current?.reset(); invalidate() },
     zoom(direction) {
@@ -82,13 +83,14 @@ function OrbitFloor({ y = -2.7 }: { y?: number }) {
 export const ModelCanvas = forwardRef<ViewActions, { id: AssetId; hero?: boolean; compact?: boolean; autoRotate?: boolean }>(function ModelCanvas({ id, hero = false, compact = false, autoRotate = false }, ref) {
   const asset = assetById[id]
   const [ready, setReady] = useState(false)
-  const y = id === 'rocket' ? (hero ? 0.15 : 0.4) : id === 'basalt' ? -1.1 : id === 'launchpad' ? -0.4 : -1.65
+  const car = isCarId(id)
+  const y = car ? -.68 : id === 'rocket' ? (hero ? 0.15 : 0.4) : id === 'basalt' ? -1.1 : id === 'launchpad' ? -0.4 : -1.65
   return <CanvasBoundary><div className="canvas-shell" data-rendered={ready}><Canvas camera={{ position: compact ? [6, 4, 9] : [4.8, 1.9, 10], fov: compact ? 36 : 35 }} dpr={[1, 1.6]} frameloop={autoRotate ? 'always' : 'demand'} gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }} aria-label={`${asset.name}三维视图`}>
     <Suspense fallback={null}>
       <StudioLights />
       <group position={[0, y, 0]} rotation={id === 'rocket' ? [0, 0, hero ? -0.34 : -0.08] : [0, -0.3, 0]} scale={asset.viewScale * (compact ? 0.98 : id === 'rocket' && !hero ? 0.87 : 1)}><AssetModel id={id} /></group>
-      {!compact && <OrbitFloor y={id === 'rocket' ? -2.75 : -1.95} />}
-      <Controls ref={ref} autoRotate={autoRotate} interactive={!compact} />
+      {!compact && <OrbitFloor y={car ? -.7 : id === 'rocket' ? -2.75 : -1.95} />}
+      <Controls ref={ref} autoRotate={autoRotate} interactive={!compact} car={car} />
       <RenderReady onReady={() => setReady(true)} />
     </Suspense>
   </Canvas>{!ready && <div className="canvas-loading" role="status"><span />准备三维视图…</div>}</div></CanvasBoundary>
