@@ -1,6 +1,8 @@
 import { CAR_SPECS } from '../racing/cars'
 import type { CarId } from '../racing/cars'
-export type AssetId = 'rocket' | 'basalt' | 'launchpad' | 'antenna' | CarId
+import { SPACECRAFT, SPACECRAFT_SCENE_SCALE } from '../spacecraft/specs'
+import type { SpacecraftId } from '../spacecraft/specs'
+export type AssetId = 'rocket' | 'basalt' | 'launchpad' | 'antenna' | CarId | SpacecraftId
 export type Vec3 = [number, number, number]
 
 export interface ModelAsset {
@@ -15,6 +17,7 @@ export interface ModelAsset {
 }
 
 export const assets: ModelAsset[] = [
+  ...SPACECRAFT.map(item => ({ id: item.id, name: item.name, english: item.english, category: '航天探索', description: item.description, detail: item.detail, viewScale: 5.8 / item.height, sceneScale: SPACECRAFT_SCENE_SCALE })),
   { id: 'rocket', name: '探索者 01', english: 'EXPLORER / 001', category: '航天探索', description: '好奇心，是最好的推进器。', detail: '一枚为未知而生的口袋火箭。象牙白机身、橙色尾翼与双舷窗，准备好奔向下一片星海。', viewScale: 1, sceneScale: 0.75 },
   { id: 'basalt', name: '玄武岩', english: 'BASALT / 002', category: '自然', description: '来自寂静星球的一块风景。', detail: '不规则的切面与深灰色岩层，为地表、星球和陨石带增加一点真实的粗粝感。', viewScale: 1.8, sceneScale: 1 },
   { id: 'launchpad', name: '发射平台', english: 'LAUNCH PAD / 003', category: '建筑', description: '每一次远行，都有一个起点。', detail: '八边形基座、环形导向线与周边信标，为火箭提供一处安静而可靠的出发地。', viewScale: 0.85, sceneScale: 0.65 },
