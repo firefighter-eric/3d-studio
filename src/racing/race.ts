@@ -1,6 +1,7 @@
 import { CAR_SPECS, carSpec } from './cars'
 import type { CarId } from './cars'
 import { TRACK_LENGTH, ROAD_HALF_WIDTH, trackAt, nearestTrack, wrapAngle, clamp, circuitCurve, PICKUP_PROGRESS } from './track'
+import { resolveCarBarriers } from './barriers'
 
 export type RaceStatus = 'ready' | 'countdown' | 'racing' | 'paused' | 'finished' | 'timeout'
 export type RaceDifficulty = 'casual' | 'sport'
@@ -120,6 +121,7 @@ export class RaceSimulation {
     const blend=1-Math.exp(-grip*dt)
     r.vx+=(Math.sin(r.yaw)*r.speed-r.vx)*blend;r.vz+=(Math.cos(r.yaw)*r.speed-r.vz)*blend
     r.x+=r.vx*dt;r.z+=r.vz*dt
+    this.containRacer(r)
     const p=nearestTrack(r.x,r.z,r.trackIndex)
     r.trackIndex=p.index;r.offset=p.offset;r.offroad=Math.abs(p.offset)>ROAD_HALF_WIDTH+.15
     let ds=p.s-r.trackS;if(ds>TRACK_LENGTH/2)ds-=TRACK_LENGTH;if(ds<-TRACK_LENGTH/2)ds+=TRACK_LENGTH
@@ -134,22 +136,22 @@ export class RaceSimulation {
     }
     const direction=Math.sin(r.yaw)*p.tx+Math.cos(r.yaw)*p.tz
     r.wrongWay=direction<-.25&&r.speed>4?r.wrongWay+dt:Math.max(0,r.wrongWay-dt*2)
-    if(Math.abs(p.offset)>ROAD_HALF_WIDTH+2.7){
-      const side=Math.sign(p.offset);r.x=p.x+p.nx*side*(ROAD_HALF_WIDTH+2.65);r.z=p.z+p.nz*side*(ROAD_HALF_WIDTH+2.65)
-      const out=r.vx*p.nx+r.vz*p.nz
-      if(out*side>0){r.vx-=p.nx*out*1.25;r.vz-=p.nz*out*1.25}
-      if(r.hit<=0){r.speed*=r.shield>0?.92:.48;r.hit=.65;if(r.id===0)this.emit('hit',r.shield>0?'护盾抵挡碰撞':'擦碰护栏 · 松开转向或按 R 回正',r.id)}
-    }
     if(!r.item){for(const pickup of this.pickups){let gap=Math.abs(pickup.s-p.s);gap=Math.min(gap,TRACK_LENGTH-gap);if(pickup.cooldown<=0&&gap<2.2&&Math.abs(pickup.offset-p.offset)<2.1){
       const roll=this.random();r.item=roll<.4?'turbo':roll<.72?'shield':'pulse';pickup.cooldown=6;this.emit('pickup',`获得${ITEM_INFO[r.item].name} · E 使用`,r.id);break
     }}}
     if(r.padCooldown<=0&&[35,TRACK_LENGTH*.57].some(s=>Math.abs(p.s-s)<2.1)&&Math.abs(p.offset)<3){r.boost=Math.max(r.boost,.8);r.padCooldown=3}
+  }
+  containRacer(r:Racer){
+    if(!resolveCarBarriers(r))return
+    const p=nearestTrack(r.x,r.z,r.trackIndex);r.offset=p.offset;r.trackIndex=p.index;r.offroad=Math.abs(p.offset)>ROAD_HALF_WIDTH+.15
+    if(r.hit<=0){r.speed*=r.shield>0?.92:.48;r.hit=.65;if(r.id===0)this.emit('hit',r.shield>0?'护盾抵挡碰撞':'擦碰护栏 · 松开转向或按 R 回正',r.id)}
   }
   collisions(){
     for(let i=0;i<this.racers.length;i++)for(let j=i+1;j<this.racers.length;j++){
       const a=this.racers[i],b=this.racers[j];if(a.finishTime!==null||b.finishTime!==null||a.recovery>0||b.recovery>0)continue
       const dx=a.x-b.x,dz=a.z-b.z,d=Math.hypot(dx,dz);if(d>=2.65||d<.001)continue
       const nx=dx/d,nz=dz/d,push=(2.65-d)*.51;a.x+=nx*push;a.z+=nz*push;b.x-=nx*push;b.z-=nz*push
+      this.containRacer(a);this.containRacer(b)
       for(const racer of [a,b])if(racer.hit<=0){racer.speed*=racer.shield>0?.98:.86;racer.hit=.7;if(racer.id===0)this.emit('hit',racer.shield>0?'护盾保护中':'车身接触，稳住路线',0)}
     }
   }

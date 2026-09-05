@@ -4,7 +4,9 @@ import { readFileSync } from 'node:fs'
 import { RaceSimulation, emptyRaceInput } from './race.ts'
 import { TRACK_LENGTH, ROAD_HALF_WIDTH, trackAt, nearestTrack } from './track.ts'
 import { CAR_SPECS } from './cars.ts'
-import { PerspectiveCamera, Vector3 } from 'three'
+import { Box3, PerspectiveCamera, Vector3 } from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { BARRIER_INNER, CAR_FOOTPRINT, carBarrierClearance, resolveCarBarriers } from './barriers.ts'
 
 function started(){const race=new RaceSimulation('formula-r2','sport');race.autoThrottle=false;race.status='racing';return race}
 function place(race:RaceSimulation,s:number,offset=0){const r=race.player,p=trackAt(s,offset);Object.assign(r,{x:p.x,z:p.z,yaw:Math.atan2(p.tx,p.tz),progress:s,trackS:p.s,trackIndex:p.index,offset,vx:0,vz:0,speed:0});return r}
@@ -76,4 +78,48 @@ test('stationary or straight-line drift cannot farm nitro; a driven lap can earn
 })
 test('all exported cars contain visible meshes, four independent wheel pivots and no external resources',()=>{
   for(const car of CAR_SPECS){const data=readFileSync(new URL(`../../public/models/${car.id}.glb`,import.meta.url));assert.equal(data.readUInt32LE(0),0x46546c67);assert.equal(data.readUInt32LE(4),2);assert.equal(data.readUInt32LE(8),data.byteLength);const length=data.readUInt32LE(12),gltf=JSON.parse(data.subarray(20,20+length).toString());assert(gltf.meshes.length>=8);assert.equal(gltf.nodes.filter((n:{name?:string})=>n.name?.startsWith('wheel-')).length,4);assert(gltf.buffers.every((b:{uri?:string})=>!b.uri));assert(!gltf.images?.length);assert(data.byteLength<900_000)}
+})
+
+test('the collision hull contains all three actual GLBs at full wheel steer and body roll',async()=>{
+  for(const car of CAR_SPECS){
+    const bytes=readFileSync(new URL(`../../public/models/${car.id}.glb`,import.meta.url))
+    const {scene}=await new GLTFLoader().parseAsync(new Uint8Array(bytes).buffer,'')
+    for(const steer of [-.34,0,.34])for(const roll of [-.05,0,.05]){
+      scene.traverse(node=>{if(node.name.startsWith('wheel-front'))node.rotation.y=steer});scene.rotation.z=roll
+      const bounds=new Box3().setFromObject(scene)
+      assert(bounds.min.x>=-CAR_FOOTPRINT.halfWidth&&bounds.max.x<=CAR_FOOTPRINT.halfWidth)
+      assert(bounds.min.z>=-CAR_FOOTPRINT.rear&&bounds.max.z<=CAR_FOOTPRINT.front)
+    }
+  }
+})
+
+test('front, rear and sideways wall contacts contain the whole hull around both sides of the circuit',()=>{
+  for(let s=0;s<TRACK_LENGTH;s+=6)for(const side of [-1,1])for(const angle of [0,.4,.9,Math.PI/2,2.2,Math.PI]){
+    const race=started(),r=place(race,s,side*(BARRIER_INNER-.1));r.yaw+=angle
+    assert(resolveCarBarriers(r));const clearance=carBarrierClearance(r)
+    assert(clearance>=-.015,`Hull outside wall at ${s}, side ${side}, angle ${angle}: ${clearance}`)
+    assert.equal(r.progress,s);assert.equal(r.checks,0)
+  }
+})
+
+test('boosted and drifting cars cannot tunnel through walls at low frame rates or with a shield',()=>{
+  for(const s of [32,185,340,455,615,820,TRACK_LENGTH-2])for(const side of [-1,1])for(const shield of [0,8]){
+    const race=started(),r=place(race,s,side*6);r.yaw+=side*Math.PI*.35;r.speed=63.48;r.boost=4;r.shield=shield
+    r.vx=Math.sin(r.yaw)*r.speed;r.vz=Math.cos(r.yaw)*r.speed
+    for(let frame=0;frame<24;frame++){
+      race.advance(1/15,{...emptyRaceInput(),throttle:true,drift:true,steer:Math.sin(frame*.2)*.5})
+      assert(carBarrierClearance(r)>=-.015,`Boost crossed a wall at ${s} / ${side} / ${shield}`)
+    }
+  }
+})
+
+test('opponent pile-ups cannot push a car through either wall',()=>{
+  for(const side of [-1,1]){
+    const race=started()
+    race.racers.forEach((r,i)=>{const p=trackAt(50+i*.1,side*(9.5-i*.45));Object.assign(r,{x:p.x,z:p.z,yaw:Math.atan2(p.tx,p.tz),trackIndex:p.index,progress:50+i*.1});race.containRacer(r)})
+    for(let frame=0;frame<12;frame++){
+      race.collisions()
+      for(const r of race.racers)assert(carBarrierClearance(r)>=-.015,'Opponent contact pushed a hull outside')
+    }
+  }
 })

@@ -6,6 +6,16 @@ import { FormulaCar } from './FormulaCar'
 import { CanvasBoundary } from '../components/StudioCanvas'
 import { TRACK, TRACK_LENGTH, ROAD_HALF_WIDTH, trackAt, nearestTrack, clamp, wrapAngle } from './track'
 import type { RaceSimulation, RaceInput, Racer } from './race'
+import { BARRIER_SECTIONS, BARRIER_OFFSET } from './barriers'
+import type { BarrierSection } from './barriers'
+
+function wallGeometry(wall:BarrierSection,bottom:number,top:number){
+  const positions=[...wall.points.flatMap(p=>[p.x,bottom,p.z]),...wall.points.flatMap(p=>[p.x,top,p.z])]
+  const indices=[0,2,1,0,3,2,4,5,6,4,6,7]
+  for(let i=0;i<4;i++){const j=(i+1)%4;indices.push(i,j,i+4,j,j+4,i+4)}
+  if(wall.side<0)for(let i=0;i<indices.length;i+=3)[indices[i+1],indices[i+2]]=[indices[i+2],indices[i+1]]
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.setIndex(indices);g.computeVertexNormals();return g
+}
 
 function strip(left:number,right:number,y:number,color:string,curb=false){
   const vertices:number[]=[],colors:number[]=[],indices:number[]=[]
@@ -44,11 +54,10 @@ function makeWorld(){
   add(new THREE.CylinderGeometry(184,186,.5,96).scale(1.08,1,1),5,-18,-.2,12)
   add(new THREE.CylinderGeometry(178,181,.35,96).scale(1.08,1,1),7,-18,-.09,12)
   for(let i=0;i<4;i++)add(new THREE.RingGeometry(194+i*5,194.5+i*5,96).scale(1.08,1,1),i%2?3:10,-18,-5.16+i*.005,12,-Math.PI/2)
-  for(let s=0;s<TRACK_LENGTH;s+=7){const p=trackAt(s);for(const side of [-1,1]){
-    const q=trackAt(s,side*11.3),yaw=Math.atan2(p.tx,p.tz)
-    box(q.x,.56,q.z,.22,.85,6.7,Math.floor(s/21)%2?0:3,yaw)
-    box(q.x,.95,q.z,.26,.075,6.7,0,yaw)
-  }}
+  for(const sections of BARRIER_SECTIONS)for(const wall of sections){
+    add(wallGeometry(wall,.135,.92),Math.floor(wall.s/21)%2?0:3)
+    add(wallGeometry(wall,.92,.99),0)
+  }
   // Grid boxes, chevrons and genuine boost pads line up with the simulation.
   for(let s=-24;s<0;s+=6)for(const side of [-1,1]){const p=trackAt(s,side*2.5),yaw=Math.atan2(p.tx,p.tz);box(p.x,.197,p.z,2.5,.015,.15,0,yaw);for(const edge of [-1,1])box(p.x+p.nx*edge*1.2,.197,p.z+p.nz*edge*1.2,.1,.015,1.4,0,yaw)}
   for(let i=0;i<16;i++)for(let j=0;j<3;j++){const p=trackAt(j*.58-.8,(i-7.5)*1.035);box(p.x,.205,p.z,1.035,.016,.59,(i+j)%2?0:1)}
@@ -56,8 +65,8 @@ function makeWorld(){
   for(const s of [35,TRACK_LENGTH*.57])for(let i=0;i<5;i++){const p=trackAt(s-1.5+i*.65),yaw=Math.atan2(p.tx,p.tz);box(p.x,.205,p.z,5.6,.024,.34,i%2?10:3,yaw)}
   // Start gantry and clock-light housings.
   const start=trackAt(0),yaw=Math.atan2(start.tx,start.tz)
-  for(const side of [-1,1]){const p=trackAt(0,side*10.3);box(p.x,3.25,p.z,.6,6.5,.65,0,yaw);box(p.x,.95,p.z,1,1.9,1,2,yaw)}
-  box(start.x,6.25,start.z,21.2,1.15,.75,1,yaw)
+  for(const side of [-1,1]){const p=trackAt(0,side*(BARRIER_OFFSET+1));box(p.x,3.25,p.z,.6,6.5,.65,0,yaw);box(p.x,.95,p.z,1,1.9,1,2,yaw)}
+  box(start.x,6.25,start.z,(BARRIER_OFFSET+1)*2+.6,1.15,.75,1,yaw)
   for(let i=-2;i<=2;i++){box(start.x+start.nx*i*.75,5.29,start.z+start.nz*i*.75,.48,.56,.3,1,yaw);add(new THREE.SphereGeometry(.12,8,8),2,start.x+start.nx*i*.75,5.3,start.z+start.nz*i*.75-.2)}
   const sign=new THREE.Mesh(new THREE.PlaneGeometry(17.8,1.02),new THREE.MeshBasicMaterial({map:makeSign('AZURE CIRCUIT','FORM / SPACE GRAND PRIX'),side:THREE.DoubleSide}));sign.position.set(start.x-start.tx*.39,6.26,start.z-start.tz*.39);sign.rotation.y=yaw+Math.PI;root.add(sign)
   // Start-line grandstand with stepped seating and a lightweight canopy.

@@ -185,3 +185,5 @@
 @media(prefers-reduced-motion:reduce){.race-field *{animation:none!important;transition:none!important}}
 @media(max-width:850px){.race-exit-fullscreen{top:18px;right:124px}}
 @media(max-width:600px){.race-exit-fullscreen{top:15px;right:46px}.race-touch-controls .race-touch-gas{bottom:165px}}
+
+.race-event.below-warning {top:36%}

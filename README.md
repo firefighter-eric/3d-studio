@@ -25,7 +25,7 @@ npm run build
 
 ## Vercel 部署
 
-上述 GitHub 仓库已与 Vercel 连接，Production 分支为 `main`。项目根目录的 `vercel.json` 已配置 Vite、`npm ci` 安装、先运行 21 项玩法与资产测试再构建，以及 `dist` 输出目录。不需要环境变量或后端服务。
+上述 GitHub 仓库已与 Vercel 连接，Production 分支为 `main`。项目根目录的 `vercel.json` 已配置 Vite、`npm ci` 安装、先运行 25 项玩法与资产测试再构建，以及 `dist` 输出目录。不需要环境变量或后端服务。
 
 绑定 Vercel 的 Git 集成后，推送到 `main` 会自动构建并发布 Production。模型、场景和游戏采用 hash 路由，刷新详情页不需要额外路径重写。运行资源、字体和星云背景全部随构建提供；`docs/` 为开发验证记录，不会进入网站构建产物。
 
@@ -103,7 +103,8 @@ src/
   racing/FormulaCar.tsx       查看器与赛道共用的 GLB 加载组件
   racing/track.ts            闭合赛道、连续进度、最近点和小地图
   racing/race.ts             120Hz 驾驶物理、AI、检查点、漂移和道具
-  racing/race.test.ts        玩法与实际 GLB 结构回归测试
+  racing/race.test.ts        玩法、碰撞方向与实际 GLB 结构回归测试
+  racing/barriers.ts         连续护栏几何、整车碰撞范围与碰撞解算
   racing/RaceScene.tsx       海滨赛道、环境、车轮/特效与跟随相机
   racing/RaceAudio.ts        原创 Web Audio 引擎、漂移和事件音效
   racing/racing.css          赛车准备页、HUD、结算与触屏布局
@@ -125,4 +126,4 @@ src/
 - 本机布局和最高分不跨浏览器同步。WebGL 无法启动时显示恢复提示。
 - 当前 R3F 版本在 Three.js 0.185 下会输出 `THREE.Clock` 弃用提示；实际验证无阻断控制台错误。
 
-设计与验证：[`docs/design/racing.md`](docs/design/racing.md)、[`docs/qa/racing-verification.md`](docs/qa/racing-verification.md)、[`docs/design/combat.md`](docs/design/combat.md)、[`docs/qa/combat-verification.md`](docs/qa/combat-verification.md)。平台和原型历史记录保留在 [`docs/design/spec.md`](docs/design/spec.md)、[`docs/qa/verification.md`](docs/qa/verification.md)。
+设计与验证：[`docs/qa/racing-wall-verification.md`](docs/qa/racing-wall-verification.md)、[`docs/design/racing.md`](docs/design/racing.md)、[`docs/qa/racing-verification.md`](docs/qa/racing-verification.md)、[`docs/design/combat.md`](docs/design/combat.md)、[`docs/qa/combat-verification.md`](docs/qa/combat-verification.md)。平台和原型历史记录保留在 [`docs/design/spec.md`](docs/design/spec.md)、[`docs/qa/verification.md`](docs/qa/verification.md)。
