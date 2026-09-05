@@ -2,6 +2,8 @@
 
 一个可直接打开使用的中文三维创作工作室。模型、场景和游戏共用同一套资产。
 
+在线使用：[形际工作室](https://3d-studio-hazel.vercel.app/) · [直接玩《星际穿行》](https://3d-studio-hazel.vercel.app/#games/starflight)。
+
 源码仓库：[firefighter-eric/3d-studio](https://github.com/firefighter-eric/3d-studio)。
 
 ## 启动
