@@ -45,6 +45,7 @@ export function ModelWorkspace({ id, selected, toggleSelection, back, play, add 
         <SelectionButton selected={selected} onClick={toggleSelection} label={asset.name} />
         <button className="button primary full-width" onClick={add}><Plus size={18} />加入发射基地</button>
         {spacecraft && <a className="button secondary full-width" href={`/models/${id}.glb`} download><Download size={17} />下载模型 GLB</a>}
+        {id === 'starship' && <a className="button secondary full-width" href="#animations/starship-recovery">观看发射与回收<ArrowRight size={17} /></a>}
         {car && <><div className="formula-spec-list">{['极速','加速','操控'].map((name,i)=><div key={name}><span>{name}</span><div><i style={{width:`${car.bars[i]}%`}}/></div></div>)}</div><a className="button secondary full-width formula-download" href={`/models/${id}.glb`} download><Download size={17}/>下载赛车 GLB</a></>}
         {(id === 'rocket' || id === 'basalt' || car) && <button className="button secondary full-width" onClick={play}>{car?'驾驶赛车':'玩游戏'}<ArrowRight size={18} /></button>}
         {spacecraft ? <p className="sidebar-footnote">依公开资料制作的外观展示模型，局部细节为近似复原。<a href={spacecraft.source} target="_blank" rel="noreferrer">{spacecraft.sourceLabel}<ArrowUpRight size={11} /></a></p> : <p className="sidebar-footnote">拖动查看各个角度，双指捏合可缩放。工具栏也支持键盘操作。</p>}
