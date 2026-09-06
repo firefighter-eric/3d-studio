@@ -1,3 +1,59 @@
+export const GEFORCE_PRODUCTS = [
+  {
+    id: 'nvidia-gtx-1080-ti', name: 'GTX 1080 Ti', family: 'GPU', english: 'GEFORCE / PASCAL / FOUNDERS EDITION',
+    description: '银色棱面，经典涡轮。',
+    detail: '重建 GTX 1080 Ti Founders Edition 的多面铝合金外壳、单涡轮、散热窗与黑色背板，保留 PCIe 金手指、SLI 接口和 6 + 8 针供电接口。',
+    features: ['Pascal 架构', '11 GB GDDR5X', '单涡轮散热', 'Founders Edition 公版'],
+    source: 'https://www.nvidia.com/en-us/geforce/news/nvidia-geforce-gtx-1080-ti/',
+    technicalSource: 'https://www.nvidia.com/content/geforce-gtx/gtx_1080_ti_user_guide.pdf',
+    dimensions: [266.7, 111.2, 40], dimensionNote: '参考官方公版外观与用户指南；尺寸、鳍片和孔位近似',
+    appearance: '切面银色铝壳 · 黑色涡轮',
+  },
+  {
+    id: 'nvidia-rtx-2080-ti', name: 'RTX 2080 Ti', family: 'GPU', english: 'GEFORCE / TURING / FOUNDERS EDITION',
+    description: '双风扇，开启 RTX 世代。',
+    detail: 'Founders Edition 双轴流风扇外观重建。银色圆角框架包围两组 13 叶风扇，配有散热鳍片、铝合金背板、NVLink 接口与 USB-C 显示接口。',
+    features: ['Turing 架构', '11 GB GDDR6', '双 13 叶轴流风扇', 'Founders Edition 公版'],
+    source: 'https://www.nvidia.com/content/nvidiaGDC/zz/en_ZZ/geforce/graphics-cards/rtx-2080-ti.html',
+    technicalSource: 'https://www.nvidia.com/en-us/geforce/news/geforce-rtx-founders-graphics-card-breakdown/',
+    dimensions: [266.74, 115.7, 40], dimensionNote: '长宽参考官方 266.74 × 115.7 mm；双槽厚度和局部结构近似',
+    appearance: '银色圆角框架 · 双黑色风扇',
+  },
+  {
+    id: 'nvidia-rtx-3090', name: 'RTX 3090', family: 'GPU', english: 'GEFORCE / AMPERE / FOUNDERS EDITION',
+    description: '三槽体量，贯穿气流。',
+    detail: '参考 RTX 3090 Founders Edition 的香槟色金属框架与三槽散热器。正面左侧风扇和背面右侧风扇采用相对布局，呈现贯穿式散热、短 PCB 和 12 针供电接口。',
+    features: ['Ampere 架构', '24 GB GDDR6X', '双面贯穿式散热', 'Founders Edition 公版'],
+    source: 'https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3090-3090ti/',
+    technicalSource: 'https://www.nvidia.com/en-us/geforce/news/introducing-rtx-30-series-graphics-cards/',
+    dimensions: [313, 138, 61], dimensionNote: '长宽参考官方 313 × 138 mm；三槽厚度和局部结构近似',
+    appearance: '香槟色金属框 · 深色散热鳍片',
+  },
+  {
+    id: 'nvidia-rtx-4090', name: 'RTX 4090', family: 'GPU', english: 'GEFORCE / ADA LOVELACE / FOUNDERS EDITION',
+    description: '加厚金属轮廓，更大的散热风扇。',
+    detail: 'RTX 4090 Founders Edition 外观重建，呈现圆润的交叉框架、大尺寸双面风扇、密集鳍片与 16 针供电接口。正反两面均可环绕查看。',
+    features: ['Ada Lovelace 架构', '24 GB GDDR6X', '三槽贯穿式散热', 'Founders Edition 公版'],
+    source: 'https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/',
+    technicalSource: 'https://www.nvidia.com/en-gb/geforce/news/rtx-40-series-graphics-cards-announcements/',
+    dimensions: [304, 137, 61], dimensionNote: '主体外廓参考官方 304 × 137 × 61 mm；接口、鳍片与孔位近似',
+    appearance: '深钛色交叉框架 · 黑色大风扇',
+  },
+  {
+    id: 'nvidia-rtx-5090', name: 'RTX 5090', family: 'GPU', english: 'GEFORCE / BLACKWELL / FOUNDERS EDITION',
+    description: '双贯穿气流，收进双槽机身。',
+    detail: '参考 RTX 5090 Founders Edition 的双槽设计，两个同面风扇搭配两端贯通的鳍片区，中央紧凑电路板与深色金属交叉框架形成独特轮廓。',
+    features: ['Blackwell 架构', '32 GB GDDR7', '双槽双贯穿式散热', 'Founders Edition 公版'],
+    source: 'https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/',
+    technicalSource: 'https://www.nvidia.com/content/geforce-gtx/geforce-rtx-5090-user-guide-r2.pdf',
+    dimensions: [304, 137, 40], dimensionNote: '长宽参考官方 304 × 137 mm；双槽厚度和局部结构近似',
+    appearance: '深灰金属交叉框架 · 同面双风扇',
+  },
+] as const
+
+export type GeForceProductId = typeof GEFORCE_PRODUCTS[number]['id']
+export function isGeForceProductId(id: string): id is GeForceProductId { return GEFORCE_PRODUCTS.some(product => product.id === id) }
+
 export const NVIDIA_PRODUCTS = [
   {
     id: 'nvidia-gb200-nvl72', name: 'GB200 NVL72', family: '机柜', english: 'GRACE BLACKWELL / NVL72',
@@ -59,6 +115,7 @@ export const NVIDIA_PRODUCTS = [
     dimensions: [180, 450, 430], dimensionNote: '参考展示图估算；各 OEM 机箱外形不同',
     appearance: '曜石黑机身 · 交叉金属前脸',
   },
+  ...GEFORCE_PRODUCTS,
 ] as const
 
 export type NvidiaProduct = typeof NVIDIA_PRODUCTS[number]

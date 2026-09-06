@@ -15,6 +15,10 @@
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 .canvas-shell{position:relative;width:100%;height:100%}.canvas-loading{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;gap:9px;font-size:11px;color:#a1b1a1;pointer-events:none;background:#0b1114c9;letter-spacing:.4px}.canvas-loading>span{width:6px;height:6px;border-radius:50%;background:var(--lime)}
 
+/* Keep a growing model catalog from stretching the scene canvas off-screen. */
+.scene-asset-options{max-height:260px;overflow-y:auto;overscroll-behavior:contain}
+.scene-asset-options>button{flex-shrink:0}
+
 /* Spaceflight collection: keep inspection controls beside the actual model. */
 .spacecraft-hero .hero-copy h2{font-size:clamp(36px,3.7vw,52px)}
 .spacecraft-hero .hero-copy h2 span{font-size:.74em;letter-spacing:-1.5px}

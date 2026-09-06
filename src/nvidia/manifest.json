@@ -106,5 +106,95 @@
     "referenceChecked": "2026-09-06",
     "provenance": "original exterior reconstruction",
     "engineeringAccuracy": false
+  },
+  "nvidia-gtx-1080-ti": {
+    "bytes": 184948,
+    "triangles": 32148,
+    "meshes": 28,
+    "materials": 12,
+    "dimensions": [
+      0.26869999692440033,
+      0.12329999923706056,
+      0.04392999958992006
+    ],
+    "units": "metres",
+    "sha256": "5b0f0032ba85e69e8dfe1ec888479435b12c595dcbb5cdd17689d4a58bf0789c",
+    "source": "https://www.nvidia.com/en-us/geforce/news/nvidia-geforce-gtx-1080-ti/",
+    "technicalSource": "https://www.nvidia.com/content/geforce-gtx/gtx_1080_ti_user_guide.pdf",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-rtx-2080-ti": {
+    "bytes": 179020,
+    "triangles": 36430,
+    "meshes": 30,
+    "materials": 10,
+    "dimensions": [
+      0.2683900073719025,
+      0.12779999923706054,
+      0.045407128095626845
+    ],
+    "units": "metres",
+    "sha256": "fc72d3a6a0fc723e5aea3c84727f0872749e638fffbff2057beae7a0461a3c84",
+    "source": "https://www.nvidia.com/content/nvidiaGDC/zz/en_ZZ/geforce/graphics-cards/rtx-2080-ti.html",
+    "technicalSource": "https://www.nvidia.com/en-us/geforce/news/geforce-rtx-founders-graphics-card-breakdown/",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-rtx-3090": {
+    "bytes": 174192,
+    "triangles": 31446,
+    "meshes": 31,
+    "materials": 11,
+    "dimensions": [
+      0.31500000607967377,
+      0.1500999984741211,
+      0.06680000305175782
+    ],
+    "units": "metres",
+    "sha256": "a3a48d370cf3c245485d9831b07d14ca48b36c58479da511abcdd275eb8aa85f",
+    "source": "https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3090-3090ti/",
+    "technicalSource": "https://www.nvidia.com/en-us/geforce/news/introducing-rtx-30-series-graphics-cards/",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-rtx-4090": {
+    "bytes": 172648,
+    "triangles": 31314,
+    "meshes": 32,
+    "materials": 11,
+    "dimensions": [
+      0.30600000607967376,
+      0.1490999984741211,
+      0.06680000305175782
+    ],
+    "units": "metres",
+    "sha256": "ae68a2d93056e104983ee017900ca2e692801d9b8c8bc4a50c42113ca84d580c",
+    "source": "https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/",
+    "technicalSource": "https://www.nvidia.com/en-gb/geforce/news/rtx-40-series-graphics-cards-announcements/",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-rtx-5090": {
+    "bytes": 161768,
+    "triangles": 28766,
+    "meshes": 29,
+    "materials": 11,
+    "dimensions": [
+      0.30600000607967376,
+      0.1490999984741211,
+      0.045799999237060546
+    ],
+    "units": "metres",
+    "sha256": "45a326e4c1949fd1dfa74c2a0e270e67e44af63e9ca8a876e3fb7796b56b6533",
+    "source": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/",
+    "technicalSource": "https://www.nvidia.com/content/geforce-gtx/geforce-rtx-5090-user-guide-r2.pdf",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
   }
 }

@@ -12,6 +12,10 @@ import { isDjiId } from '../dji/specs'
 import { DjiModel } from '../dji/DjiModel'
 import { isNvidiaProductId } from '../nvidia/specs'
 import { NvidiaModel } from '../nvidia/NvidiaModel'
+import { isTeslaProductId } from '../tesla/specs'
+import { TeslaModel } from '../tesla/TeslaModel'
+import { isConsoleProductId } from '../consoles/specs'
+import { ConsoleModel } from '../consoles/ConsoleModel'
 
 const ivory = '#e8e4d6'
 const orange = '#cf592c'
@@ -138,6 +142,8 @@ export function Antenna() {
 }
 
 export function AssetModel({ id, separated = false }: { id: AssetId; separated?: boolean }) {
+  if (isConsoleProductId(id)) return <ConsoleModel id={id} />
+  if (isTeslaProductId(id)) return <TeslaModel id={id} />
   if (isNvidiaProductId(id)) return <NvidiaModel id={id} />
   if (isDjiId(id)) return <DjiModel id={id} />
   if (isAppleProductId(id)) return <AppleModel id={id} />

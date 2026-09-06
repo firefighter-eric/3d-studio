@@ -6,9 +6,13 @@ import { APPLE_PRODUCTS } from '../apple/specs'
 import type { AppleProductId } from '../apple/specs'
 import { DJI_PRODUCTS, qualityLabel } from '../dji/specs'
 import type { DjiId } from '../dji/specs'
-import { NVIDIA_PRODUCTS } from '../nvidia/specs'
+import { NVIDIA_PRODUCTS, isGeForceProductId } from '../nvidia/specs'
 import type { NvidiaProductId } from '../nvidia/specs'
-export type AssetId = 'rocket' | 'basalt' | 'launchpad' | 'antenna' | CarId | SpacecraftId | AppleProductId | DjiId | NvidiaProductId
+import { TESLA_PRODUCTS } from '../tesla/specs'
+import type { TeslaProductId } from '../tesla/specs'
+import { CONSOLE_PRODUCTS } from '../consoles/specs'
+import type { ConsoleProductId } from '../consoles/specs'
+export type AssetId = 'rocket' | 'basalt' | 'launchpad' | 'antenna' | CarId | SpacecraftId | AppleProductId | DjiId | NvidiaProductId | TeslaProductId | ConsoleProductId
 export type Vec3 = [number, number, number]
 
 export interface ModelAsset {
@@ -23,7 +27,9 @@ export interface ModelAsset {
 }
 
 export const assets: ModelAsset[] = [
-  ...NVIDIA_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `NVIDIA / ${product.english}`, category: `NVIDIA · ${product.family}`, description: product.description, detail: product.detail, viewScale: product.family === '机柜' ? 5.5 : 4.8, sceneScale: 2.6 })),
+  ...CONSOLE_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `${product.brandName.toUpperCase()} / ${product.family.toUpperCase()}`, category: `${product.brandName} · 游戏主机`, description: product.description, detail: product.detail, viewScale: 5.4, sceneScale: 2.5 })),
+  ...TESLA_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `TESLA / ${product.name.toUpperCase()}`, category: `Tesla · ${product.family}`, description: product.description, detail: product.detail, viewScale: product.family === '汽车' || product.id === 'tesla-megapack' ? 5.8 : 5.1, sceneScale: product.family === '汽车' || product.id === 'tesla-megapack' ? 3 : 2.2 })),
+  ...NVIDIA_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `NVIDIA / ${product.english}`, category: `NVIDIA · ${product.family}`, description: product.description, detail: product.detail, viewScale: isGeForceProductId(product.id) ? 6.5 : product.family === '机柜' ? 5.5 : 4.8, sceneScale: 2.6 })),
   ...DJI_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `DJI / ${product.slug.toUpperCase()}`, category: `DJI · ${product.category}`, description: product.description, detail: `${qualityLabel(product.quality)}。${product.features.join('、')}。支持环绕查看与场景组合。`, viewScale: 1, sceneScale: .55 })),
   ...APPLE_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `APPLE / ${product.family.toUpperCase()}`, category: 'Apple 产品', description: product.description, detail: product.detail, viewScale: 4.4, sceneScale: 2.2 })),
   ...SPACECRAFT.map(item => ({ id: item.id, name: item.name, english: item.english, category: '航天探索', description: item.description, detail: item.detail, viewScale: 5.8 / item.height, sceneScale: SPACECRAFT_SCENE_SCALE })),
