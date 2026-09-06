@@ -1,0 +1,254 @@
+{
+  "apple-iphone-17-pro": {
+    "sourceSha256": "18e7f6fbb6f084d6394cedd3e93f9a920ab3f51740e660da6f84f5a7da5e029d",
+    "sourceBytes": 6540560,
+    "dimensions": [
+      0.109093576669693,
+      0.16296151280403137,
+      0.026504116132855415
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.05454641580581665,
+        0,
+        -0.013252101838588715
+      ],
+      "max": [
+        0.05454716086387634,
+        0.16296151280403137,
+        0.0132520142942667
+      ]
+    },
+    "bytes": 1461224,
+    "triangles": 152621,
+    "primitives": 34,
+    "textures": 17,
+    "sha256": "60a98094edde467e4f25e923a6e4b12fb76eb81b123521b61e038c03d82505a9"
+  },
+  "apple-macbook-pro": {
+    "sourceSha256": "fc5855222e774b3a4bb085a6354ea598fbacf24513eebce71576a048bdaa259b",
+    "sourceBytes": 10584277,
+    "dimensions": [
+      0.31172987818717957,
+      0.2116195112466812,
+      0.30038994550704956
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.15586493909358978,
+        0,
+        -0.15019555389881134
+      ],
+      "max": [
+        0.15586493909358978,
+        0.2116195112466812,
+        0.15019439160823822
+      ]
+    },
+    "bytes": 1484864,
+    "triangles": 163918,
+    "primitives": 27,
+    "textures": 11,
+    "sha256": "92703d23400ea0038fbbaefc3af7c26ec41854edceef7cb787df63be4ce0a3ec"
+  },
+  "apple-macbook-air": {
+    "sourceSha256": "49568d2b739a3416fad12d0fd923b19c8afc65dc02befd49c236cd8ff173380e",
+    "sourceBytes": 4900226,
+    "dimensions": [
+      0.30359917879104614,
+      0.20495575666427612,
+      0.29159964621067047
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.15177538990974426,
+        0,
+        -0.1457693874835968
+      ],
+      "max": [
+        0.15182378888130188,
+        0.20495575666427612,
+        0.14583025872707367
+      ]
+    },
+    "bytes": 1467448,
+    "triangles": 107148,
+    "primitives": 30,
+    "textures": 8,
+    "sha256": "5c80397ddacbe8cb6f3c58afeca54b006d1340e9e5d4003d6b1eea02979f4ad8"
+  },
+  "apple-ipad-pro": {
+    "sourceSha256": "48098daf7c49117c81a4e4e1808899b93fad081faeba6c8b65124946b83b5ac6",
+    "sourceBytes": 7362499,
+    "dimensions": [
+      0.2819894552230835,
+      0.2168886512517929,
+      0.3033738136291504
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.14099380373954773,
+        0,
+        -0.1516869068145752
+      ],
+      "max": [
+        0.14099565148353577,
+        0.2168886512517929,
+        0.1516869068145752
+      ]
+    },
+    "bytes": 2015472,
+    "triangles": 136017,
+    "primitives": 39,
+    "textures": 23,
+    "sha256": "69158894c046a02d76d38a86e19fa0cdaade8222307745ba873b35ed7eed9ee7"
+  },
+  "apple-vision-pro": {
+    "sourceSha256": "65c3b8682c2e390b20d46369dc0ec838ab6ae5f2fa0d90b0924798e5aebaddd0",
+    "sourceBytes": 11790382,
+    "dimensions": [
+      0.18394864350557327,
+      0.14553813636302948,
+      0.2648177295923233
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.09197432547807693,
+        0,
+        -0.13240839540958405
+      ],
+      "max": [
+        0.09197431802749634,
+        0.14553813636302948,
+        0.13240933418273926
+      ]
+    },
+    "bytes": 9820128,
+    "triangles": 196512,
+    "primitives": 48,
+    "textures": 51,
+    "sha256": "d920bca6d670e959a33e25626aefb3bcb5889e21e61fe1764f250a15471264e6"
+  },
+  "apple-imac": {
+    "sourceSha256": "99bc5419ef46d1cf022ff2927bdc2a4fb50f151d0da298b5338b6789e78d7e87",
+    "sourceBytes": 6696583,
+    "dimensions": [
+      0.5480840802192688,
+      0.4609314203262329,
+      0.34976302087306976
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.27404212951660156,
+        0,
+        -0.17488068342208862
+      ],
+      "max": [
+        0.27404195070266724,
+        0.4609314203262329,
+        0.17488233745098114
+      ]
+    },
+    "bytes": 1829524,
+    "triangles": 158522,
+    "primitives": 63,
+    "textures": 11,
+    "sha256": "3bb0e08b66cbce0005970a2e4ccb1c439deef20c227b551f224e1356d14829d7"
+  },
+  "apple-mac-mini": {
+    "sourceSha256": "3d36f189975cb24e2614e1aadabc1ae6112c8a298722c2eabc67f56a4d986ace",
+    "sourceBytes": 3611106,
+    "dimensions": [
+      0.12705545127391815,
+      0.04971390217542648,
+      0.12716317176818848
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.06352805346250534,
+        0,
+        -0.06358158588409424
+      ],
+      "max": [
+        0.06352739781141281,
+        0.04971390217542648,
+        0.06358158588409424
+      ]
+    },
+    "bytes": 1116064,
+    "triangles": 73710,
+    "primitives": 19,
+    "textures": 5,
+    "sha256": "db9cef012e273c535d20b63450cd8b88520b7d21e2e4cde1d5976459a353107b"
+  },
+  "apple-watch-series-11": {
+    "sourceSha256": "15637daf4c8fb14b885c25ceefe7bc6687841b3de775277cbefafc51ef5b2e55",
+    "sourceBytes": 9233956,
+    "dimensions": [
+      0.041739488020539284,
+      0.06975334882736206,
+      0.07160342484712601
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.02086973376572132,
+        0,
+        -0.03580182045698166
+      ],
+      "max": [
+        0.020869754254817963,
+        0.06975334882736206,
+        0.03580160439014435
+      ]
+    },
+    "bytes": 1776996,
+    "triangles": 115718,
+    "primitives": 24,
+    "textures": 7,
+    "sha256": "816c767083d27cc05f0496e30a4411658566d2c0317eecc03fbcdafef04d2eb6"
+  },
+  "apple-airpods-pro": {
+    "sourceSha256": "e39e77471fb84c60c12d14f5449df4f0f4a0dffc281ba3f7ab1068db13164f2a",
+    "sourceBytes": 6070741,
+    "dimensions": [
+      0.06204746663570404,
+      0.07476292550563812,
+      0.04758644849061966
+    ],
+    "units": "metres",
+    "sourceChecked": "2026-09-06",
+    "bounds": {
+      "min": [
+        -0.03102348931133747,
+        0,
+        -0.023793336004018784
+      ],
+      "max": [
+        0.03102397732436657,
+        0.07476292550563812,
+        0.023793112486600876
+      ]
+    },
+    "bytes": 2356188,
+    "triangles": 110192,
+    "primitives": 18,
+    "textures": 7,
+    "sha256": "fadc2aaa353da1560c4539b19df38b6947ac105eef76a719c7894e1f761dee69"
+  }
+}

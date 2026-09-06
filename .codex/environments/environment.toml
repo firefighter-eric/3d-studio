@@ -1,0 +1,25 @@
+version = 1
+name = "3D Studio"
+
+[setup]
+script = "npm ci"
+
+[[actions]]
+name = "启动 3D Studio"
+icon = "run"
+command = "npm run dev"
+
+[[actions]]
+name = "运行测试"
+icon = "run"
+command = "npm test"
+
+[[actions]]
+name = "检查并构建"
+icon = "run"
+command = "npm run build"
+
+[[actions]]
+name = "预览生产版本"
+icon = "run"
+command = "npm run build && npm run preview"

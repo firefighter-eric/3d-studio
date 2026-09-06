@@ -1,0 +1,478 @@
+{
+  "dji-osmo-pocket-4p": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/osmo-pocket-4p-default.glb",
+        "bytes": 132360,
+        "triangles": 40626,
+        "meshes": 25,
+        "textures": 3,
+        "dimensions": [
+          0.04708156152945738,
+          0.1495002307611289,
+          0.032420955276489256
+        ],
+        "sha256": "615c8eea4ec6a226c18f2ad70f7c0db22f5563b79f2c57b230a6565b27a0efea"
+      },
+      "alternate": {
+        "file": "/models/dji/osmo-pocket-4p-alternate.glb",
+        "bytes": 132356,
+        "triangles": 40626,
+        "meshes": 25,
+        "textures": 3,
+        "dimensions": [
+          0.04108156152945738,
+          0.1495002307611289,
+          0.032420955276489256
+        ],
+        "sha256": "f988c827898804b2d8f8e73612c1d32d30861cc83a2ac3c44d24da5d342ae14e"
+      }
+    }
+  },
+  "dji-osmo-action-6": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/osmo-action-6-default.glb",
+        "bytes": 122264,
+        "triangles": 22634,
+        "meshes": 19,
+        "textures": 3,
+        "dimensions": [
+          0.07387501524984837,
+          0.04934999826550483,
+          0.04519968832397461
+        ],
+        "sha256": "af4d1f2a64c7e5b4ddffa5173a2c771c4fbc99a88e922cd77c8b2f23af0a298b"
+      }
+    }
+  },
+  "dji-360-2": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/360-2-default.glb",
+        "bytes": 137476,
+        "triangles": 35488,
+        "meshes": 17,
+        "textures": 2,
+        "dimensions": [
+          0.06167471082508564,
+          0.08949983787536621,
+          0.05599960968017579
+        ],
+        "sha256": "ebba7fabc4d32e21273d153e4b1bd4bc5d4b8d7aba73ff2c62b01e615d5c83ba"
+      }
+    }
+  },
+  "dji-nano": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/nano-default.glb",
+        "bytes": 81148,
+        "triangles": 16924,
+        "meshes": 12,
+        "textures": 2,
+        "dimensions": [
+          0.060175209805369376,
+          0.07,
+          0.035166406948566445
+        ],
+        "sha256": "1e530d53eaa14617d3ebe62facc9b632e0a44f60b005fb1e69576d5e88e4c213"
+      }
+    }
+  },
+  "dji-mavic-4-pro": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/mavic-4-pro-default.glb",
+        "bytes": 374004,
+        "triangles": 159048,
+        "meshes": 97,
+        "textures": 3,
+        "dimensions": [
+          0.4258390476253825,
+          0.08553118800371885,
+          0.37815566734651007
+        ],
+        "sha256": "c67293d0ff9c86140ffbfaf189c0554ee03ed037409acda35e336d1be907eba2"
+      },
+      "folded": {
+        "file": "/models/dji/mavic-4-pro-folded.glb",
+        "bytes": 374264,
+        "triangles": 159048,
+        "meshes": 97,
+        "textures": 3,
+        "dimensions": [
+          0.13375,
+          0.08553118800371885,
+          0.19604222013950345
+        ],
+        "sha256": "36cfec8049015126cd29a61e08efe32f7678e470e814b1b383097a0eb27e8d27"
+      }
+    }
+  },
+  "dji-air-3s": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/air-3s-default.glb",
+        "bytes": 324416,
+        "triangles": 146590,
+        "meshes": 93,
+        "textures": 2,
+        "dimensions": [
+          0.35770480000532134,
+          0.07079619792312385,
+          0.31765076057106856
+        ],
+        "sha256": "5b9a30deb4ec8883f7ee0f92f9a866b6893438250db0c94058c5aaef5a9d24f5"
+      },
+      "folded": {
+        "file": "/models/dji/air-3s-folded.glb",
+        "bytes": 324680,
+        "triangles": 146590,
+        "meshes": 93,
+        "textures": 2,
+        "dimensions": [
+          0.11235,
+          0.07079619792312385,
+          0.16170051361656193
+        ],
+        "sha256": "7f24d35557715799254e2716a79652d90a42fef55c5c9e6b3cba18224f5392fc"
+      }
+    }
+  },
+  "dji-mini-5-pro": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/mini-5-pro-default.glb",
+        "bytes": 286348,
+        "triangles": 135934,
+        "meshes": 89,
+        "textures": 2,
+        "dimensions": [
+          0.26572356571823874,
+          0.04752146131432057,
+          0.23596913642422235
+        ],
+        "sha256": "3d2b0dd6bee0a8dd2ede2e4af9ca0bb8ca7e484272d6bb14f57785218c89443f"
+      },
+      "folded": {
+        "file": "/models/dji/mini-5-pro-folded.glb",
+        "bytes": 286608,
+        "triangles": 135934,
+        "meshes": 89,
+        "textures": 2,
+        "dimensions": [
+          0.08346,
+          0.05142146131432057,
+          0.12142035260238648
+        ],
+        "sha256": "7cdc8d254639aba186fc70d0982e981af32d70e4aac5be03004aba8167c9685a"
+      }
+    }
+  },
+  "dji-flip": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/flip-default.glb",
+        "bytes": 211944,
+        "triangles": 129316,
+        "meshes": 55,
+        "textures": 2,
+        "dimensions": [
+          0.1914005355834961,
+          0.0592,
+          0.1914005355834961
+        ],
+        "sha256": "8e109c3cf20b86b52f71f3db0e7ed2e3c6224d6db15734f5f59483a0ffd9f5b9"
+      }
+    }
+  },
+  "dji-neo-2": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/neo-2-default.glb",
+        "bytes": 195844,
+        "triangles": 103444,
+        "meshes": 55,
+        "textures": 2,
+        "dimensions": [
+          0.14740053558349608,
+          0.04200013732910156,
+          0.14740053558349608
+        ],
+        "sha256": "1b7fa2fe92eeb34ed4a8c0e115d8d69b27e1126f087e8268d83ff9e5de5cd55b"
+      }
+    }
+  },
+  "dji-avata-360": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/avata-360-default.glb",
+        "bytes": 201664,
+        "triangles": 113510,
+        "meshes": 57,
+        "textures": 1,
+        "dimensions": [
+          0.20740053558349608,
+          0.0477,
+          0.20740053558349608
+        ],
+        "sha256": "93425f32aebd4ef3e3e78ad04a0457a760084cd64867b43519e0cb205e7d351d"
+      }
+    }
+  },
+  "dji-lito-x1": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/lito-x1-default.glb",
+        "bytes": 279816,
+        "triangles": 135346,
+        "meshes": 88,
+        "textures": 2,
+        "dimensions": [
+          0.26572356571823874,
+          0.04752146131432057,
+          0.23596913642422235
+        ],
+        "sha256": "7d0c99de12e18012d48e9295470eea0eccfdc6ce825b7b99dc551bc62d3917a7"
+      },
+      "folded": {
+        "file": "/models/dji/lito-x1-folded.glb",
+        "bytes": 280080,
+        "triangles": 135346,
+        "meshes": 88,
+        "textures": 2,
+        "dimensions": [
+          0.08346,
+          0.05142146131432057,
+          0.12090038154373171
+        ],
+        "sha256": "bc630bbaccfc3b456bc96962d52e31d18ae64c664249179c9cd4fa384e51c9bd"
+      }
+    }
+  },
+  "dji-inspire-3": {
+    "quality": "official",
+    "units": "metres",
+    "dimensionAccuracy": "manufacturer visualization",
+    "variants": {
+      "default": {
+        "file": "/models/dji/inspire-3-default.glb",
+        "bytes": 3227860,
+        "triangles": 493277,
+        "meshes": 126,
+        "textures": 3,
+        "dimensions": [
+          0.7088589203877405,
+          0.4138151361574983,
+          0.6506651087472746
+        ],
+        "sha256": "7551b65623f2e1c4a78441efc271a92306d1dc62e80b407560da861902707653",
+        "sourceSha256": "78d4424f7c6fa01ac348129e35aa95b1f385a257d026c5e5cf81c5213ec51f9a"
+      },
+      "folded": {
+        "file": "/models/dji/inspire-3-folded.glb",
+        "bytes": 4336272,
+        "triangles": 514191,
+        "meshes": 345,
+        "textures": 3,
+        "dimensions": [
+          0.8281461623489179,
+          0.3387451109981951,
+          0.6874217494005201
+        ],
+        "sha256": "eecef1e90fa18069d64a8cb1494e861219139c7eaccbee640496dfc05ff6c5e6",
+        "sourceSha256": "eef061ec68f04fee5e94030fd8275f221f55d15635bab0d2aad7812faffa3181"
+      }
+    }
+  },
+  "dji-osmo-mobile-8p": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/osmo-mobile-8p-default.glb",
+        "bytes": 126528,
+        "triangles": 22134,
+        "meshes": 18,
+        "textures": 3,
+        "dimensions": [
+          0.1545006866455078,
+          0.284,
+          0.04446776314496994
+        ],
+        "sha256": "9e62f5f3e9104af4680f3c7ec9dfdd3f692ae8c22a865e35ef983c201a0f0ca9"
+      }
+    }
+  },
+  "dji-rs-5": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/rs-5-default.glb",
+        "bytes": 80276,
+        "triangles": 16842,
+        "meshes": 9,
+        "textures": 3,
+        "dimensions": [
+          0.18320074462890626,
+          0.3976173686097118,
+          0.14373945196099858
+        ],
+        "sha256": "755dccf20fbdde77caac829004404c3cc654753b07d9fbc7a125efe044928e00"
+      }
+    }
+  },
+  "dji-rs-4-pro": {
+    "quality": "official",
+    "units": "metres",
+    "dimensionAccuracy": "manufacturer visualization",
+    "variants": {
+      "default": {
+        "file": "/models/dji/rs-4-pro-default.glb",
+        "bytes": 2804156,
+        "triangles": 457822,
+        "meshes": 194,
+        "textures": 4,
+        "dimensions": [
+          0.2838888211526823,
+          0.5032255060086148,
+          0.2903809524301334
+        ],
+        "sha256": "d4fad35be94c2df8ce715faa9848aaca2a6e1436f328d19d2d064f2864f39283",
+        "sourceSha256": "4bca5abbb94becfa5ef6bae5d6b05de2b318dd932b5132c03f7ad3bc18518568"
+      }
+    }
+  },
+  "dji-rs-4-mini": {
+    "quality": "official",
+    "units": "metres",
+    "dimensionAccuracy": "manufacturer visualization",
+    "variants": {
+      "default": {
+        "file": "/models/dji/rs-4-mini-default.glb",
+        "bytes": 2189668,
+        "triangles": 154284,
+        "meshes": 150,
+        "textures": 4,
+        "dimensions": [
+          0.24054154577959852,
+          0.3808952886679591,
+          0.22122869593478967
+        ],
+        "sha256": "0f7ff1b6223c1d61f72f3c9789930c91492c6b7a64818a37f4e02a8121bb7385",
+        "sourceSha256": "ffeaeea072b9bf3387e3d72c9da9e7471e4e513885dffccbab39ecc8d146cccf"
+      },
+      "folded": {
+        "file": "/models/dji/rs-4-mini-folded.glb",
+        "bytes": 2452252,
+        "triangles": 180041,
+        "meshes": 178,
+        "textures": 4,
+        "dimensions": [
+          0.24054154577959852,
+          0.41723189752723366,
+          0.2909975625571562
+        ],
+        "sha256": "9d8000e9a909524186d6b8e43c897468361e5185e164390b4e9904466e1f70df",
+        "sourceSha256": "e90e295c6b3e35269c399827c6ec106adb8739efe598d34b2814c8c8ef504a9a"
+      }
+    }
+  },
+  "dji-ronin-4d": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/ronin-4d-default.glb",
+        "bytes": 188372,
+        "triangles": 62956,
+        "meshes": 25,
+        "textures": 2,
+        "dimensions": [
+          0.20700000000000002,
+          0.20167052521367684,
+          0.3323327025604248
+        ],
+        "sha256": "e3d750cb93a49c97811b3f752fd88ccd6a3a8620fca813cca7b8bd89417e9043"
+      }
+    }
+  },
+  "dji-mic-3": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/mic-3-default.glb",
+        "bytes": 149532,
+        "triangles": 39606,
+        "meshes": 20,
+        "textures": 2,
+        "dimensions": [
+          0.114,
+          0.08090026834582248,
+          0.0691438454261235
+        ],
+        "sha256": "0ad72539d598593dfedd7da7a70a24583a680b95bb3a8339d28069bf95a8597e"
+      }
+    }
+  },
+  "dji-mic-mini-2s": {
+    "quality": "reconstructed",
+    "units": "metres",
+    "dimensionAccuracy": "estimated exterior proportions",
+    "variants": {
+      "default": {
+        "file": "/models/dji/mic-mini-2s-default.glb",
+        "bytes": 151684,
+        "triangles": 39606,
+        "meshes": 20,
+        "textures": 3,
+        "dimensions": [
+          0.10200000000000001,
+          0.07790075296543335,
+          0.06914314923144464
+        ],
+        "sha256": "0780d92ff320c793444e09a0ddbd49bd82cfd6ddf34ed143ed21eb916ddac520"
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "nvidia-gb200-nvl72": {
+    "bytes": 619988,
+    "triangles": 226276,
+    "meshes": 28,
+    "materials": 10,
+    "dimensions": [
+      0.6012520141601563,
+      2.24,
+      1.1387175903320312
+    ],
+    "units": "metres",
+    "sha256": "c553bfd5a3de957f701e1468fdb61e3620647c83a76c87e5a1b3c8ae957ac415",
+    "source": "https://www.nvidia.com/en-us/data-center/gb200-nvl72/",
+    "technicalSource": "https://docs.nvidia.com/dgx/dgxgb200-user-guide/hardware.html",
+    "referenceChecked": "2026-09-06",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-gb300-nvl72": {
+    "bytes": 664680,
+    "triangles": 248308,
+    "meshes": 28,
+    "materials": 10,
+    "dimensions": [
+      0.6012520141601563,
+      2.24,
+      1.1387175903320312
+    ],
+    "units": "metres",
+    "sha256": "e12c864728264f266c1c8f679f03b8a838d977e89c122a45837fe22ca7762abc",
+    "source": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+    "technicalSource": "https://docs.nvidia.com/dgx/dgxgb200-user-guide/hardware.html",
+    "referenceChecked": "2026-09-06",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-dgx-b300": {
+    "bytes": 653692,
+    "triangles": 41922,
+    "meshes": 24,
+    "materials": 9,
+    "dimensions": [
+      0.4826000061035156,
+      0.442,
+      0.9089657517433167
+    ],
+    "units": "metres",
+    "sha256": "b2e0f76eb0152b7f1af6bb2e060a5b34b45a63ffacc9b5d39e4789d32daa1f25",
+    "source": "https://www.nvidia.com/en-us/data-center/dgx-b300/",
+    "technicalSource": "https://docs.nvidia.com/dgx/dgxb300-user-guide/introduction-to-dgxb300.html",
+    "referenceChecked": "2026-09-06",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-b300-sxm": {
+    "bytes": 76112,
+    "triangles": 17074,
+    "meshes": 14,
+    "materials": 8,
+    "dimensions": [
+      0.14,
+      0.013600000381469727,
+      0.15
+    ],
+    "units": "metres",
+    "sha256": "f18f861931855bb412efce985c53f7f287437c0acc21d1e99f85d5dcea02e25e",
+    "source": "https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/",
+    "technicalSource": "https://docs.nvidia.com/enterprise-reference-architectures/hgx-ai-factory/latest/components.html",
+    "referenceChecked": "2026-09-06",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-dgx-spark": {
+    "bytes": 538948,
+    "triangles": 7744,
+    "meshes": 11,
+    "materials": 9,
+    "dimensions": [
+      0.15,
+      0.0505,
+      0.1539500015258789
+    ],
+    "units": "metres",
+    "sha256": "55cc4e40563d3a7eeb769062023405d30711640229871d4737c87f52cb8df2a9",
+    "source": "https://www.nvidia.com/en-us/products/workstations/dgx-spark/",
+    "technicalSource": "https://docs.nvidia.com/dgx/dgx-spark/system-overview.html",
+    "referenceChecked": "2026-09-06",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "nvidia-dgx-station": {
+    "bytes": 109680,
+    "triangles": 21104,
+    "meshes": 21,
+    "materials": 8,
+    "dimensions": [
+      0.18509999990463258,
+      0.45,
+      0.44436573953628544
+    ],
+    "units": "metres",
+    "sha256": "395eb5e39fbb19651876dd3b918397f7c4877f56653b838d44bd85f3c4de7819",
+    "source": "https://www.nvidia.com/en-us/products/workstations/dgx-station/",
+    "technicalSource": "https://docs.nvidia.com/dgx/dgx-station-development-guide/Intro.html",
+    "referenceChecked": "2026-09-06",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  }
+}

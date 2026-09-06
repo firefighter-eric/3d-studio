@@ -1,0 +1,65 @@
+[
+  {
+    "id": "apple-iphone-17-pro", "name": "iPhone 17 Pro", "family": "iPhone", "finish": "星宇橙色 · 正背双机展示", "description": "把精密，握在掌心。",
+    "detail": "圆润的一体式铝金属机身、横向相机平台与三镜头系统。从屏幕到背板，近距离观察 iPhone 的每一面。",
+    "features": ["一体式铝金属机身", "三镜头系统", "灵动岛"],
+    "source": "https://www.apple.com/iphone-17-pro/",
+    "sourceModel": "https://www.apple.com/105/media/us/iphone-17-pro/2025/704d4474-8e63-4ce7-9917-bb47b1ca4ba0/ar/iphone-17-pro-e-sim.usdz"
+  },
+  {
+    "id": "apple-macbook-pro", "name": "MacBook Pro", "family": "Mac", "finish": "14 英寸 · 深空黑色", "description": "为专注创作，展开一片空间。",
+    "detail": "深空黑色金属外壳、宽大的触控板与完整键盘。保留打开的显示屏、侧面接口与机身细节。",
+    "features": ["14 英寸机身", "打开的显示屏", "键盘与触控板"],
+    "source": "https://www.apple.com/macbook-pro/",
+    "sourceModel": "https://www.apple.com/105/media/us/macbook-pro/2025/785e1bc4-d1bd-4cf4-b1b3-94b9411c9e74/ar/macbook-pro-14-in-space-black-variant.usdz"
+  },
+  {
+    "id": "apple-macbook-air", "name": "MacBook Air", "family": "Mac", "finish": "13 英寸 · 天蓝色", "description": "轻盈，也有自己的分量。",
+    "detail": "天蓝色金属机身与纤薄的平整轮廓。从显示屏铰链到键盘、触控板，探索轻巧笔记本的设计。",
+    "features": ["13 英寸机身", "天蓝色外壳", "纤薄轮廓"],
+    "source": "https://www.apple.com/macbook-air/",
+    "sourceModel": "https://www.apple.com/105/media/us/macbook-air/2026/ff11cb38-708e-4c28-9653-1b01a2f8fd2b/ar/macbook-air-13in-sky-blue.usdz"
+  },
+  {
+    "id": "apple-ipad-pro", "name": "iPad Pro", "family": "iPad", "finish": "深空黑色 · 含键盘与 Apple Pencil", "description": "一整面灵感，一道纤薄轮廓。",
+    "detail": "纤薄的金属机身与完整显示屏，搭配妙控键盘与 Apple Pencil，保留悬浮支架、摄像头和连接细节。旋转模型，观察正背面的不同质感。",
+    "features": ["纤薄金属机身", "妙控键盘", "Apple Pencil"],
+    "source": "https://www.apple.com/ipad-pro/",
+    "sourceModel": "https://www.apple.com/105/media/us/ipad-pro/2025/adee90db-c01e-430d-b726-fe64c0063f08/ar/ipad-pro-space-black.usdz"
+  },
+  {
+    "id": "apple-vision-pro", "name": "Apple Vision Pro", "family": "Vision", "finish": "双编织头带", "description": "让数字世界，有了新的形状。",
+    "detail": "弧形玻璃面罩、铝合金边框、遮光罩与双编织头带。从外部曲面到贴合面部的结构，探索空间计算设备的设计。",
+    "features": ["弧形玻璃面罩", "双编织头带", "数码旋钮"],
+    "source": "https://www.apple.com/apple-vision-pro/",
+    "sourceModel": "https://www.apple.com/105/media/us/apple-vision-pro/2025/fda8750c-030b-40f2-a0f7-60ba2db6b547/ar/apple-vision-pro-dual-knit.usdz"
+  },
+  {
+    "id": "apple-imac", "name": "iMac", "family": "Mac", "finish": "蓝色 · 含键盘与鼠标", "description": "为桌面，添一抹蓝。",
+    "detail": "蓝色一体式电脑、纤薄显示屏与金属支架，搭配同色键盘和鼠标，组成完整的桌面展示。",
+    "features": ["蓝色一体式机身", "金属支架", "键盘与鼠标"],
+    "source": "https://www.apple.com/imac/",
+    "sourceModel": "https://www.apple.com/105/media/us/imac/2024/e1d50c6b-bc34-47bd-850d-379149b71fb8/ar/imac-with-accessories-blue.usdz"
+  },
+  {
+    "id": "apple-mac-mini", "name": "Mac mini", "family": "Mac", "finish": "银色", "description": "小小一方，自成天地。",
+    "detail": "银色圆角铝金属外壳、黑色底座和紧凑的接口布局。可以放大查看前后接口，也可以旋转观察底部。",
+    "features": ["圆角铝金属外壳", "前后接口", "黑色底座"],
+    "source": "https://www.apple.com/mac-mini/",
+    "sourceModel": "https://www.apple.com/105/media/us/mac-mini/2026/2140fd43-1461-420d-942c-6f254535a9a4/ar/mac-mini-silver.usdz"
+  },
+  {
+    "id": "apple-watch-series-11", "name": "Apple Watch Series 11", "family": "Watch", "finish": "表壳与表带组合", "description": "把日常，戴在腕间。",
+    "detail": "圆角表壳、曲面表镜、数码表冠与柔软表带。保留表盘和连接细节，近距离感受腕上设备的比例。",
+    "features": ["圆角表壳", "数码表冠", "完整表带"],
+    "source": "https://www.apple.com/apple-watch-series-11/",
+    "sourceModel": "https://www.apple.com/105/media/us/apple-watch-series-11/2025/cb7dae4b-d675-49db-8fe3-d4f635c1a345/ar/watch-series-11.usdz"
+  },
+  {
+    "id": "apple-airpods-pro", "name": "AirPods Pro 3", "family": "AirPods", "finish": "白色 · 耳机与充电盒", "description": "声音的形状，恰好随身。",
+    "detail": "白色耳机、柔软耳塞与圆润充电盒。观察小巧机身的曲线、开孔和充电盒结构。",
+    "features": ["耳机与充电盒", "硅胶耳塞", "圆润外壳"],
+    "source": "https://www.apple.com/airpods-pro/",
+    "sourceModel": "https://www.apple.com/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/ar/airpods-pro.usdz"
+  }
+]

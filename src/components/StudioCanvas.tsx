@@ -10,6 +10,10 @@ import type { AssetId, SceneInstance } from '../data/catalog'
 import { isCarId } from '../racing/cars'
 import { isSpacecraftId } from '../spacecraft/specs'
 import type { SpacecraftView } from '../spacecraft/specs'
+import { isAppleProductId, appleDisplayHeight } from '../apple/specs'
+import { isNvidiaProductId, nvidiaDisplayHeight } from '../nvidia/specs'
+import type { NvidiaProductId } from '../nvidia/specs'
+import { NvidiaLighting } from '../nvidia/NvidiaModel'
 
 export interface ViewActions { reset: () => void; zoom: (direction: number) => void; rotate: (direction: number) => void }
 
@@ -32,7 +36,18 @@ function RenderReady({ onReady }: { onReady: () => void }) {
   return null
 }
 
-export function StudioLights({ shadows = false }: { shadows?: boolean }) {
+export function StudioLights({ shadows = false, product = false }: { shadows?: boolean; product?: boolean }) {
+  if (product) return <>
+    <ambientLight intensity={0.5} />
+    <hemisphereLight args={['#e8eef8', '#39424a', 1.2]} />
+    <directionalLight position={[5, 8, 6]} intensity={1.8} color="#ffffff" />
+    <directionalLight position={[-6, 3, -4]} intensity={2} color="#cedeed" />
+    <Environment resolution={128} frames={1}>
+      <Lightformer form="rect" intensity={2.5} position={[-4, 4, 5]} scale={[5, 8, 1]} />
+      <Lightformer form="rect" intensity={2} position={[5, 2, -3]} rotation={[0, Math.PI, 0]} scale={[4, 6, 1]} />
+      <Lightformer form="rect" intensity={2} position={[0, 6, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[6, 6, 1]} />
+    </Environment>
+  </>
   return <>
     <ambientLight intensity={shadows ? 0.2 : 0.5} />
     <hemisphereLight args={['#dce7e8', '#29252a', shadows ? 0.8 : 1.5]} />
@@ -47,12 +62,12 @@ export function StudioLights({ shadows = false }: { shadows?: boolean }) {
   </>
 }
 
-const Controls = forwardRef<ViewActions, { autoRotate?: boolean; scene?: boolean; interactive?: boolean; car?: boolean; spacecraft?: boolean; view?: SpacecraftView; separated?: boolean }>(function Controls({ autoRotate = false, scene = false, interactive = true, car = false, spacecraft = false, view = 'full', separated = false }, ref) {
+const Controls = forwardRef<ViewActions, { autoRotate?: boolean; scene?: boolean; interactive?: boolean; car?: boolean; spacecraft?: boolean; view?: SpacecraftView; separated?: boolean; nvidiaId?: NvidiaProductId }>(function Controls({ autoRotate = false, scene = false, interactive = true, car = false, spacecraft = false, view = 'full', separated = false, nvidiaId }, ref) {
   const controls = useRef<OrbitControlsImpl>(null)
   const { camera, invalidate, size } = useThree()
   useEffect(() => {
     if (!scene && !interactive) return
-    const fit = Math.max(1, (scene ? 1.08 : spacecraft ? 0.52 : 0.9) / (size.width / size.height))
+    const fit = Math.max(1, (scene ? 1.08 : spacecraft ? 0.52 : nvidiaId ? 1.04 : 0.9) / (size.width / size.height))
     const narrow = size.width < 500
     if (scene) camera.position.set(25, 23, 31).multiplyScalar(fit)
     else if (spacecraft) {
@@ -60,10 +75,11 @@ const Controls = forwardRef<ViewActions, { autoRotate?: boolean; scene?: boolean
       else if (view === 'upper') camera.position.set(2.2, 2.7, 4.5).multiplyScalar(fit)
       else camera.position.set(4.8, 1.0, 10).multiplyScalar(fit * (separated ? narrow ? 1.6 : 1.4 : narrow ? 1.43 : 1.22))
     }
+    else if (nvidiaId) camera.position.set(...(nvidiaId === 'nvidia-b300-sxm' ? [4.8, 8, 9] : nvidiaId === 'nvidia-dgx-spark' ? [5.2, 4.2, 10] : nvidiaId === 'nvidia-dgx-b300' ? [4.2, 4.2, 10] : [3.2, 1.6, 10.8]) as [number, number, number]).multiplyScalar(fit)
     else camera.position.set(...(car ? [6.5, 3.7, 9] : [4.8, 1.9, 10]) as [number,number,number]).multiplyScalar(fit)
     controls.current?.target.set(0, scene ? 0.7 : spacecraft && view === 'engines' ? -2.82 : spacecraft && view === 'upper' ? 1.75 + (separated ? 0.6 : 0) : spacecraft ? narrow ? separated ? 0.42 : 0.05 : separated ? -0.2 : -0.55 : 0, 0)
     controls.current?.update(); controls.current?.saveState(); invalidate()
-  }, [camera, invalidate, interactive, scene, car, spacecraft, view, separated, size.width, size.height])
+  }, [camera, invalidate, interactive, scene, car, spacecraft, view, separated, nvidiaId, size.width, size.height])
   useImperativeHandle(ref, () => ({
     reset() { controls.current?.reset(); invalidate() },
     zoom(direction) {
@@ -93,13 +109,15 @@ export const ModelCanvas = forwardRef<ViewActions, { id: AssetId; hero?: boolean
   const [ready, setReady] = useState(false)
   const car = isCarId(id)
   const spacecraft = isSpacecraftId(id)
-  const y = spacecraft ? -2.9 : car ? -.68 : id === 'rocket' ? (hero ? 0.15 : 0.4) : id === 'basalt' ? -1.1 : id === 'launchpad' ? -0.4 : -1.65
+  const apple = isAppleProductId(id)
+  const nvidia = isNvidiaProductId(id)
+  const y = nvidia ? -nvidiaDisplayHeight(id) * asset.viewScale / 2 : apple ? -appleDisplayHeight(id) * asset.viewScale / 2 : spacecraft ? -2.9 : car ? -.68 : id === 'rocket' ? (hero ? 0.15 : 0.4) : id === 'basalt' ? -1.1 : id === 'launchpad' ? -0.4 : -1.65
   return <CanvasBoundary><div className="canvas-shell" data-rendered={ready} data-model={id} data-view={view} data-separated={separated}><Canvas camera={{ position: compact ? spacecraft ? [4.5, 0.8, 10] : [6, 4, 9] : [4.8, 1.9, 10], fov: compact ? 36 : 35 }} dpr={[1, 1.8]} frameloop={autoRotate ? 'always' : 'demand'} gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }} aria-label={`${asset.name}三维视图`}>
     <Suspense fallback={null}>
-      <StudioLights />
-      <group position={[0, y, 0]} rotation={id === 'rocket' ? [0, 0, hero ? -0.34 : -0.08] : [0, spacecraft ? -0.45 : -0.3, 0]} scale={asset.viewScale * (compact ? 0.98 : id === 'rocket' && !hero ? 0.87 : 1)}><AssetModel id={id} separated={separated} /></group>
-      {!compact && (!spacecraft || view !== 'engines') && <OrbitFloor y={spacecraft ? -3.04 : car ? -.7 : id === 'rocket' ? -2.75 : -1.95} />}
-      <Controls ref={ref} autoRotate={autoRotate} interactive={!compact} car={car} spacecraft={spacecraft} view={view} separated={separated} />
+      {nvidia ? <NvidiaLighting /> : <StudioLights product={apple} />}
+      <group position={[0, y, 0]} rotation={id === 'rocket' ? [0, 0, hero ? -0.34 : -0.08] : [0, nvidia ? .05 : spacecraft ? -0.45 : -0.3, 0]} scale={asset.viewScale * (compact ? 0.98 : id === 'rocket' && !hero ? 0.87 : 1)}><AssetModel id={id} separated={separated} /></group>
+      {!compact && !apple && !nvidia && (!spacecraft || view !== 'engines') && <OrbitFloor y={spacecraft ? -3.04 : car ? -.7 : id === 'rocket' ? -2.75 : -1.95} />}
+      <Controls ref={ref} autoRotate={autoRotate} interactive={!compact} car={car} spacecraft={spacecraft} view={view} separated={separated} nvidiaId={nvidia ? id : undefined} />
       <RenderReady onReady={() => setReady(true)} />
     </Suspense>
   </Canvas>{!ready && <div className="canvas-loading" role="status"><span />准备三维视图…</div>}</div></CanvasBoundary>
