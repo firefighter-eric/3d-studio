@@ -23,20 +23,66 @@ npm test
 npm run build
 ```
 
+### Codex 一键运行
+
+项目已配置 `.codex/environments/environment.toml`，在 Codex 顶部的运行菜单中选择：
+
+| 按钮 | 操作 |
+| --- | --- |
+| 启动 3D Studio | 启动开发服务，打开 `http://localhost:5180/` 查看 |
+| 运行测试 | 检查游戏、动画和模型资产 |
+| 检查并构建 | TypeScript 检查并生成 `dist/` |
+| 预览生产版本 | 重新构建并在 `http://localhost:5181/` 提供预览 |
+
+开发和预览服务支持重复点击：确认端口属于当前项目且响应正确后复用现有服务。端口被其他服务占用时会报告冲突；不会停止进程或改用其他端口。自定义 CLI 参数仍由 Vite 处理。新建 Codex worktree 时会自动运行 `npm ci` 安装依赖。
+
 ## Vercel 部署
 
-上述 GitHub 仓库已与 Vercel 连接，Production 分支为 `main`。项目根目录的 `vercel.json` 已配置 Vite、`npm ci` 安装、先运行 34 项玩法、资产与动画测试再构建，以及 `dist` 输出目录。不需要环境变量或后端服务。
+上述 GitHub 仓库已与 Vercel 连接，Production 分支为 `main`。项目根目录的 `vercel.json` 已配置 Vite、`npm ci` 安装、先运行玩法、资产与动画测试再构建，以及 `dist` 输出目录。不需要环境变量或后端服务。
 
 绑定 Vercel 的 Git 集成后，推送到 `main` 会自动构建并发布 Production。模型、场景和游戏采用 hash 路由，刷新详情页不需要额外路径重写。运行资源、字体和星云背景全部随构建提供；`docs/` 为开发验证记录，不会进入网站构建产物。
 
 ## 本版功能
 
-- **模型**：9 件三维资产。新增猎鹰 9 号 Block 5 与星舰 / 超级重型完整组合体，支持高精度查看、分级展开、上面级 / 发动机视角与米制 GLB 下载。保留赤焰 R1、潮汐 R2、流星 R3 三款 F1 风格开放轮式赛车，以及探索者 01 火箭、玄武岩、发射平台、信号天线。模型库可多选素材。
+- **模型**：航天、赛车、自然与产品收藏共用一套三维素材清单。猎鹰 9 号 Block 5 与星舰 / 超级重型完整组合体支持高精度查看、分级展开、上面级 / 发动机视角与米制 GLB 下载。保留赤焰 R1、潮汐 R2、流星 R3 三款 F1 风格开放轮式赛车，以及探索者 01 火箭、玄武岩、发射平台、信号天线。模型库可多选素材。
 - **场景**：静海发射基地，初始 16 个资产实例。支持自由环绕、缩放、平移，将选择的模型加入基地、撤销上一个、清空新增。最多新增 12 个实例。新增布局保存在当前浏览器。
 - **湛蓝大奖赛**：三款不同性能的赛车、954 米原创海滨环线、玩家与五名 AI 的三圈竞速。支持惯性漂移集氮、有限氮气、涡轮/护盾/电磁脉冲道具、草地减速、护栏和车辆碰撞、两档驾驶难度、键盘与多指触屏操作。具备倒计时、暂停、镜头切换、回正、全屏、引擎和事件音效、完整结算以及按赛车/难度保存的本机最佳成绩。
 - **星际穿行**：完整的原创 3D 纵向射击。三重星区、编队战斗机、拦截机、重型护卫舰、补给舰，以及三阶段「厄瑞玻斯」母舰。双联脉冲、散弹、贯穿激光、追踪导弹；拾取同类补给可升至三级，换装保留各自等级。连击加分、修复补给、清弹冲击波、标准/新手难度、原创合成音效与背景音乐、暂停/继续/重开/胜负结算、浏览器本机记录。必须击毁母舰才能通关。
 
 模型：`/#models`；场景：`/#scenes`；动画：`/#animations`；游戏：`/#games`。详细页面使用 hash 路由，支持直接访问、刷新以及浏览器前进后退。
+
+## 统一模型库
+
+`/#models` 默认展示全部 43 个模型，SpaceX、Apple、DJI、NVIDIA 与原创模型使用同一套卡片和详情操作。顶部搜索支持中文、英文和型号别名，例如「苹果」「Starship」「NV72」；品牌、类型、模型来源可组合筛选，支持推荐、名称和品牌排序。搜索「电脑」可同时找到 Mac 和 DGX Spark。
+
+筛选与排序保存在地址中，可直接分享或刷新；从详情返回时恢复列表筛选、滚动位置和上次查看卡片的键盘焦点。选择素材不会因筛选变化而丢失，可跨品牌加入同一场景。详情页共用查看器布局、视角工具、选择 / 加入场景 / 下载区域，并保留航天分级、观察位置及 DJI 构型切换。
+
+分类、别名、来源和搜索逻辑位于 `src/data/model-library.ts`；统一列表位于 `src/pages/ModelLibrary.tsx`，详情位于 `src/pages/Workspaces.tsx`。缩略图复用已交付的模型渲染图，其余模型仅在卡片可见时加载三维预览。
+
+## DJI 产品收藏
+
+新增 19 款大疆产品，同一产品线只保留最新代，覆盖 Osmo 相机、无人机、稳定器和麦克风。3 款为官网展示模型，16 款依据官方照片制作并标注「外观重建」，详情说明近似范围。支持分类、搜索、来源筛选、旋转缩放、26 个构型的切换与 GLB 下载，以及加入共用场景。
+
+打开 `/#models/dji-osmo-pocket-4p`，或在模型库选择品牌「DJI」。卡片预览来自实际三维模型渲染，来源、精度说明和可复现导出流程见 [DJI 模型说明](docs/DJI_MODELS.md)。运行 `npm run models:dji` 重建资产，`npm run test:dji` 校验全部交付文件。
+
+## Apple 产品收藏
+
+在模型库选择品牌「Apple」，可继续按电脑、手机、平板等类型筛选，或搜索 iPhone、Mac、iPad、Vision、Watch、AirPods。九款产品包括 iPhone 17 Pro、14 英寸 MacBook Pro、13 英寸 MacBook Air、iPad Pro、Apple Vision Pro、iMac、Mac mini、Apple Watch Series 11 和 AirPods Pro 3。
+
+模型来自各产品官网公开的 AR USDZ，来源与源文件链接记录在 `src/apple/products.json`，SHA-256、核对日期和导出统计记录在 `src/apple/manifest.json`。保留官方展示组合：iPhone 正背双机、iPad 的妙控键盘与 Apple Pencil、iMac 的键鼠、AirPods 的耳机与充电盒、Vision Pro 的双编织头带。它们是产品外观展示资产，版权与商标归 Apple；不声明为本项目原创或工程 CAD。
+
+打开 `/#models/apple-iphone-17-pro` 或 `/#models/apple-vision-pro` 可旋转、缩放、自动环绕、选择素材和下载 GLB。加入发射基地时按展品比例放大，仍支持撤销及本机布局保存；下载文件保留米制、Y 轴向上、底部居中的原点。卡片使用由实际 GLB 渲染的轻量 PNG，进入详情或加入场景时才请求对应模型。
+
+转换使用 Blender 5.x，修正 USD 覆盖透明度到 glTF Alpha 的映射，保留屏幕、玻璃与织物纹理。静态几何按材质合并，Draco 压缩几何，颜色贴图使用高质量 WebP，数据贴图使用无损 WebP；贴图上限 2K，纹理全部内嵌。Draco 解码器随网站本地提供，没有运行时外部模型或贴图请求。
+
+```sh
+python3 scripts/import-apple-models.py --download  # 缓存官网 USDZ，并核对已有源文件指纹
+blender --background --factory-startup --python scripts/import-apple-models.py
+npm run models:apple                            # 优化 GLB 并更新导出清单
+node_modules/.bin/tsx --test src/apple/apple.test.ts
+```
+
+macOS 的 Blender 可使用 `/Applications/Blender.app/Contents/MacOS/Blender`。USDZ 缓存与转换中间文件位于 `/private/tmp/3d-studio-apple-source` 和 `/private/tmp/3d-studio-apple-raw`。渲染预览位于 `public/models/apple/`，与模型共用同名文件。回归检查实际解码后的尺寸、原点、嵌入资源、文件指纹、预览与场景保存兼容性。
 
 ## 星舰发射与助推器回收动画
 
@@ -159,3 +205,12 @@ src/
 - 当前 R3F 版本在 Three.js 0.185 下会输出 `THREE.Clock` 弃用提示；实际验证无阻断控制台错误。
 
 设计与验证：[`docs/qa/racing-wall-verification.md`](docs/qa/racing-wall-verification.md)、[`docs/design/racing.md`](docs/design/racing.md)、[`docs/qa/racing-verification.md`](docs/qa/racing-verification.md)、[`docs/design/combat.md`](docs/design/combat.md)、[`docs/qa/combat-verification.md`](docs/qa/combat-verification.md)。平台和原型历史记录保留在 [`docs/design/spec.md`](docs/design/spec.md)、[`docs/qa/verification.md`](docs/qa/verification.md)。
+
+
+## NVIDIA 硬件模型
+
+模型库新增 6 款：**GB200 NVL72、GB300 NVL72、DGX B300、B300 GPU（SXM 示意）、DGX Spark、DGX Station**。选择品牌「NVIDIA」后可按机柜 / 服务器 / GPU / 电脑筛选，支持旋转缩放、选择素材、加入场景与下载 GLB。直达 `http://localhost:5180/#models/nvidia-gb300-nvl72`。
+
+这些是依 NVIDIA 官方产品资料和用户指南制作的外观重建；尺寸精度与参考链接在详情页说明。DGX Station 参考官网展示造型，非特定 OEM 量产机箱。下载采用米制，场景按展示比例缩放。每款 GLB 约 0.07–0.63 MB，贴图内嵌，Draco 解码器随项目提供；模型卡片使用真实三维渲染缩略图。
+
+`npm run models:nvidia` 重新导出，`npm run test:nvidia` 验证实际 GLB 的解码、尺寸、文件哈希及场景接入。建模源、来源与缩略图再生方式见 [`src/nvidia/README.md`](src/nvidia/README.md)。

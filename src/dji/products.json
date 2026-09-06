@@ -1,0 +1,477 @@
+[
+  {
+    "id": "dji-osmo-pocket-4p",
+    "slug": "osmo-pocket-4p",
+    "name": "Osmo Pocket 4P",
+    "category": "Osmo 相机",
+    "family": "pocket",
+    "quality": "reconstructed",
+    "description": "双摄口袋云台相机",
+    "features": [
+      "双摄镜头",
+      "横向触屏",
+      "三轴结构"
+    ],
+    "source": "https://www.dji.com/cn/osmo-pocket-4p",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/3513fa01b1a45ee541791fff1b965a67@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "横屏"
+      },
+      {
+        "key": "alternate",
+        "label": "竖屏"
+      }
+    ]
+  },
+  {
+    "id": "dji-osmo-action-6",
+    "slug": "osmo-action-6",
+    "name": "Osmo Action 6",
+    "category": "Osmo 相机",
+    "family": "action",
+    "quality": "reconstructed",
+    "description": "记录运动中的每个瞬间",
+    "features": [
+      "圆形镜头框",
+      "前后双屏",
+      "快拆底座"
+    ],
+    "source": "https://www.dji.com/cn/osmo-action-6",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/30b9ac1cceb0da14a7aeb7b032fe6345@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-360-2",
+    "slug": "360-2",
+    "name": "Osmo 360 II",
+    "category": "Osmo 相机",
+    "family": "panorama",
+    "quality": "reconstructed",
+    "description": "记录全景中的每一面",
+    "features": [
+      "双面鱼眼",
+      "前置触屏",
+      "紧凑机身"
+    ],
+    "source": "https://www.dji.com/cn/360-2",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/b5cd64336de7be5af17c2b2634ab8efb@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-nano",
+    "slug": "nano",
+    "name": "Osmo Nano",
+    "category": "Osmo 相机",
+    "family": "nano",
+    "quality": "reconstructed",
+    "description": "轻巧的穿戴式拍摄组合",
+    "features": [
+      "磁吸相机",
+      "可拆显示模块",
+      "广角镜头"
+    ],
+    "source": "https://www.dji.com/cn/nano",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/7eb0793bd25680509afcd4515ec614a2@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-mavic-4-pro",
+    "slug": "mavic-4-pro",
+    "name": "DJI Mavic 4 Pro",
+    "category": "无人机",
+    "family": "foldable",
+    "quality": "reconstructed",
+    "description": "三摄影像与全向云台",
+    "features": [
+      "球形三摄云台",
+      "折叠机臂",
+      "避障传感器"
+    ],
+    "source": "https://www.dji.com/cn/mavic-4-pro",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/979ab68fd602bd3440fc4fb12f3ea38e@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "展开"
+      },
+      {
+        "key": "folded",
+        "label": "收纳"
+      }
+    ]
+  },
+  {
+    "id": "dji-air-3s",
+    "slug": "air-3s",
+    "name": "DJI Air 3S",
+    "category": "无人机",
+    "family": "foldable",
+    "quality": "reconstructed",
+    "description": "旅行中的双摄视角",
+    "features": [
+      "竖排双摄",
+      "前向传感器",
+      "折叠机臂"
+    ],
+    "source": "https://www.dji.com/cn/air-3s",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/204e70db1a193ad14c14a61db633dca9@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "展开"
+      },
+      {
+        "key": "folded",
+        "label": "收纳"
+      }
+    ]
+  },
+  {
+    "id": "dji-mini-5-pro",
+    "slug": "mini-5-pro",
+    "name": "DJI Mini 5 Pro",
+    "category": "无人机",
+    "family": "foldable",
+    "quality": "reconstructed",
+    "description": "小巧机身，大画幅视野",
+    "features": [
+      "单摄云台",
+      "前向传感器",
+      "轻量机臂"
+    ],
+    "source": "https://www.dji.com/cn/mini-5-pro",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/3462d29fa23cf5d29fce9171fb2b6b9d@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "展开"
+      },
+      {
+        "key": "folded",
+        "label": "收纳"
+      }
+    ]
+  },
+  {
+    "id": "dji-flip",
+    "slug": "flip",
+    "name": "DJI Flip",
+    "category": "无人机",
+    "family": "guarded",
+    "quality": "reconstructed",
+    "description": "全包桨叶保护的折叠无人机",
+    "features": [
+      "辐条保护罩",
+      "折叠结构",
+      "竖向主机身"
+    ],
+    "source": "https://www.dji.com/cn/flip",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/32a4df4ce9e014fa44a38e24cc7fa97e@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-neo-2",
+    "slug": "neo-2",
+    "name": "DJI Neo 2",
+    "category": "无人机",
+    "family": "guarded",
+    "quality": "reconstructed",
+    "description": "掌上起降的跟拍伙伴",
+    "features": [
+      "桨叶保护罩",
+      "前置镜头",
+      "小型机身"
+    ],
+    "source": "https://www.dji.com/cn/neo-2",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/c108f7561fdb680e96523c11e959c1cf@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-avata-360",
+    "slug": "avata-360",
+    "name": "DJI Avata 360",
+    "category": "无人机",
+    "family": "guarded",
+    "quality": "reconstructed",
+    "description": "全景视角的飞行平台",
+    "features": [
+      "双面全景镜头",
+      "一体保护罩",
+      "四旋翼"
+    ],
+    "source": "https://www.dji.com/cn/avata-360",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/19c15ba39f4574808ca6b0380b7d44dc@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-lito-x1",
+    "slug": "lito-x1",
+    "name": "DJI Lito X1",
+    "category": "无人机",
+    "family": "foldable",
+    "quality": "reconstructed",
+    "description": "轻盈的航拍视角",
+    "features": [
+      "折叠机臂",
+      "独立云台",
+      "前向感知"
+    ],
+    "source": "https://www.dji.com/cn/lito-x1",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/9e110344ffce2fb6fe7c4a181f148892@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "展开"
+      },
+      {
+        "key": "folded",
+        "label": "收纳"
+      }
+    ]
+  },
+  {
+    "id": "dji-inspire-3",
+    "slug": "inspire-3",
+    "name": "DJI Inspire 3",
+    "category": "无人机",
+    "family": "inspire",
+    "quality": "official",
+    "description": "一体化电影级航拍平台",
+    "features": [
+      "可变形机架",
+      "镜头与云台",
+      "起落架"
+    ],
+    "source": "https://www.dji.com/cn/inspire-3",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/3ed16936dbef2e77d8d93488a9ae4af0@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "环拍形态",
+        "source": "https://www-cdn.djiits.com/reactor/assets/_next/static/3d/c874009d-2124-4bce-8735-0ba49f3dbd97.glb",
+        "sourceSha256": "78d4424f7c6fa01ac348129e35aa95b1f385a257d026c5e5cf81c5213ec51f9a"
+      },
+      {
+        "key": "folded",
+        "label": "仰拍形态",
+        "source": "https://www-cdn.djiits.com/reactor/assets/_next/static/3d/daf05120-a630-4170-b806-b5fa9aac84af.glb",
+        "sourceSha256": "eef061ec68f04fee5e94030fd8275f221f55d15635bab0d2aad7812faffa3181"
+      }
+    ]
+  },
+  {
+    "id": "dji-osmo-mobile-8p",
+    "slug": "osmo-mobile-8p",
+    "name": "Osmo Mobile 8P",
+    "category": "稳定器",
+    "family": "mobile",
+    "quality": "reconstructed",
+    "description": "将稳定的画面握在手中",
+    "features": [
+      "机身显示屏",
+      "三轴关节",
+      "手机夹具"
+    ],
+    "source": "https://www.dji.com/cn/osmo-mobile-8p",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/67a4e32d5118234583df678e7ac385fb@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-rs-5",
+    "slug": "rs-5",
+    "name": "DJI RS 5",
+    "category": "稳定器",
+    "family": "rs",
+    "quality": "reconstructed",
+    "description": "专业相机稳定器",
+    "features": [
+      "三轴锁扣",
+      "快装板",
+      "握柄显示屏"
+    ],
+    "source": "https://www.dji.com/cn/rs-5",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/02292f279b97ceed1a8c97bda26b0d63@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-rs-4-pro",
+    "slug": "rs-4-pro",
+    "name": "DJI RS 4 Pro",
+    "category": "稳定器",
+    "family": "rs",
+    "quality": "official",
+    "description": "专业影像系统的稳定支点",
+    "features": [
+      "碳纤维臂",
+      "镜头与跟焦组件",
+      "锁扣结构"
+    ],
+    "source": "https://www.dji.com/cn/rs-4-pro",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/8950c23fc2bffff3c06431919be6f08b@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示",
+        "source": "https://www-cdn.djiits.com/reactor/assets/_next/static/3d/b67a1b63-bcfb-42db-95b3-518b464579db.glb",
+        "sourceSha256": "4bca5abbb94becfa5ef6bae5d6b05de2b318dd932b5132c03f7ad3bc18518568"
+      }
+    ]
+  },
+  {
+    "id": "dji-rs-4-mini",
+    "slug": "rs-4-mini",
+    "name": "DJI RS 4 Mini",
+    "category": "稳定器",
+    "family": "rs",
+    "quality": "official",
+    "description": "轻巧的创作搭档",
+    "features": [
+      "快装结构",
+      "机械锁扣",
+      "两种搭载构型"
+    ],
+    "source": "https://www.dji.com/cn/rs-4-mini",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/666b174edf55bf9c46f2d8b7193e58fe@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "云台单机",
+        "source": "https://www-cdn.djiits.com/reactor/assets/_next/static/3d/9facab91-fb93-469b-a6ba-b8c34294dbeb.glb",
+        "sourceSha256": "ffeaeea072b9bf3387e3d72c9da9e7471e4e513885dffccbab39ecc8d146cccf"
+      },
+      {
+        "key": "folded",
+        "label": "云台套装",
+        "source": "https://www-cdn.djiits.com/reactor/assets/_next/static/3d/882d0f29-0acd-4781-b7bb-21dc57370fc8.glb",
+        "sourceSha256": "e90e295c6b3e35269c399827c6ec106adb8739efe598d34b2814c8c8ef504a9a"
+      }
+    ]
+  },
+  {
+    "id": "dji-ronin-4d",
+    "slug": "ronin-4d",
+    "name": "DJI Ronin 4D",
+    "category": "稳定器",
+    "family": "cinema",
+    "quality": "reconstructed",
+    "description": "一体化电影摄影系统",
+    "features": [
+      "四轴稳定结构",
+      "电影镜头",
+      "监看屏"
+    ],
+    "source": "https://www.dji.com/cn/ronin-4d",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/1f07875128a18b20b6dd9d102d5f4e51@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-mic-3",
+    "slug": "mic-3",
+    "name": "DJI Mic 3",
+    "category": "麦克风",
+    "family": "mic",
+    "quality": "reconstructed",
+    "description": "小巧的无线收音组合",
+    "features": [
+      "双发射器",
+      "显示接收器",
+      "充电盒"
+    ],
+    "source": "https://www.dji.com/cn/mic-3",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/0db93b9c855eed4e874234d2326a5cd0@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  },
+  {
+    "id": "dji-mic-mini-2s",
+    "slug": "mic-mini-2s",
+    "name": "DJI Mic Mini 2S",
+    "category": "麦克风",
+    "family": "mic",
+    "quality": "reconstructed",
+    "description": "随身携带的声音工具",
+    "features": [
+      "双发射器",
+      "紧凑接收器",
+      "充电盒"
+    ],
+    "source": "https://www.dji.com/cn/mic-mini-2s",
+    "referenceImage": "https://www-cdn.djiits.com/cms/uploads/5e237e08a38db5ab040af1c2fd8f7e7a@640*640.png",
+    "sourceScale": 1,
+    "variants": [
+      {
+        "key": "default",
+        "label": "外观展示"
+      }
+    ]
+  }
+]

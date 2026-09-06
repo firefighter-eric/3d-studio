@@ -1,0 +1,32 @@
+.nvidia-collection{margin:38px 0 42px;scroll-margin-top:24px}
+.nvidia-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:29px 0 24px;border-top:1px solid var(--line)}
+.nvidia-heading .catalog-id{color:#b9d887;font-size:10px;letter-spacing:2px}
+.nvidia-heading h2{font-size:30px;line-height:1.4;font-weight:450;letter-spacing:.3px;margin:14px 0 9px}
+.nvidia-heading p{color:#91a39e;font-size:13px;line-height:1.8}
+.nvidia-heading>.text-link{flex-shrink:0}
+.nvidia-controls{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:21px}
+.nvidia-filter{display:flex;gap:7px;flex-wrap:wrap}
+.nvidia-filter button{min-height:40px;padding:8px 18px;border:1px solid #35433f;border-radius:22px;font-size:12px;color:#a0b0aa;transition:background .2s,border-color .2s}
+.nvidia-filter button:hover{border-color:#899e90;color:#e3e9e2}
+.nvidia-filter button[aria-pressed=true]{background:#d0ed87;color:#23301b;border-color:#d0ed87}
+.nvidia-count{font-size:11px;color:#92a59c;white-space:nowrap}
+.nvidia-card{background:radial-gradient(ellipse at 50% 25%,#29342b65,transparent 73%),#0b1216}
+.nvidia-card .asset-preview{height:auto;aspect-ratio:3/2}
+.nvidia-card .asset-preview img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .3s}
+.nvidia-card .asset-preview:hover img{transform:scale(1.045)}
+.nvidia-card .asset-title-row{margin:9px 0 7px}
+.nvidia-card .asset-title-row h3{font-size:22px;line-height:1.4;letter-spacing:-.4px;overflow-wrap:anywhere}
+.nvidia-appearance{font-size:11px;color:#9bab9e;line-height:1.7;margin-bottom:20px}
+.nvidia-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nvidia-card-bottom>span{font-size:9px;letter-spacing:.3px;color:#97a494}
+.nvidia-collection-note{font-size:11px;line-height:1.9;color:#81938a;margin-top:18px}
+.nvidia-features{display:flex;flex-wrap:wrap;gap:7px}
+.nvidia-features span{border:1px solid #3e4c38;border-radius:4px;padding:6px 9px;font-size:10px;line-height:1.5;color:#baccab}
+.nvidia-workspace .sidebar-title h1{font-size:clamp(25px,2.4vw,36px);line-height:1.2;letter-spacing:-1px;overflow-wrap:anywhere}
+.nvidia-workspace .workspace-canvas{position:sticky;top:20px;height:calc(100svh - 190px);min-height:520px;max-height:850px;background:radial-gradient(ellipse at 50% 44%,#30402a40,transparent 73%)}
+.nvidia-source-note a{display:flex;align-items:center;gap:5px;color:#b2cb9d;margin-top:8px}
+.nvidia-details dd{max-width:72%;line-height:1.6}
+@media(max-width:900px){.nvidia-workspace{grid-template-columns:1fr}.nvidia-workspace .workspace-canvas{position:relative;top:0;height:560px;min-height:560px}.nvidia-workspace .workspace-sidebar{display:flex;gap:20px}}
+@media(max-width:600px){.nvidia-collection{margin:28px 0 32px}.nvidia-heading{align-items:flex-start;flex-direction:column;gap:14px;padding:23px 0 20px}.nvidia-heading h2{font-size:24px;margin-top:12px}.nvidia-heading p{font-size:11px}.nvidia-heading .catalog-id{font-size:8px}.nvidia-controls{align-items:flex-start;gap:9px}.nvidia-filter{gap:6px}.nvidia-filter button{font-size:11px;min-height:40px;padding:7px 13px}.nvidia-count{font-size:10px;padding-top:13px}.nvidia-card .asset-title-row h3{font-size:21px}.nvidia-appearance{font-size:10px}.nvidia-workspace .workspace-canvas{height:470px;min-height:470px}.nvidia-workspace .workspace-sidebar{padding:25px 22px}.nvidia-workspace .sidebar-title h1{font-size:29px}.nvidia-workspace .model-details{display:flex}.nvidia-workspace .model-details>div{flex-direction:row}.nvidia-workspace .workspace-hint .interaction-hint{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.nvidia-card .asset-preview img,.nvidia-filter button{transition:none}}
+@media(max-width:600px){.nvidia-grid .nvidia-card{display:block}.nvidia-card .asset-preview{height:220px;aspect-ratio:auto}.nvidia-card .asset-card-copy{padding:18px 22px 23px}}

@@ -2,7 +2,13 @@ import { CAR_SPECS } from '../racing/cars'
 import type { CarId } from '../racing/cars'
 import { SPACECRAFT, SPACECRAFT_SCENE_SCALE } from '../spacecraft/specs'
 import type { SpacecraftId } from '../spacecraft/specs'
-export type AssetId = 'rocket' | 'basalt' | 'launchpad' | 'antenna' | CarId | SpacecraftId
+import { APPLE_PRODUCTS } from '../apple/specs'
+import type { AppleProductId } from '../apple/specs'
+import { DJI_PRODUCTS, qualityLabel } from '../dji/specs'
+import type { DjiId } from '../dji/specs'
+import { NVIDIA_PRODUCTS } from '../nvidia/specs'
+import type { NvidiaProductId } from '../nvidia/specs'
+export type AssetId = 'rocket' | 'basalt' | 'launchpad' | 'antenna' | CarId | SpacecraftId | AppleProductId | DjiId | NvidiaProductId
 export type Vec3 = [number, number, number]
 
 export interface ModelAsset {
@@ -17,6 +23,9 @@ export interface ModelAsset {
 }
 
 export const assets: ModelAsset[] = [
+  ...NVIDIA_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `NVIDIA / ${product.english}`, category: `NVIDIA · ${product.family}`, description: product.description, detail: product.detail, viewScale: product.family === '机柜' ? 5.5 : 4.8, sceneScale: 2.6 })),
+  ...DJI_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `DJI / ${product.slug.toUpperCase()}`, category: `DJI · ${product.category}`, description: product.description, detail: `${qualityLabel(product.quality)}。${product.features.join('、')}。支持环绕查看与场景组合。`, viewScale: 1, sceneScale: .55 })),
+  ...APPLE_PRODUCTS.map(product => ({ id: product.id, name: product.name, english: `APPLE / ${product.family.toUpperCase()}`, category: 'Apple 产品', description: product.description, detail: product.detail, viewScale: 4.4, sceneScale: 2.2 })),
   ...SPACECRAFT.map(item => ({ id: item.id, name: item.name, english: item.english, category: '航天探索', description: item.description, detail: item.detail, viewScale: 5.8 / item.height, sceneScale: SPACECRAFT_SCENE_SCALE })),
   { id: 'rocket', name: '探索者 01', english: 'EXPLORER / 001', category: '航天探索', description: '好奇心，是最好的推进器。', detail: '一枚为未知而生的口袋火箭。象牙白机身、橙色尾翼与双舷窗，准备好奔向下一片星海。', viewScale: 1, sceneScale: 0.75 },
   { id: 'basalt', name: '玄武岩', english: 'BASALT / 002', category: '自然', description: '来自寂静星球的一块风景。', detail: '不规则的切面与深灰色岩层，为地表、星球和陨石带增加一点真实的粗粝感。', viewScale: 1.8, sceneScale: 1 },
