@@ -1,5 +1,7 @@
 # 湛蓝大奖赛 · 验证记录
 
+> 这是 2026-09-05 的验证快照，保留当时的测试数量、画面和比赛结果。后续修改按 [测试指南](../TESTING.md) 重新确认；当前操作见 [使用指南](../USER_GUIDE.md)，[返回文档总览](../README.md)。
+
 验证日期：2026-09-05。本地入口：`http://localhost:5180/#games/azure-circuit`。线上入口：[湛蓝大奖赛](https://3d-studio-hazel.vercel.app/#games/azure-circuit)。
 
 ## 完整浏览器比赛

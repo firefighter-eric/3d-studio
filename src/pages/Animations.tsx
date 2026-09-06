@@ -5,9 +5,10 @@ import { RecoveryCanvas } from '../animation/RecoveryScene'
 import { CATCH, directorRate, END, formatTime, MissionPlayer, phases, references, sampleMission, START } from '../animation/mission'
 import type { CameraMode, MissionSample, PlaybackSpeed } from '../animation/mission'
 import '../animation/animation.css'
+import FalconHeavyWorkspace from '../animation/falcon-heavy/Workspace'
 
 const noop = () => {}
-const cameras: [CameraMode, string][] = [['director', '导演镜头'], ['follow', '自由跟随'], ['tower', '塔架视角']]
+const cameras: [CameraMode, string][] = [['director', '导演镜头'], ['follow', '自由跟随'], ['tower', '塔架视角'], ['detail', '特写镜头']]
 function Preview() {
   const [player] = useState(() => { const value = new MissionPlayer(); value.seek(418); return value })
   const [ready, setReady] = useState(false)
@@ -17,11 +18,15 @@ function Preview() {
     <div className="preview-caption"><span className="status-dot" />SUPER HEAVY · RETURN TO LAUNCH SITE<span>{formatTime(418)}</span></div>
   </div>
 }
-function AnimationLibrary({ enter }: { enter: () => void }) {
+function AnimationLibrary({ enter }: { enter: (id: string) => void }) {
   return <div className="animation-library">
-    <PageHeading title="让时间，进入三维世界。" subtitle="沿着时间线，观察一场完整的飞行。" count="01 个过程" />
+    <PageHeading title="让时间，进入三维世界。" subtitle="沿着时间线，观察一场完整的飞行。" count="02 个过程" />
     <section className="animation-feature">
-      <div className="animation-feature-copy"><span className="catalog-id">飞行档案 001 / STARBASE</span><h2>从发射台，<br />回到发射塔。</h2><p>星舰升空，助推器返航。<br />跟随超级重型，重走首次塔架捕获的关键阶段。</p><div className="animation-tags"><span>实时 3D</span><span>9 个阶段</span><span>可拖动时间线</span></div><button className="button primary" onClick={enter}><Play size={18} fill="currentColor" />打开动画<ArrowRight size={18} /></button><small>参考第五次试飞 · 飞行过程约 7 分钟<br />导演节奏会加快巡航，并放慢最后进近。</small></div>
+      <div className="animation-feature-copy"><span className="catalog-id">飞行档案 002 / CAPE CANAVERAL</span><h2>一同出发，<br />各自落地。</h2><p>猎鹰重型，两枚侧助推器。<br />一起飞过海岸，分别回到各自的着陆区。</p><div className="animation-tags"><span>实时 3D</span><span>双芯回收</span><span>四种镜头</span></div><button className="button primary" onClick={() => enter('falcon-heavy-recovery')}><Play size={18} fill="currentColor" />打开双芯回收<ArrowRight size={18} /></button><small>复用猎鹰建模 · 56 秒回收短片<br />支持阶段跳转、特写镜头与慢速回放。</small></div>
+      <a className="fh-preview-link" href="#animations/falcon-heavy-recovery" aria-label="观看猎鹰重型双芯归来"><img className="fh-library-preview" src="/videos/falcon-heavy-dual-landing.jpg" alt="两枚猎鹰重型侧助推器展开着陆腿，降落至海边两个着陆区" /><div className="preview-caption"><span className="status-dot" />FALCON HEAVY · DUAL RETURN<span>00:56</span></div></a>
+    </section>
+    <section className="animation-feature">
+      <div className="animation-feature-copy"><span className="catalog-id">飞行档案 001 / STARBASE</span><h2>从发射台，<br />回到发射塔。</h2><p>星舰升空，助推器返航。<br />跟随超级重型，重走首次塔架捕获的关键阶段。</p><div className="animation-tags"><span>实时 3D</span><span>9 个阶段</span><span>可拖动时间线</span></div><button className="button primary" onClick={() => enter('starship-recovery')}><Play size={18} fill="currentColor" />打开动画<ArrowRight size={18} /></button><small>参考第五次试飞 · 飞行过程约 7 分钟<br />导演节奏会加快巡航，并放慢最后进近。</small></div>
       <Preview />
     </section>
     <div className="animation-library-notes"><div><Film size={21} /><strong>模型成为主角</strong><p>复用星舰与超级重型模型，独立呈现两级的去向。</p></div><div><Gauge size={21} /><strong>每一步都能细看</strong><p>暂停、回放、逐段跳转，切换镜头观察发动机与捕获支点。</p></div><div><Check size={21} /><strong>公开资料重建</strong><p>以真实飞行阶段为依据，轨迹与场地采用可视化近似。</p></div></div>
@@ -86,7 +91,7 @@ function AnimationWorkspace({ back }: { back: () => void }) {
           {ready && snapshot.time === START && !playing && <button className="mission-start" onClick={toggle}><Play size={19} fill="currentColor" />开始飞行</button>}
           {snapshot.caught && <div className="mission-caught"><Check size={16} />助推器已由塔臂承接</div>}
           <div className="mission-telemetry"><div><span>重建高度</span><strong>{snapshot.position[1] >= 1000 ? (snapshot.position[1]/1000).toFixed(1) : snapshot.position[1].toFixed(0)}<small>{snapshot.position[1] >= 1000 ? 'km' : 'm'}</small></strong></div><div><span>重建速度</span><strong>{snapshot.speed.toFixed(0)}<small>m/s</small></strong></div></div>
-          <span className="mission-view-note">{mode === 'follow' ? '拖动环绕 · 滚轮缩放' : '轨迹与场地为近似重建'}</span>
+          <span className="mission-view-note">{mode === 'follow' ? '拖动环绕 · 滚轮缩放' : mode === 'detail' && snapshot.time > 385 ? '捕获支点特写 · 承托面与液压机构' : '轨迹与场地为近似重建'}</span>
         </div>
         <div className="mission-controls">
           <div className="mission-time-row"><strong>{formatTime(snapshot.time)}</strong><span>{snapshot.phase.short}<i />{formatTime(END)}</span></div>
@@ -107,4 +112,4 @@ function AnimationWorkspace({ back }: { back: () => void }) {
     <details className="mission-sources"><summary><span>关于这次重建<span>飞行依据、模型与精度范围</span></span><ChevronDown size={16} /></summary><div><p>参考 2024 年 10 月 13 日第五次试飞的发射、热分级、返场点火、抛弃热分级环和首次塔架捕获。仅演示起飞前 10 秒至助推器捕获完成；星舰上面级继续飞行，本片不包含其后续再入与海上溅落。</p><p>时间节点取近似值。位置、速度、发动机推力、姿态和塔臂运动是为说明过程而重建的动画，不是实际遥测或工程仿真。复用模型库的星舰资产，将显示比例调整为约 71 m 助推器（含热分级环）与 50 m 上面级；塔架、捕获支点和 Starbase 场地为程序化近似，不是 B12 / S30 的精确复刻。</p><div>{references.map(ref => <a key={ref.url} href={ref.url} target="_blank" rel="noreferrer">{ref.label}<ArrowUpRight size={13} /></a>)}</div></div></details>
   </>
 }
-export default function Animations({ detail, enter, back }: { detail?: string; enter: () => void; back: () => void }) { return detail ? <AnimationWorkspace back={back} /> : <AnimationLibrary enter={enter} /> }
+export default function Animations({ detail, enter, back }: { detail?: string; enter: (id: string) => void; back: () => void }) { return detail === 'falcon-heavy-recovery' ? <FalconHeavyWorkspace back={back} /> : detail === 'starship-recovery' ? <AnimationWorkspace back={back} /> : <AnimationLibrary enter={enter} /> }

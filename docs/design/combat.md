@@ -1,5 +1,9 @@
 # 星际穿行 · 战斗版本设计
 
+[文档总览](../README.md) · [平台设计理念](overview.md) · [使用指南](../USER_GUIDE.md) · [测试指南](../TESTING.md)
+
+本文聚焦纵向射击的玩法与美术设计；当前操作见使用指南，2026-09-05 的完整通关证据见 [专项验证记录](../qa/combat-verification.md)。早期生成提示保留为美术来源记录。
+
 用户要求直接实现一个精细、完整、可玩的纵向射击游戏，参考《雷电》的敌我弹幕和道具换装逻辑。保留原来的模型、场景、游戏平台与探索者 01 身份。此版本为原创玩法、美术与音乐，不使用其他游戏的贴图、舰体或音轨。
 
 机制参考：[NIS America 的 Raiden IV 武器介绍](https://www.nisamerica.com/blog/explore-the-explosive-arsenal-of-raiden-iv-x-mikado-remix)。仅借鉴直观的拾取换装、宽幅与集中火力取舍；本作自建追踪导弹与三阶段母舰。

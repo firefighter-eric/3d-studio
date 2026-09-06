@@ -1,5 +1,9 @@
 # 湛蓝大奖赛 · AZURE CIRCUIT
 
+[文档总览](../README.md) · [平台设计理念](overview.md) · [使用指南](../USER_GUIDE.md) · [测试指南](../TESTING.md)
+
+本文聚焦赛车玩法与美术设计；详细控制和本机成绩见使用指南，既有完整比赛与修复证据见 [赛车验证](../qa/racing-verification.md) 和 [护栏验证](../qa/racing-wall-verification.md)。
+
 原创开放轮式赛车与海滨街机赛道。沿用工作室的 React / Three.js 模型、场景、游戏共享方式。
 
 - 模型：赤焰 R1、潮汐 R2、流星 R3。几何组成前后翼、轮胎/轮毂、双叉臂悬挂、侧箱、座舱、驾驶员、Halo。单位米，Y 向上，+Z 前进；可导出完整 GLB，车轮保留独立转向和旋转节点。

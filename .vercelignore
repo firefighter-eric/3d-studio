@@ -5,3 +5,5 @@ docs/
 *.tsbuildinfo
 *.log
 .env*
+output/
+*.mp4

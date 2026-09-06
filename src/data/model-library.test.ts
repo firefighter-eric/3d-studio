@@ -23,6 +23,7 @@ test('Chinese, English, spelling variants and model aliases search across collec
   assert.deepEqual(new Set(search('nv72').map(model => model.id)), new Set(['nvidia-gb200-nvl72', 'nvidia-gb300-nvl72']))
   assert.deepEqual(search('NV Studio').map(model => model.id), ['nvidia-dgx-station'])
   assert.deepEqual(search('猎鹰 9').map(model => model.id), ['falcon-9'])
+  for (const query of ['重型猎鹰', '猎鹰重型', 'Falcon Heavy', '双助推器']) assert.deepEqual(search(query).map(model => model.id), ['falcon-heavy'])
   assert.deepEqual(search('ＧＢ３００　ＮＶＬ７２').map(model => model.id), ['nvidia-gb300-nvl72'])
 })
 

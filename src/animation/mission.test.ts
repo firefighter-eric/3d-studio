@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { CATCH, END, MissionPlayer, phases, RING_RELEASE, sampleMission, SEPARATION, SITE, START } from './mission'
+import { CATCH, END, enginePower, MissionPlayer, phases, RING_RELEASE, sampleMission, SEPARATION, SITE, START } from './mission'
+import { missionCamera } from './camera'
+import { Raycaster, Vector3 } from 'three'
+import { buildSite, disposeStructure } from './LaunchSite'
 
 test('reconstructed recovery separates the ship and ring and catches only the booster', () => {
   assert.equal(sampleMission(SEPARATION-.01).separated, false)
@@ -32,7 +35,7 @@ test('scrubbing is deterministic and all poses remain finite and continuous', ()
   for (const s of samples) {
     assert.deepEqual(sampleMission(s.time), s)
     assert.ok([...s.position, ...s.shipPosition, ...s.ringPosition, s.angle, s.speed].every(Number.isFinite))
-    assert.ok(s.position[1] >= SITE.catchHeight)
+    assert.ok(s.position[1] >= SITE.catchHeight-.22, 'the support may settle 22 cm under load')
     assert.ok(s.speed < 1800, `no unphysical speed spike at ${s.time}: ${s.speed}`)
   }
   for (const s of [...samples].reverse()) assert.deepEqual(sampleMission(s.time), s, 'backward seeking must reconstruct the same state')
@@ -41,6 +44,48 @@ test('scrubbing is deterministic and all poses remain finite and continuous', ()
     for (const key of ['position','shipPosition','ringPosition'] as const) assert.ok(Math.hypot(...a[key].map((v,i)=>v-b[key][i])) < (key === 'shipPosition' ? 1.5 : .6), `${key} has a discontinuity at ${t}`)
     assert.ok(Math.abs(a.angle-b.angle) < .001)
   }
+})
+
+test('catch pins remain on the support through gradual load transfer', () => {
+  for (let t=CATCH;t<=END;t+=.05) {
+    const s=sampleMission(t)
+    assert.ok(Math.abs(s.position[1]+SITE.pinHeight-(SITE.armTop-s.supportDrop))<1e-8)
+    assert.equal(s.boosterEngines,0)
+    assert.equal(Math.abs(s.gimbal),0)
+  }
+  assert.ok(sampleMission(CATCH+1).supportDrop>0)
+  assert.equal(sampleMission(END).supportDrop,.22)
+})
+
+test('engine thrust fades continuously and leaves the outer ring off during recovery', () => {
+  for (let i=0;i<33;i++) {
+    assert.equal(enginePower(300,i),0)
+    assert.equal(enginePower(425,i),0)
+    if(i<20) assert.equal(enginePower(400,i),0)
+    if(i>=20&&i<30) { assert.ok(enginePower(401,i)>0);assert.equal(enginePower(402,i),0) }
+    for (const t of [-3,159,165,220,391,402,419]) assert.ok(Math.abs(enginePower(t-.0001,i)-enginePower(t+.0001,i))<.002)
+  }
+  for(let i=0;i<6;i++) {assert.equal(enginePower(159,i,true),0);assert.ok(enginePower(161,i,true)>.99)}
+})
+
+test('ring release inherits velocity and director framing has no separation jump', () => {
+  const dt=.001, a=sampleMission(RING_RELEASE-dt), b=sampleMission(RING_RELEASE), c=sampleMission(RING_RELEASE+dt)
+  const dv=a.ringPosition.map((v,i)=>(b.ringPosition[i]-v)/dt-(c.ringPosition[i]-b.ringPosition[i])/dt)
+  assert.ok(Math.hypot(...dv)<.1)
+  for(const t of [159,161,162,164,171,385,391,395,409,419]) for(const aspect of [.7,1.7]) for (const mode of ['director','detail'] as const) {
+    const before=missionCamera(sampleMission(t-.0001),mode,aspect),after=missionCamera(sampleMission(t+.0001),mode,aspect)
+    assert.ok(Math.hypot(...before.eye.map((v,i)=>v-after.eye[i]))<.4)
+    assert.ok([...after.look,...after.eye].every(Number.isFinite))
+  }
+})
+
+test('launch table has a clear exhaust aperture and all site geometry assembles', () => {
+  const site=buildSite();site.updateMatrixWorld(true)
+  const ray=new Raycaster(new Vector3(0,30,SITE.launchZ),new Vector3(0,-1,0))
+  const hits=ray.intersectObject(site,true)
+  assert.ok(hits.length>0)
+  assert.ok(hits[0].point.y<2,'a solid launch deck must not block the engines')
+  disposeStructure(site)
 })
 
 test('return trajectory reverses downrange motion and slows before support contact', () => {

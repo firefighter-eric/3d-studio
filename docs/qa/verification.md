@@ -1,4 +1,4 @@
-> 历史记录：本文验证的是早期 60 秒躲避原型。游戏已升级，当前战斗玩法、控制与截图见 [combat-verification.md](combat-verification.md)。模型/场景验证仍保留在本文。
+> 历史记录：本文验证的是早期 60 秒躲避原型与当时的模型 / 场景。后续战斗版本证据见 [combat-verification.md](combat-verification.md)；当前使用方式见 [使用指南](../USER_GUIDE.md)，当前验收方法见 [测试指南](../TESTING.md)。旧名称、数量与截图不作为当前全站验证结果。[返回文档总览](../README.md)。
 
 # 第一版验证记录
 

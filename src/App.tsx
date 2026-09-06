@@ -20,7 +20,7 @@ const tabLabels: Record<Tab, string> = { models: '模型', scenes: '场景', ani
 function getRoute(): Route {
   const [tab, detail] = location.hash.slice(1).split('?')[0].split('/')
   if (tab === 'scenes') return { tab, detail: detail === 'moonbase' ? detail : undefined }
-  if (tab === 'animations') return { tab, detail: detail === 'starship-recovery' ? detail : undefined }
+  if (tab === 'animations') return { tab, detail: detail === 'starship-recovery' || detail === 'falcon-heavy-recovery' ? detail : undefined }
   if (tab === 'games') return { tab, detail: detail === 'starflight' || detail === 'azure-circuit' ? detail : undefined }
   return { tab: 'models', detail: assets.some(a => a.id === detail) ? detail : undefined }
 }
@@ -50,7 +50,7 @@ export default function App() {
     window.addEventListener('scroll', rememberScroll, { passive: true })
     return () => window.removeEventListener('scroll', rememberScroll)
   }, [route])
-  useEffect(() => { const detailName = route.tab === 'models' && route.detail ? assetById[route.detail as AssetId].name : route.tab === 'scenes' && route.detail ? '静海发射基地' : route.tab === 'animations' && route.detail ? '星舰：发射与回收' : route.tab === 'games' && route.detail ? route.detail==='azure-circuit'?'湛蓝大奖赛':'星际穿行' : ''; document.title = `${detailName ? `${detailName} · ` : ''}${tabLabels[route.tab]} · 3D Studio` }, [route])
+  useEffect(() => { const detailName = route.tab === 'models' && route.detail ? assetById[route.detail as AssetId].name : route.tab === 'scenes' && route.detail ? '静海发射基地' : route.tab === 'animations' && route.detail ? route.detail === 'falcon-heavy-recovery' ? '猎鹰重型：双芯归来' : '星舰：发射与回收' : route.tab === 'games' && route.detail ? route.detail==='azure-circuit'?'湛蓝大奖赛':'星际穿行' : ''; document.title = `${detailName ? `${detailName} · ` : ''}${tabLabels[route.tab]} · 3D Studio` }, [route])
   useEffect(() => { saveAdditions(additions) }, [additions])
   useEffect(() => () => { if (toastTimer.current) clearTimeout(toastTimer.current) }, [])
   const navigate = (tab: Tab, detail?: string) => {
@@ -83,7 +83,7 @@ export default function App() {
       {route.tab === 'scenes' && !route.detail && <SceneLibrary additions={additions} enter={() => navigate('scenes', 'moonbase')} goModels={() => navigate('models')} />}
       {route.tab === 'scenes' && route.detail && <SceneWorkspace additions={additions} selected={selected} toggleSelection={toggleSelection} addSelected={() => addAssets()} undo={() => { setAdditions(current => current.slice(0, -1)); notify('已撤销最后加入的模型。') }} clear={() => { setAdditions([]); notify('已清空新增模型，基地初始布局已保留。') }} back={() => navigate('scenes')} goModels={() => navigate('models')} />}
       {route.tab === 'games' && !route.detail && <GameLibrary playGame={play} playRace={()=>playRace()} viewModel={viewModel} />}
-      {route.tab === 'animations' && <Suspense fallback={<p role="status">正在准备动画模块…</p>}><Animations detail={route.detail} enter={() => navigate('animations', 'starship-recovery')} back={() => navigate('animations')} /></Suspense>}
+      {route.tab === 'animations' && <Suspense fallback={<p role="status">正在准备动画模块…</p>}><Animations detail={route.detail} enter={detail => navigate('animations', detail)} back={() => navigate('animations')} /></Suspense>}
       {route.tab === 'games' && route.detail==='starflight' && <FlightGame back={() => navigate('games')} viewModel={() => viewModel('rocket')} />}
       {route.tab === 'games' && route.detail==='azure-circuit' && <RacingGame back={()=>navigate('games')} viewModel={viewModel} initialCar={raceCar}/>}
     </main>

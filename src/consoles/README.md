@@ -1,5 +1,7 @@
 # 游戏主机模型
 
+[文档总览](../../docs/README.md) · [设计理念](../../docs/design/overview.md) · [统一资产规范](../../docs/ASSETS.md) · [制作工具配置](../../docs/DEVELOPMENT.md)
+
 四款独立模型：Microsoft Xbox Series X（Carbon Black 光驱版）、Xbox Series S（Robot White 数字版）、Sony PS5 轻薄光驱版与 PS5 Pro 数字版。均为 3D Studio 依据官方产品页面和技术资料制作的外观重建，非官方 CAD。造型与商标归各自权利人；没有导入第三方模型后改标为原创。
 
 `products.ts` 保存品牌、版本、中文和英文搜索别名及官方来源，资料核对日期为 2026-09-07。主体尺寸以官方资料为参照：Series X 151 × 301 × 151 mm、Series S 竖放 65 × 275 × 151 mm、PS5 Slim 竖放 96 × 358 × 216 mm、PS5 Pro 竖放 89 × 388 × 216 mm。接口、曲面、光驱、风道与灯带为近似重建。PS5 下载模型包含展示用底座，不表示底座随官方产品附送；包围盒不能用于机箱、展柜装配验证。
