@@ -1,8 +1,9 @@
 import * as T from 'three'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
-import { nvidiaProduct } from './products'
+import { isGeForceProductId, nvidiaProduct } from './products'
 import type { NvidiaProductId } from './products'
+import { buildGeForceModel } from './geforce'
 
 type V = [number, number, number]
 const Y = new T.Vector3(0, 1, 0)
@@ -327,7 +328,7 @@ function batchStatic(p: T.Object3D) {
 
 export function buildNvidiaModel(id: NvidiaProductId) {
   const m = materials()
-  const model = id.endsWith('nvl72') ? rack(id, m) : id === 'nvidia-dgx-b300' ? server(m) : id === 'nvidia-b300-sxm' ? gpu(m) : id === 'nvidia-dgx-spark' ? spark(m) : station(m)
+  const model = isGeForceProductId(id) ? buildGeForceModel(id, nvidiaLabels) : id.endsWith('nvl72') ? rack(id, m) : id === 'nvidia-dgx-b300' ? server(m) : id === 'nvidia-b300-sxm' ? gpu(m) : id === 'nvidia-dgx-spark' ? spark(m) : station(m)
   model.name = id
   batchStatic(model)
   model.scale.setScalar(.001)

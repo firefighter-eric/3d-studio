@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { copyFile, mkdir, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js'
 import { NodeIO } from '@gltf-transform/core'
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions'
@@ -7,7 +7,7 @@ import { dedup, draco, getBounds, prune, weld } from '@gltf-transform/functions'
 import draco3d from 'draco3dgltf'
 import sharp from 'sharp'
 import { buildNvidiaModel, nvidiaLabels } from '../src/nvidia/build.ts'
-import { NVIDIA_PRODUCTS } from '../src/nvidia/products.ts'
+import { NVIDIA_PRODUCTS, isGeForceProductId, isNvidiaProductId } from '../src/nvidia/products.ts'
 
 class NodeFileReader {
   result: ArrayBuffer | null = null
@@ -20,7 +20,10 @@ const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies(
   'draco3d.decoder': await draco3d.createDecoderModule(),
   'draco3d.encoder': await draco3d.createEncoderModule(),
 })
-const manifest: Record<string, unknown> = {}
+const requested = process.argv.slice(2)
+for (const id of requested) if (!isNvidiaProductId(id)) throw new Error(`Unknown NVIDIA product: ${id}`)
+const products = NVIDIA_PRODUCTS.filter(product => !requested.length || requested.includes(product.id))
+const manifest: Record<string, unknown> = requested.length ? JSON.parse(await readFile('src/nvidia/manifest.json', 'utf8')) : {}
 await mkdir('public/models/nvidia', { recursive: true })
 await mkdir('public/vendor/draco', { recursive: true })
 for (const file of ['draco_wasm_wrapper.js', 'draco_decoder.wasm']) await copyFile(`node_modules/three/examples/jsm/libs/draco/gltf/${file}`, `public/vendor/draco/${file}`)
@@ -38,7 +41,7 @@ function porousArtwork() {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024"><path fill="#a5987a" d="M0 0h1024v1024H0z"/>${marks}</svg>`
 }
 const porousImage = await sharp(Buffer.from(porousArtwork())).png().toBuffer()
-for (const product of NVIDIA_PRODUCTS) {
+for (const product of products) {
   nvidiaLabels.clear()
   const model = buildNvidiaModel(product.id)
   const raw = await new GLTFExporter().parseAsync(model, { binary: true }) as ArrayBuffer
@@ -75,7 +78,7 @@ for (const product of NVIDIA_PRODUCTS) {
     bytes: output.length, triangles, meshes, materials: document.getRoot().listMaterials().length,
     dimensions: bounds.max.map((v, i) => v - bounds.min[i]), units: 'metres',
     sha256: createHash('sha256').update(output).digest('hex'), source: product.source,
-    technicalSource: product.technicalSource, referenceChecked: '2026-09-06',
+    technicalSource: product.technicalSource, referenceChecked: isGeForceProductId(product.id) ? '2026-09-07' : '2026-09-06',
     provenance: 'original exterior reconstruction', engineeringAccuracy: false,
   }
   console.log(`${product.name}: ${(output.length / 1048576).toFixed(2)} MB, ${Math.round(triangles)} triangles, ${meshes} meshes`)

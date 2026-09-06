@@ -1,0 +1,74 @@
+{
+  "microsoft-xbox-series-x": {
+    "bytes": 162040,
+    "triangles": 44448,
+    "meshes": 14,
+    "materials": 9,
+    "dimensions": [
+      0.15119999694824218,
+      0.3006000061273575,
+      0.15632500004768374
+    ],
+    "units": "metres",
+    "sha256": "b20f1a4a342c193733876f3a11b9fdafe5d8f530e7d2c4d76cc09701f37236ea",
+    "source": "https://www.xbox.com/en-US/consoles/xbox-series-x",
+    "technicalSource": "https://www.xbox.com/en-US/consoles/compare",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "microsoft-xbox-series-s": {
+    "bytes": 298300,
+    "triangles": 85112,
+    "meshes": 15,
+    "materials": 8,
+    "dimensions": [
+      0.0670999999523163,
+      0.275,
+      0.15637500309944152
+    ],
+    "units": "metres",
+    "sha256": "1e11c1ce2083f5a1b6f137cfa07e66dc4bac527dca8d2bbef932d8ae31ae6779",
+    "source": "https://www.xbox.com/en-US/consoles/xbox-series-s",
+    "technicalSource": "https://www.xbox.com/en-US/consoles/compare",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "sony-ps5-slim": {
+    "bytes": 175168,
+    "triangles": 55864,
+    "meshes": 22,
+    "materials": 11,
+    "dimensions": [
+      0.132,
+      0.367,
+      0.21384248352050783
+    ],
+    "units": "metres",
+    "sha256": "07abbb4c83eea19d51e7cf856c7216664e6c749e8d57147e6e76cb3e29daff55",
+    "source": "https://www.playstation.com/en-us/ps5/",
+    "technicalSource": "https://blog.playstation.com/2023/10/10/new-look-for-ps5-console-this-holiday-season/",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "sony-ps5-pro": {
+    "bytes": 185732,
+    "triangles": 60832,
+    "meshes": 26,
+    "materials": 10,
+    "dimensions": [
+      0.132,
+      0.397,
+      0.21186143493652343
+    ],
+    "units": "metres",
+    "sha256": "7df87c6a432acb28a454e61451a76c085a2883b4e39bd0c60b664b326fd99230",
+    "source": "https://www.playstation.com/en-us/ps5/ps5-pro/",
+    "technicalSource": "https://blog.playstation.com/2025/04/21/playstation-5-pro-teardown-an-inside-look-at-the-most-advanced-playstation-console-to-date/",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  }
+}

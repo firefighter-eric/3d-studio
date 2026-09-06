@@ -53,7 +53,7 @@ npm run build
 
 ## 统一模型库
 
-`/#models` 默认展示全部 43 个模型，SpaceX、Apple、DJI、NVIDIA 与原创模型使用同一套卡片和详情操作。顶部搜索支持中文、英文和型号别名，例如「苹果」「Starship」「NV72」；品牌、类型、模型来源可组合筛选，支持推荐、名称和品牌排序。搜索「电脑」可同时找到 Mac 和 DGX Spark。
+`/#models` 默认展示全部 64 个模型，SpaceX、Apple、DJI、NVIDIA、Tesla、Microsoft、Sony 与原创模型使用同一套卡片和详情操作。顶部搜索支持中文、英文和型号别名，例如「苹果」「Starship」「NV72」「1080Ti」「5090」「Xbox」「PS5」；品牌、类型、模型来源可组合筛选，支持推荐、名称和品牌排序。搜索「电脑」可同时找到 Mac 和 DGX Spark；筛选「游戏主机」可同时找到 Xbox 和 PS5。
 
 筛选与排序保存在地址中，可直接分享或刷新；从详情返回时恢复列表筛选、滚动位置和上次查看卡片的键盘焦点。选择素材不会因筛选变化而丢失，可跨品牌加入同一场景。详情页共用查看器布局、视角工具、选择 / 加入场景 / 下载区域，并保留航天分级、观察位置及 DJI 构型切换。
 
@@ -209,8 +209,14 @@ src/
 
 ## NVIDIA 硬件模型
 
-模型库新增 6 款：**GB200 NVL72、GB300 NVL72、DGX B300、B300 GPU（SXM 示意）、DGX Spark、DGX Station**。选择品牌「NVIDIA」后可按机柜 / 服务器 / GPU / 电脑筛选，支持旋转缩放、选择素材、加入场景与下载 GLB。直达 `http://localhost:5180/#models/nvidia-gb300-nvl72`。
+NVIDIA 共 11 款：**GB200 NVL72、GB300 NVL72、DGX B300、B300 GPU（SXM 示意）、DGX Spark、DGX Station**，以及五代 Founders Edition 公版显卡 **GTX 1080 Ti、RTX 2080 Ti、RTX 3090、RTX 4090、RTX 5090**。选择品牌「NVIDIA」后可按机柜 / 服务器 / GPU / 电脑筛选，支持旋转缩放、选择素材、加入场景与下载 GLB。直达 `http://localhost:5180/#models?brand=nvidia&type=gpu`。
 
 这些是依 NVIDIA 官方产品资料和用户指南制作的外观重建；尺寸精度与参考链接在详情页说明。DGX Station 参考官网展示造型，非特定 OEM 量产机箱。下载采用米制，场景按展示比例缩放。每款 GLB 约 0.07–0.63 MB，贴图内嵌，Draco 解码器随项目提供；模型卡片使用真实三维渲染缩略图。
 
 `npm run models:nvidia` 重新导出，`npm run test:nvidia` 验证实际 GLB 的解码、尺寸、文件哈希及场景接入。建模源、来源与缩略图再生方式见 [`src/nvidia/README.md`](src/nvidia/README.md)。
+
+## Xbox 与 PlayStation 主机
+
+模型库包含 **Xbox Series X、Xbox Series S、PS5 轻薄光驱版、PS5 Pro**。品牌分别为 Microsoft、Sony，类型统一为「游戏主机」。搜索完整型号可以区分 Series X / S，支持旋转缩放、真实模型预览、下载 GLB 和加入场景。直达 `http://localhost:5180/#models?type=console`。
+
+四款均依据官方资料进行外观重建，包含散热孔、曲面外壳、前后接口和相应光驱轮廓。PS5 附展示底座，下载保留米制，局部细节近似。运行 `npm run models:consoles` 导出、`npm run models:consoles:previews` 渲染缩略图、`npm run test:consoles` 验证资产。来源与再生方式见 [`src/consoles/README.md`](src/consoles/README.md)。

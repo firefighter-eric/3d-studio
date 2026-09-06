@@ -6,7 +6,7 @@ import { test } from 'node:test'
 import { NodeIO } from '@gltf-transform/core'
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions'
 import { getBounds } from '@gltf-transform/functions'
-import { NVIDIA_PRODUCTS, nvidiaModelInfo, nvidiaModelUrl, isNvidiaProductId } from './specs'
+import { NVIDIA_PRODUCTS, GEFORCE_PRODUCTS, nvidiaModelInfo, nvidiaModelUrl, isNvidiaProductId } from './specs'
 import { assetById, createInstances } from '../data/catalog'
 
 const require = createRequire(import.meta.url)
@@ -26,6 +26,33 @@ test('NVIDIA products resolve through the shared catalog and scene placement con
     assert.equal(instance.position[1], 0)
     assert.ok(product.source.startsWith('https://www.nvidia.com/'))
   }
+})
+
+test('GeForce generations retain their distinct FE cooling layouts and compact 5090 thickness', async () => {
+  const expected = {
+    'nvidia-gtx-1080-ti': ['radial-blower:front'],
+    'nvidia-rtx-2080-ti': ['axial-fan:front', 'axial-fan:front'],
+    'nvidia-rtx-3090': ['axial-fan:front', 'axial-fan:rear'],
+    'nvidia-rtx-4090': ['axial-fan:front', 'axial-fan:rear'],
+    'nvidia-rtx-5090': ['axial-fan:front', 'axial-fan:front'],
+  }
+  const hashes = new Set<string>()
+  for (const product of GEFORCE_PRODUCTS) {
+    const info = nvidiaModelInfo(product.id)
+    hashes.add(info.sha256)
+    const document = await io.read(`public${nvidiaModelUrl(product.id)}`)
+    const nodes = document.getRoot().listNodes(), fans = nodes.filter(node => node.getExtras().kind)
+    assert.deepEqual(fans.map(node => `${node.getExtras().kind}:${node.getExtras().face}`).sort(), [...expected[product.id]].sort())
+    for (const fan of fans) {
+      const z = fan.getWorldTranslation()[2]
+      assert.ok(fan.getExtras().face === 'rear' ? z < 0 : z > 0, 'cooling assemblies must be on their declared side of the card')
+      if (product.id === 'nvidia-rtx-2080-ti') assert.equal(fan.getExtras().blades, 13)
+    }
+    for (const name of ['pcb-and-pcie-contacts', 'io-bracket-and-display-ports', 'power-connectors']) assert.ok(nodes.some(node => node.getName() === name), name)
+    assert.ok(info.dimensions[0] > .26 && info.dimensions[0] < .33, 'download preserves desktop card scale in metres')
+  }
+  assert.equal(hashes.size, 5, 'each generation must ship a distinct model')
+  assert.ok(nvidiaModelInfo('nvidia-rtx-5090').dimensions[2] < nvidiaModelInfo('nvidia-rtx-4090').dimensions[2] * .8, '5090 FE uses a thinner dual-slot cooler')
 })
 
 for (const product of NVIDIA_PRODUCTS) test(`${product.name}: shipping GLB decodes, matches manifest, is grounded and has no remote assets`, async () => {

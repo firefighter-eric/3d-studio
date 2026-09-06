@@ -1,0 +1,206 @@
+{
+  "tesla-model-3": {
+    "bytes": 227508,
+    "triangles": 71631,
+    "meshes": 17,
+    "materials": 11,
+    "dimensions": [
+      2.2285380363464355,
+      1.4439982557669282,
+      4.79192042350769
+    ],
+    "units": "metres",
+    "sha256": "d4792c67a664c715b9f5dfa25984375842b2ac5d9a94833b3f23e7f3ab154a4d",
+    "source": "https://www.tesla.com/model3",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-model-y": {
+    "bytes": 279908,
+    "triangles": 87711,
+    "meshes": 17,
+    "materials": 11,
+    "dimensions": [
+      2.367638111114502,
+      1.6239979709498584,
+      4.878280878067017
+    ],
+    "units": "metres",
+    "sha256": "889a992afc934e1b15d9b1fd1b48e76f4c0367d26a16a8958f208ebfee4dbbfb",
+    "source": "https://www.tesla.com/modely",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-model-s": {
+    "bytes": 226784,
+    "triangles": 71631,
+    "meshes": 17,
+    "materials": 11,
+    "dimensions": [
+      2.367638111114502,
+      1.453998246230185,
+      5.094418048858643
+    ],
+    "units": "metres",
+    "sha256": "073793a7603c08cbed55ec5a592c7981f3afb1d314b03a6142b83d9c36fa7f54",
+    "source": "https://www.tesla.com/models",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-model-x": {
+    "bytes": 281156,
+    "triangles": 88431,
+    "meshes": 17,
+    "materials": 11,
+    "dimensions": [
+      2.3890380859375,
+      1.6857523368671536,
+      5.134384632110596
+    ],
+    "units": "metres",
+    "sha256": "fe36c4b889cfe3532b064cfac76606cdde87ba657d19931c1d8095055731d7dc",
+    "source": "https://www.tesla.com/modelx",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-cybertruck": {
+    "bytes": 378868,
+    "triangles": 140964,
+    "meshes": 15,
+    "materials": 11,
+    "dimensions": [
+      2.694859027862549,
+      1.8950378820300102,
+      5.760999917984009
+    ],
+    "units": "metres",
+    "sha256": "a10a57292f5404006cb5cfb0c34b1fce4fce826c72180be01168b87b92383c49",
+    "source": "https://www.tesla.com/cybertruck",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-semi": {
+    "bytes": 256664,
+    "triangles": 94828,
+    "meshes": 14,
+    "materials": 9,
+    "dimensions": [
+      3,
+      3.819000056013465,
+      7.366499900817871
+    ],
+    "units": "metres",
+    "sha256": "1f5fa171d9b86a8c9334360db3e0b39b22a05867aa50ca26c62ca053ed230a16",
+    "source": "https://www.tesla.com/semi",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-roadster": {
+    "bytes": 223188,
+    "triangles": 69111,
+    "meshes": 17,
+    "materials": 11,
+    "dimensions": [
+      2.3890380859375,
+      1.223996702581644,
+      4.520750999450684
+    ],
+    "units": "metres",
+    "sha256": "328ea93f75d7fbb22aad36f2fcae822d105cff2eb7ed75f96399edf9f4ed8ccc",
+    "source": "https://www.tesla.com/roadster",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-cybercab": {
+    "bytes": 223472,
+    "triangles": 73943,
+    "meshes": 17,
+    "materials": 11,
+    "dimensions": [
+      2.188999891281128,
+      1.453998246230185,
+      4.584930181503296
+    ],
+    "units": "metres",
+    "sha256": "ec0889edf0a89980b83ae6f5eae9b87542354eb711c1c11f9504f020848bde0e",
+    "source": "https://www.tesla.com/en_ca/we-robot",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-optimus": {
+    "bytes": 121644,
+    "triangles": 34218,
+    "meshes": 14,
+    "materials": 6,
+    "dimensions": [
+      0.6948897242546082,
+      1.6953928275033832,
+      0.3245000094175339
+    ],
+    "units": "metres",
+    "sha256": "82b1a784bf55c85b4ba26e65aa8fc6bf0c6182c2cbaa7d2e0cea59d4187ba509",
+    "source": "https://www.tesla.com/AI",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-powerwall-3": {
+    "bytes": 38440,
+    "triangles": 12494,
+    "meshes": 7,
+    "materials": 6,
+    "dimensions": [
+      0.6110000014305115,
+      1.0900000500679017,
+      0.2005000039935112
+    ],
+    "units": "metres",
+    "sha256": "bbde2ec8e7cb01a3db2f7e3aa7da05aeb2a39efe25b53d1ad8d7f26351cddfa4",
+    "source": "https://www.tesla.com/powerwall",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-megapack": {
+    "bytes": 212728,
+    "triangles": 84536,
+    "meshes": 10,
+    "materials": 6,
+    "dimensions": [
+      8.819999694824219,
+      2.825000046491623,
+      1.7924999594688416
+    ],
+    "units": "metres",
+    "sha256": "fbd8d0c0d586f529cf204673dbb795961bef27d6bcbc0aa62e073b26ba99e548",
+    "source": "https://www.tesla.com/megapack",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  },
+  "tesla-supercharger-v4": {
+    "bytes": 29940,
+    "triangles": 3544,
+    "meshes": 8,
+    "materials": 7,
+    "dimensions": [
+      0.7807732224464417,
+      1.9600000382959843,
+      0.34386682510375977
+    ],
+    "units": "metres",
+    "sha256": "3832d10952ef0bb79fc9ebe5265b93e10c2c3d2a4bdc9f355dbc690a996c51a3",
+    "source": "https://www.tesla.com/supercharger",
+    "referenceChecked": "2026-09-07",
+    "provenance": "original exterior reconstruction",
+    "engineeringAccuracy": false
+  }
+}

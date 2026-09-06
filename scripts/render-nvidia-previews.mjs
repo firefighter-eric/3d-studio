@@ -7,11 +7,14 @@ import sharp from 'sharp'
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright')
 const origin = process.env.NVIDIA_PREVIEW_ORIGIN || 'http://localhost:5180'
 const manifest = JSON.parse(await readFile(new URL('../src/nvidia/manifest.json', import.meta.url), 'utf8'))
+const requested = process.argv.slice(2)
+for (const id of requested) if (!Object.hasOwn(manifest, id)) throw new Error(`Unknown NVIDIA product: ${id}`)
+const ids = Object.keys(manifest).filter(id => !requested.length || requested.includes(id))
 await mkdir(new URL('../public/models/nvidia/', import.meta.url), { recursive: true })
 const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--enable-webgl', '--use-gl=angle', '--use-angle=metal'] })
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1.5 })
-  for (const id of Object.keys(manifest)) {
+  for (const id of ids) {
     await page.goto(`${origin}/#models/${id}`)
     await page.locator(`[data-model="${id}"][data-rendered="true"]`).waitFor({ timeout: 60000 })
     await page.evaluate(() => {
