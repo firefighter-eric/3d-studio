@@ -79,13 +79,13 @@ function describeModel(asset: ModelAsset): LibraryModel {
       aliases: [...product.features, ...(isGeForceProductId(asset.id) ? ['GeForce', 'FE', '创始版', '公版显卡'] : []), ...(asset.id === 'nvidia-dgx-station' ? ['NV Studio', 'NVIDIA Studio'] : [])],
       preview: nvidiaPreviewUrl(asset.id), download: nvidiaModelUrl(asset.id) }
   }
-  if (isSpacecraftId(asset.id)) return { ...asset, brand: 'spacex', type: 'rocket', source: 'reconstructed', aliases: asset.id === 'starship' ? ['星舰 超级重型 Starship Super Heavy'] : ['猎鹰9号 Falcon 9'], download: `/models/${asset.id}.glb` }
+  if (isSpacecraftId(asset.id)) return { ...asset, brand: 'spacex', type: 'rocket', source: 'reconstructed', aliases: asset.id === 'starship' ? ['星舰 超级重型 Starship Super Heavy'] : asset.id === 'falcon-heavy' ? ['重型猎鹰 猎鹰重型 Falcon Heavy FH 双助推器 双芯回收'] : ['猎鹰9号 Falcon 9'], download: `/models/${asset.id}.glb` }
   if (isCarId(asset.id)) return { ...asset, brand: 'original', type: 'car', source: 'original', aliases: ['方程式赛车', 'racing', 'F1'], download: `/models/${asset.id}.glb` }
   const types = { rocket: 'rocket', basalt: 'nature', launchpad: 'facility', antenna: 'facility' } as const
   return { ...asset, brand: 'original', type: types[asset.id as keyof typeof types], source: 'original', aliases: [] }
 }
 
-const featured: AssetId[] = ['starship', 'apple-iphone-17-pro', 'dji-osmo-pocket-4p', 'nvidia-gb300-nvl72', 'tesla-cybertruck', 'tesla-optimus', 'nvidia-rtx-5090', 'microsoft-xbox-series-x', 'sony-ps5-pro', 'apple-macbook-pro', 'nvidia-dgx-spark', 'dji-mavic-4-pro', 'falcon-9']
+const featured: AssetId[] = ['falcon-heavy', 'starship', 'apple-iphone-17-pro', 'dji-osmo-pocket-4p', 'nvidia-gb300-nvl72', 'tesla-cybertruck', 'tesla-optimus', 'nvidia-rtx-5090', 'microsoft-xbox-series-x', 'sony-ps5-pro', 'apple-macbook-pro', 'nvidia-dgx-spark', 'dji-mavic-4-pro', 'falcon-9']
 export const libraryModels = assets.map(describeModel).sort((a, b) => {
   const rank = (id: AssetId) => featured.includes(id) ? featured.indexOf(id) : featured.length
   return rank(a.id) - rank(b.id)

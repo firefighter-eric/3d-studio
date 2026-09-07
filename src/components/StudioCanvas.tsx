@@ -67,7 +67,7 @@ export function StudioLights({ shadows = false, product = false }: { shadows?: b
   </>
 }
 
-const Controls = forwardRef<ViewActions, { autoRotate?: boolean; scene?: boolean; interactive?: boolean; car?: boolean; spacecraft?: boolean; view?: SpacecraftView; separated?: boolean; nvidiaId?: NvidiaProductId; consoleId?: ConsoleProductId }>(function Controls({ autoRotate = false, scene = false, interactive = true, car = false, spacecraft = false, view = 'full', separated = false, nvidiaId, consoleId }, ref) {
+const Controls = forwardRef<ViewActions, { autoRotate?: boolean; scene?: boolean; interactive?: boolean; car?: boolean; spacecraft?: boolean; starship?: boolean; falconHeavy?: boolean; view?: SpacecraftView; separated?: boolean; nvidiaId?: NvidiaProductId; consoleId?: ConsoleProductId }>(function Controls({ autoRotate = false, scene = false, interactive = true, car = false, spacecraft = false, starship = false, falconHeavy = false, view = 'full', separated = false, nvidiaId, consoleId }, ref) {
   const controls = useRef<OrbitControlsImpl>(null)
   const { camera, invalidate, size } = useThree()
   useEffect(() => {
@@ -76,16 +76,16 @@ const Controls = forwardRef<ViewActions, { autoRotate?: boolean; scene?: boolean
     const narrow = size.width < 500
     if (scene) camera.position.set(25, 23, 31).multiplyScalar(fit)
     else if (spacecraft) {
-      if (view === 'engines') camera.position.set(0.85, -4.2, 1.3)
-      else if (view === 'upper') camera.position.set(2.2, 2.7, 4.5).multiplyScalar(fit)
-      else camera.position.set(4.8, 1.0, 10).multiplyScalar(fit * (separated ? narrow ? 1.6 : 1.4 : narrow ? 1.43 : 1.22))
+      if (view === 'engines') camera.position.set(...(falconHeavy ? [0, separated ? -6.8 : -5.3, 1.6] : [0.85, -4.2, 1.3]) as [number, number, number])
+      else if (view === 'upper') camera.position.set(starship ? 3.2 : 2.2, 2.7, starship ? 3.9 : 4.5).multiplyScalar(fit)
+      else camera.position.set(starship ? 6.8 : 4.8, 1.0, starship ? 8.6 : 10).multiplyScalar(fit * (separated ? narrow ? 1.6 : 1.4 : narrow ? 1.43 : 1.22))
     }
     else if (nvidiaId) camera.position.set(...(isGeForceProductId(nvidiaId) ? [4.3, 3.2, 10] : nvidiaId === 'nvidia-b300-sxm' ? [4.8, 8, 9] : nvidiaId === 'nvidia-dgx-spark' ? [5.2, 4.2, 10] : nvidiaId === 'nvidia-dgx-b300' ? [4.2, 4.2, 10] : [3.2, 1.6, 10.8]) as [number, number, number]).multiplyScalar(fit)
     else if (consoleId) camera.position.set(...(consoleId === 'microsoft-xbox-series-s' ? [-7, 2.6, 8.5] : consoleId === 'microsoft-xbox-series-x' ? [-5, 7.5, 9.7] : [5.8, 2.1, 10]) as [number, number, number]).multiplyScalar(fit)
     else camera.position.set(...(car ? [6.5, 3.7, 9] : [4.8, 1.9, 10]) as [number,number,number]).multiplyScalar(fit)
     controls.current?.target.set(0, scene ? 0.7 : spacecraft && view === 'engines' ? -2.82 : spacecraft && view === 'upper' ? 1.75 + (separated ? 0.6 : 0) : spacecraft ? narrow ? separated ? 0.42 : 0.05 : separated ? -0.2 : -0.55 : 0, 0)
     controls.current?.update(); controls.current?.saveState(); invalidate()
-  }, [camera, invalidate, interactive, scene, car, spacecraft, view, separated, nvidiaId, consoleId, size.width, size.height])
+  }, [camera, invalidate, interactive, scene, car, spacecraft, starship, falconHeavy, view, separated, nvidiaId, consoleId, size.width, size.height])
   useImperativeHandle(ref, () => ({
     reset() { controls.current?.reset(); invalidate() },
     zoom(direction) {
@@ -120,12 +120,12 @@ export const ModelCanvas = forwardRef<ViewActions, { id: AssetId; hero?: boolean
   const tesla = isTeslaProductId(id)
   const gameConsole = isConsoleProductId(id)
   const y = gameConsole ? -consoleDisplayHeight(id) * asset.viewScale / 2 : tesla ? -teslaDisplayHeight(id) * asset.viewScale / 2 : nvidia ? -nvidiaDisplayHeight(id) * asset.viewScale / 2 : apple ? -appleDisplayHeight(id) * asset.viewScale / 2 : spacecraft ? -2.9 : car ? -.68 : id === 'rocket' ? (hero ? 0.15 : 0.4) : id === 'basalt' ? -1.1 : id === 'launchpad' ? -0.4 : -1.65
-  return <CanvasBoundary><div className="canvas-shell" data-rendered={ready} data-model={id} data-view={view} data-separated={separated}><Canvas camera={{ position: compact ? spacecraft ? [4.5, 0.8, 10] : [6, 4, 9] : [4.8, 1.9, 10], fov: compact ? 36 : 35 }} dpr={[1, 1.8]} frameloop={autoRotate ? 'always' : 'demand'} gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }} aria-label={`${asset.name}三维视图`}>
+  return <CanvasBoundary><div className="canvas-shell" data-rendered={ready} data-model={id} data-view={view} data-separated={separated}><Canvas camera={{ position: compact ? spacecraft ? id === 'starship' ? [6.8, 0.8, 8.6] : [4.5, 0.8, 10] : [6, 4, 9] : [4.8, 1.9, 10], fov: compact ? 36 : 35 }} dpr={[1, 1.8]} frameloop={autoRotate ? 'always' : 'demand'} gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }} aria-label={`${asset.name}三维视图`}>
     <Suspense fallback={null}>
       {gameConsole ? <ConsoleLighting /> : tesla ? <TeslaLighting /> : nvidia ? <NvidiaLighting /> : <StudioLights product={apple} />}
       <group position={[0, y, 0]} rotation={id === 'rocket' ? [0, 0, hero ? -0.34 : -0.08] : [0, gameConsole ? 0 : nvidia ? .05 : spacecraft ? -0.45 : -0.3, 0]} scale={asset.viewScale * (compact ? 0.98 : id === 'rocket' && !hero ? 0.87 : 1)}><AssetModel id={id} separated={separated} /></group>
       {!compact && !apple && !nvidia && !tesla && !gameConsole && (!spacecraft || view !== 'engines') && <OrbitFloor y={spacecraft ? -3.04 : car ? -.7 : id === 'rocket' ? -2.75 : -1.95} />}
-      <Controls ref={ref} autoRotate={autoRotate} interactive={!compact} car={car || tesla && teslaProduct(id).family === '汽车'} spacecraft={spacecraft} view={view} separated={separated} nvidiaId={nvidia ? id : undefined} consoleId={gameConsole ? id : undefined} />
+      <Controls ref={ref} autoRotate={autoRotate} interactive={!compact} car={car || tesla && teslaProduct(id).family === '汽车'} spacecraft={spacecraft} starship={id === 'starship'} falconHeavy={id === 'falcon-heavy'} view={view} separated={separated} nvidiaId={nvidia ? id : undefined} consoleId={gameConsole ? id : undefined} />
       <RenderReady onReady={() => setReady(true)} />
     </Suspense>
   </Canvas>{!ready && <div className="canvas-loading" role="status"><span />准备三维视图…</div>}</div></CanvasBoundary>

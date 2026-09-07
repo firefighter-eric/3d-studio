@@ -1,0 +1,18 @@
+{
+  "title": "猎鹰重型：双芯归来",
+  "file": "output/videos/falcon-heavy-dual-landing.mp4",
+  "distribution": "local-only",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 1680,
+  "duration": 56,
+  "audio": false,
+  "bytes": 18297332,
+  "sha256": "ba4396104b8a8db536a1f35ea40008211cc377708d54a327482201383ab2027b",
+  "model": "/models/falcon-heavy.glb",
+  "modelSha256": "075087f2fcc463e595e155c63a564a22612b35ab07ddb9f969fa52909f8ae174",
+  "renderSourceSha256": "a4f57168a393c0b72388bdb4328addf08d73b5606450cbea308f046084aa8fbf",
+  "reference": "https://www.youtube.com/watch?v=A0FZIwabctw&t=82s",
+  "provenance": "Original project 3D render; public-reference visualization, compressed flight phases, approximate geometry and trajectories."
+}

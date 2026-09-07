@@ -1,6 +1,6 @@
 /** Flight 5 inspired choreography. Metres and seconds; reconstructed, not telemetry. */
 export type Vec3 = [number, number, number]
-export type CameraMode = 'director' | 'follow' | 'tower'
+export type CameraMode = 'director' | 'follow' | 'tower' | 'detail'
 export type PlaybackSpeed = 'director' | '1' | '4' | '8'
 export const START = -10
 export const END = 425
@@ -70,6 +70,13 @@ export function boosterAngle(t: number) {
   return -0.055 * Math.sin((t - 256) * .033) * (1 - smooth(391, 417, t))
 }
 export function offset(p: Vec3, angle: number, height: number): Vec3 { return [p[0] - Math.sin(angle)*height, p[1] + Math.cos(angle)*height, p[2]] }
+// After separation the curve tracks a reference centre of mass. Convert it
+// back to an engine-plane origin so attitude changes rotate about the body.
+function boosterPosition(t: number): Vec3 {
+  const base = curve(trajectory, t), angle = boosterAngle(t)
+  const pivotBlend = smooth(SEPARATION, 179, t)*(1-smooth(375, 409, t))
+  return [base[0]+Math.sin(angle)*34*pivotBlend, base[1]+(1-Math.cos(angle))*34*pivotBlend-.22*smooth(CATCH,CATCH+1.8,t), base[2]]
+}
 const sepPosition = offset(curve(trajectory, SEPARATION), boosterAngle(SEPARATION), SITE.boosterHeight + SITE.ringHeight)
 const sepBefore = curve(trajectory, SEPARATION-.001), sepAfter = curve(trajectory, SEPARATION+.001)
 const sepVelocity = sepAfter.map((v,i) => (v-sepBefore[i])/.002) as Vec3
@@ -82,15 +89,30 @@ const shipKeys: Key[] = [
   { t: 240, p: [148000, 129000, 28] }, { t: 330, p: [351000, 163000, 28] },
   { t: END + 30, p: [758000, 183000, 28] },
 ]
+const ringAnchor = (t: number) => offset(boosterPosition(t), boosterAngle(t), SITE.boosterHeight)
+const ringReleasePos = ringAnchor(RING_RELEASE)
+const ringBefore = ringAnchor(RING_RELEASE-.001), ringAfter = ringAnchor(RING_RELEASE+.001)
+const ringVelocity = ringAfter.map((v,i) => (v-ringBefore[i])/.002) as Vec3
+
+/** Per-engine thrust envelopes make ignition/shutdown continuous when seeking. */
+export function enginePower(t: number, index: number, ship = false) {
+  const burn = (start: number, end: number) => smooth(start, start+.45, t)*(1-smooth(end-.18, end, t))
+  if (ship) return smooth(160+index*.035, 160.55+index*.035, t)
+  const inner = index >= 20, center = index >= 30, stagger = (index%5)*.028
+  const ascent = burn(-3+stagger, center ? 220 : 159)
+  const boostback = inner && !center ? burn(165+stagger, 220) : 0
+  const landing = inner ? burn(391+stagger, center ? CATCH : 402) : 0
+  return Math.max(ascent, boostback, landing)
+}
 
 export function sampleMission(input: number) {
   const time = clamp(Number.isFinite(input) ? input : START, START, END)
-  const position = curve(trajectory, time), angle = boosterAngle(time)
+  const position = boosterPosition(time), angle = boosterAngle(time)
   const separated = time >= SEPARATION
   const shipPosition = separated ? time < 190 ? earlyShip(time) : curve(shipKeys, time) : offset(position, angle, 71)
-  const releasePos = offset(curve(trajectory, RING_RELEASE), boosterAngle(RING_RELEASE), SITE.boosterHeight)
   const sinceRelease = Math.max(0, time - RING_RELEASE)
-  const ringPosition = time < RING_RELEASE ? offset(position, angle, SITE.boosterHeight) : [releasePos[0] - 250*sinceRelease, releasePos[1] + 210*sinceRelease - 4.4*sinceRelease**2, releasePos[2] + 4*sinceRelease] as Vec3
+  const eject = smooth(0, 1.2, sinceRelease)*1.6
+  const ringPosition = time < RING_RELEASE ? offset(position, angle, SITE.boosterHeight) : ringReleasePos.map((v,i) => v+ringVelocity[i]*sinceRelease+(i === 1 ? -4.4*sinceRelease**2 : i === 2 ? eject : 0)) as Vec3
   let boosterEngines = 0
   if (time >= -3 && time < 159) boosterEngines = 33
   else if (time >= 159 && time < 165) boosterEngines = 3
@@ -98,7 +120,7 @@ export function sampleMission(input: number) {
   else if (time >= 391 && time < 402) boosterEngines = 13
   else if (time >= 402 && time < CATCH) boosterEngines = 3
   const throttle = boosterEngines === 0 ? 0 : time < 0 ? smooth(-3, -1, time) : time >= 391 ? mix(.95, .35, smooth(393, 418.8, time)) : .95
-  const before = curve(trajectory, Math.max(START, time - .025)), after = curve(trajectory, Math.min(END, time + .025))
+  const before = boosterPosition(Math.max(START, time - .025)), after = boosterPosition(Math.min(END, time + .025))
   const speed = Math.hypot(...after.map((value, i) => (value - before[i]) / .05))
   return {
     time, position, angle, speed, separated,
@@ -108,6 +130,10 @@ export function sampleMission(input: number) {
     ringReleased: time >= RING_RELEASE,
     boosterEngines, throttle, caught: time >= CATCH,
     armClosure: smooth(408, 418.3, time),
+    // Small common support deflection keeps pins in contact during load transfer.
+    supportDrop: .22*smooth(CATCH, CATCH+1.8, time),
+    gimbal: .035*Math.sin(time*.55)*(smooth(391,393,time)*(1-smooth(416,419,time))) + .012*Math.sin(time*.19)*smooth(0,8,time)*(1-smooth(150,159,time)),
+    finDeflection: -.17*Math.sin(time*.12)*smooth(250,295,time)*(1-smooth(409,418,time)),
     phase: [...phases].reverse().find(p => time >= p.time) ?? phases[0],
   }
 }
